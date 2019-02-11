@@ -1,0 +1,192 @@
+{% load staticfiles %}
+
+<style>   
+        #navbar {
+          /* background-color: #333; */
+          position: fixed;
+          top: 0;
+          width: 100%;
+          display: block;
+          transition: top 1s ease-in-out;
+        }
+        
+        #navbar a {
+          float: left;
+          display: block;
+          color: #f2f2f2;
+          text-align: center;
+          /* padding: 15px; */
+          /* text-decoration: none; */
+          /* font-size: 17px; */
+        }
+        </style>
+
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                  <!-- <nav class="navbar-fixed-to-top navbar navbar-expand-md navbar-light navbar-laravel">   -->
+                    
+
+                        <div id="navbar">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/"><img src="{% static 'img/core-img/logo.png' %}?{% now "U" %}" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="dorneNav">
+                            <ul class="navbar-nav mr-auto" id="dorneMenu">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/explore">&#x261B Explore</a>
+                                        <a class="dropdown-item" href="/modal1">Beaches</a>
+                                        <a class="dropdown-item" href="single-listing.html">Bike Rides</a>
+                                        <a class="dropdown-item" href="/explore">Heritage</a>
+                                        <a class="dropdown-item" href="/contact">Hot Air Ballooning</a>
+                                        <a class="dropdown-item" href="/explore">Museums</a>
+                                        <a class="dropdown-item" href="/explore">Offroad Tours</a>
+                                        <a class="dropdown-item" href="/explore">Resorts</a>
+                                        <a class="dropdown-item" href="listing.html">Road Trips</a>
+                                        <a class="dropdown-item" href="single-listing.html">Scenery</a>
+                                        <a class="dropdown-item" href="/contact">Vacation Rentals</a>
+                                        <a class="dropdown-item" href="/explore">Weekend Outdoors</a>
+                                        <a class="dropdown-item" href="/contact">Wildlife</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Places <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                        <a class="dropdown-item" href="/explore">&#x261B Places</a>
+                                        <a class="dropdown-item" href="/modal1">Coast</a>
+                                        <a class="dropdown-item" href="single-listing.html">Kisumu</a>
+                                        <a class="dropdown-item" href="/explore">Maasai Mara</a>
+                                        <a class="dropdown-item" href="/contact">Mt. Kenya</a>
+                                        <a class="dropdown-item" href="/explore">Naivasha</a>
+                                        <a class="dropdown-item" href="/explore">Nairobi</a>
+                                        <a class="dropdown-item" href="/explore">Nakuru</a>
+                                        <a class="dropdown-item" href="listing.html">Tsavo</a>
+                                        
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact">Contact Us</a>
+                                </li>
+                            </ul>
+                            <!-- Search btn -->
+                            <div class="dorne-search-btn">
+                                <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                            </div>
+                            <!-- Signin btn -->
+                            <div class="dorne-signin-btn">
+                                <a href="/accounts/login" class="btn dorne-btn dorne-btn1">Sign In  or Register</a>
+                            </div>
+
+<!--                            
+<!-- Button trigger modal
+<button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal">
+    Sign In or Sign Up
+  </button>
+  
+<!-- Modal
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+
+                            <!-- Add listings btn -->
+                            <div class="dorne-add-listings-btn">
+                                <a href="#" class="btn dorne-btn dorne-btn1">Add to Favourites</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+<!---
+
+<nav class="navbar-fixed-to-top navbar navbar-expand-md navbar-light navbar-laravel">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="{% static '/img/logo.png' %}" height="50px">
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar --
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                        <a class="nav-link" href="#">Solutions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="">Customers</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="">Pricing</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="">Resources</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="">About</a>
+                </li>
+
+            </ul>
+
+            <!-- Right Side Of Navbar --
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links --
+    
+                    <li class="nav-item">
+                        <a class="nav-link sales-btn" href="/accounts/login/">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link trial-btn" href="/register/">Register</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</nav>-->
+
+<script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+          if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+          } else {
+            document.getElementById("navbar").style.top = "-100px";
+          }
+          prevScrollpos = currentScrollPos;
+        }
+        </script>

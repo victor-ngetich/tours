@@ -1,0 +1,42 @@
+{% if articles.count > 0 %}
+{% for article in articles %}
+<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="product-thumbnail">
+            <div class="product-img-head">
+                <div class="product-img">
+                    <style>
+                        .pic{
+                            max-height: 150px ;
+                            overflow: hidden;
+                        }
+                    </style>
+                    <img src="{{ article.pics.url }}"  alt="" class="img-fluid"></div>
+                 </div>
+            <div class="product-content">
+                <div class="product-content-head">
+                    <h3 class="product-title">{{article.name}}</h3>
+                    <div class="product-rating d-inline-block">
+                        <i class="fa fa-fw fa-star"></i>
+                        <i class="fa fa-fw fa-star"></i>
+                        <i class="fa fa-fw fa-star"></i>
+                        <i class="fa fa-fw fa-star"></i>
+                        <i class="fa fa-fw fa-star"></i>
+                    </div>
+                    <div class="product-price">KSh. {{article.package_price}}</div>
+                </div>
+                <div class="product-btn">
+                    <a href="#" class="btn btn-primary">Add to Bookings</a>
+                    <a href="#" class="btn btn-outline-light">More Details</a>
+                    <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+{% else %}
+{% endif %}
+
+
+                                   

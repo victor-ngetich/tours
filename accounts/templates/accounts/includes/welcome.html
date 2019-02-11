@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<script src="{% static 'vendor/jquery/jquery-2.0.0.min.js' %}"></script>
+  <script src="{% static '/ajax.js' %}"></script>
+<div class="home-banner" style="background-image:url({% static '/img/e-commerce-banner.jpg' %}); min-height:400px; padding-top:50px;">
+    <h1 class="heading-1">Woo-Services</h1>
+</div>
+<div class="featured-sec">
+    <div class="container featured-sec-inner">
+        <div class="row">
+ 
+                <div class="col-md-8">
+                  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+                        <h3 class="grey-heading">Most Featured Store</h3>
+                        <div class="featured-post-wrapper">
+                          <div style="max-height: 300px;overflow:hidden;">
+                            <img src="{{ banner.attachment.url }}" width="100%" alt="">
+                          </div>
+                            <div class="featured-post-text-wrapper">
+                              <h6 class="grey-heading">posted on {{ banner.created_at }}</h6>
+                              <p> <strong><h4>Service Name:</h4></strong><h5 class="black-heading">{{ banner.Title }}</h5></p> 
+                              <p> <strong><h4>Company Name:</h4></strong> <h5>{{banner.company_name}}</h5></p>
+                                <p><strong><h4>Description:</h4></p></strong>   <p> {{banner.description}}</p>
+                                <p><strong><h4>Payment details:</h4></p></strong>   <p> Mpesa Paybill number {{banner.payment_info}}</p>
+                                  <p><a href="/bookings/">Book an appointment or make an inquiry with us today</a></p>
+
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More information
+
+  <span class="caret"></span></button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                               <strong>Location:</strong> <p>{{banner.location}}</p>
+                       <strong>Contacts:</strong><p>{{banner.email}}</p><p>0{{banner.cellphone}}</p>
+                               
+
+</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-4">
+                            <h3 class="grey-heading">Search</h3>
+                            <form style="margin-bottom:15px;">
+                                    <div class="input-group" style="border-right:1px solid #ced4da;">
+                                      <input type="text" id="search" name="search" class="make-square-left form-control" style="border-right:0px!important;" placeholder="Search">{% csrf_token %}
+                                      <div class="input-group-btn">
+                                        <button class="wht make-square-right btn btn-default" style="border-top:1px solid #ced4da; border-bottom:1px solid #ced4da; border-right:1px solid #ced4da;" type="submit">
+                                          <i class="fa fa-search" style="color:#999999;"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    <ul id="search-results">
+              
+                                    </ul>
+                                  </form> 
+                                  <h3 class="grey-heading">Services Categories</h3>
+                                  <div class="featured-post-wrapper" style="padding:20px;">
+                                        <ul style="display:inline-block; list-style:none!important; padding-left:0px!important; margin-top:0px!important;">
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Business</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Software and Web Development</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Health</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Research and Case Studies</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Parcel delivery</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Auditing</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Entertainment</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Academics</a></li>
+                                            <li class="cat-list" style="float:left; margin-bottom:15px;"><a class="cat-links" href="#">Others</a></li>
+                                        </ul>
+                                  </div>
+                    </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="grid-sec">
+    <div class="container grid-sec-inner" >
+        <div class="row"> 
+               {% for display in displays %}
+          <div class="col-md-4"  style="margin-bottom:15px!important;" >
+                    <div class="featured-post-wrapper">
+                      <div class="img-wrapper" style="max-height: 150px; overflow:hidden;">
+                            <img src="{{ display.attachment.url }}" width="100%" alt="">
+                          </div>
+                            <div class="featured-post-text-wrapper" >
+                               <p> <h4 class="blue-heading">{{display.Title}}</h4><h6 class="grey-heading">{{ display.created_at }}</h6></p>
+                                
+                                <strong><p>Company Name:</p></strong><strong>  <h5>{{ display.company_name}} .....</h5></strong>
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Read More
+
+  <span class="caret"></span></button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <p class="dropdown-item"><strong><h5>Description:</h5></p></strong><p>{{display.description}}</p>
+                              <p class="dropdown-item"><strong><h5>Location</h5></p></strong><p>{{display.location}}</p>
+                              <p class="dropdown-item"><strong><h5>Contacts</h5></p></strong><p>{{display.cellphone}}</p><p>{{display.email}}</p>
+                                <p class="dropdown-item"><strong><h5>Payment details</h5></p></strong><p>Mpesa paybill number {{display.payment_info}}</p>
+                                <p><a href="/bookings/">Book an appointment or make an inquiry with us today</a></p>
+                                
+
+</div>
+                            </div>
+                        </div>
+            </div>
+            {% endfor %}
+   
+            </div>
+    </div>
+</div>
+ 
+
