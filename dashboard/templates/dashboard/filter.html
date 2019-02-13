@@ -10,11 +10,11 @@
                             overflow: hidden;
                         }
                     </style>
-                    <img src="{{ article.pics.url }}"  alt="" class="img-fluid"></div>
+                    <img src="{{ article.d_pics.url }}"  alt="" class="img-fluid"></div>
                  </div>
             <div class="product-content">
                 <div class="product-content-head">
-                    <h3 class="product-title">{{article.name}}</h3>
+                    <h3 class="product-title">{{article.d_name}}</h3>
                     <div class="product-rating d-inline-block">
                         <i class="fa fa-fw fa-star"></i>
                         <i class="fa fa-fw fa-star"></i>
@@ -22,12 +22,10 @@
                         <i class="fa fa-fw fa-star"></i>
                         <i class="fa fa-fw fa-star"></i>
                     </div>
-                    <div class="product-price">KSh. {{article.package_price}}</div>
+                    <div class="product-price">KSh. {{article.d_package_price}}</div>
                 </div>
                 <div class="product-btn">
-                    <a href="#" class="btn btn-primary">Add to Bookings</a>
-                    <a href="#" class="btn btn-outline-light">More Details</a>
-                    <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                    <a href="/destination/{{article.pk}}/" class="btn btn-primary">More Details</a>
                 </div>
             </div>
         </div>

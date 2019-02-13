@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import datetime
 from django.utils import timezone
-from .models import destination
+from .models import destination,package
 
 # Create your views here.
 
@@ -18,17 +18,22 @@ def dashboard(request):
 def filter (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		articles = destination.objects.all().filter(category__icontains=search_text)
+		articles = destination.objects.all().filter(d_category__icontains=search_text)
 		return render(request,'dashboard/filter.html',{'articles':articles})
 
 def filter2 (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		articles = destination.objects.all().filter(location__icontains=search_text)
+		articles = destination.objects.all().filter(d_location__icontains=search_text)
 		return render(request,'dashboard/filter.html',{'articles':articles})
 
 def filter3 (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		articles = destination.objects.all().filter(package_size__icontains=search_text)
+		articles = destination.objects.all().filter(d_package_size__icontains=search_text)
 		return render(request,'dashboard/filter.html',{'articles':articles})
+
+def test1(request,pk):
+	f = destination.objects.all().get(pk=pk)
+	g = package.objects.all().get(id=pk)
+	return render(request, 'dashboard/destination-item.html',{'f':f, 'g':g},locals())

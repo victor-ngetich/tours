@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (dashboard, filter, filter2, filter3)
+from dashboard.views import (dashboard, filter, filter2, filter3, test1)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -55,6 +55,7 @@ urlpatterns = [
     url(r'^d_filter/', filter, name='filter'),
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
+    url(r'^destination/(?P<pk>\w+)/',test1,name='test1'),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()

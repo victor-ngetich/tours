@@ -19,17 +19,29 @@ class destination(models.Model):
     ('Wildlife', 'Wildlife'),
    )
 
-    name = models.CharField(max_length=255,blank=True)
-    location = models.CharField(max_length=255,blank=True)
-    category = models.CharField(max_length=255, choices=MAYBECHOICE,blank=True)
-    description = models.CharField(max_length=255,blank=True)
-    pics = models.FileField(upload_to='dashboard/', max_length=255,blank=True)
-    payment_info = models.CharField(max_length=255,blank=True)
-    reviews = models.CharField(max_length=255,blank=True)
-    phone = models.CharField(max_length=15,blank=True)
-    email = models.EmailField(blank=True)
+    d_name = models.CharField(max_length=255,blank=True)
+    d_location = models.CharField(max_length=255,blank=True)
+    d_category = models.CharField(max_length=255, choices=MAYBECHOICE,blank=True)
+    d_description = models.CharField(max_length=255,blank=True)
+    d_pics = models.FileField(upload_to='dashboard/', max_length=255,blank=True)
+    d_payment_info = models.CharField(max_length=255,blank=True)
+    d_days = models.DateField(blank=True,default="2019-01-01")
+    d_reviews = models.CharField(max_length=255,blank=True)
+    d_phone = models.CharField(max_length=15,blank=True)
+    d_email = models.EmailField(blank=True)
 
-class packages(models.Model):
-    name = models.CharField(max_length=255,blank=True)
-    package_price = models.IntegerField(blank=True,default=0)
-    package_size = models.IntegerField(blank=True,default=0)
+    def __str__(self):
+        return self.d_name
+
+    class Meta:
+        ordering = ('d_name',)
+
+class package(models.Model):
+    p_name = models.CharField(max_length=255,blank=True)
+    d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
+    p_guide = models.CharField(max_length=255,blank=True)
+    p_package_price = models.IntegerField(blank=True,default=0)
+    p_package_size = models.IntegerField(blank=True,default=0)
+    p_duration = models.CharField(max_length=255,blank=True)
+    p_description = models.CharField(max_length=255,blank=True)
+

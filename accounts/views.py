@@ -39,7 +39,7 @@ def login_view(request):
 			login(request, user)
 			if user.groups.filter(name='Tourist').exists():
 				return HttpResponseRedirect('/dashboard/')
-			if user.groups.filter(name='Tour Leader').exists():
+			if user.groups.filter(name='Tour Agency').exists():
 				return HttpResponseRedirect('/dashboard/')
 		else:
 			return render(request,'accounts/login1.html',{"form":form})
@@ -69,7 +69,7 @@ def register_view(request):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
             'token': account_activation_token.make_token(user),
             })
-			mail_subject = 'Activate your freelance account.'
+			mail_subject = 'Activate your Kenyan Thrill account.'
 			to_email = form.cleaned_data.get('email')
 			email = EmailMessage(mail_subject,message, to=[to_email])
 			email.send()
