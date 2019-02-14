@@ -13,9 +13,9 @@ class EventModelAdmin(admin.ModelAdmin):
         model = destination
 
 class EventModelAdmin1(admin.ModelAdmin):
-    list_display = ["p_name", "d_name","p_guide","p_package_price","p_package_size","p_duration",'p_description']
+    list_display = ["p_name", "d_name","p_agent","p_price","p_duration",'p_description']
     list_display_links = ["p_name"]
-    list_filter = ["d_name","p_package_size"]
+    list_filter = ["d_name"]
     list_per_page = 5
     list_editable = []
     search_fields = ["p_name","d_name"]

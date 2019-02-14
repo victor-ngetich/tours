@@ -39,9 +39,8 @@ class destination(models.Model):
 class package(models.Model):
     p_name = models.CharField(max_length=255,blank=True)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
-    p_guide = models.CharField(max_length=255,blank=True)
-    p_package_price = models.IntegerField(blank=True,default=0)
-    p_package_size = models.IntegerField(blank=True,default=0)
+    p_agent = models.CharField(max_length=255,blank=True)
+    p_price = models.IntegerField(blank=True,default=0)
     p_duration = models.CharField(max_length=255,blank=True)
     p_description = models.CharField(max_length=255,blank=True)
 
