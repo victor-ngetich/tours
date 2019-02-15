@@ -2,6 +2,7 @@
 {% for article in articles %}
 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
         <div class="product-thumbnail">
+            <a href="/destination/{{d.pk}}/">
             <div class="product-img-head">
                 <div class="product-img">
                     <style>
@@ -12,6 +13,7 @@
                     </style>
                     <img src="{{ article.d_pics.url }}"  alt="" class="img-fluid"></div>
                  </div>
+                </a>
             <div class="product-content">
                 <div class="product-content-head">
                     <h3 class="product-title">{{article.d_name}}</h3>

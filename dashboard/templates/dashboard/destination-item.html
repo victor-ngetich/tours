@@ -445,16 +445,16 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">E-commerce Product Single </h2>
+                                <h2 class="pageheader-title">Destination </h2>
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
-                                <div class="page-breadcrumb">
+                                <!-- <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">E-coommerce</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">E-Commerce Product Single</li>
                                         </ol>
                                     </nav>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -462,7 +462,7 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     <div class="row">
-                        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
                                     <div class="product-slider">
@@ -662,6 +662,14 @@
                                 <!-- ============================================================== -->
                                 <!-- end card influencer one -->
                             </div>
+
+                            <p>
+                                {% for g in package %}
+
+                                <div class="product-price">KSh. {{g.p_name}}</div>
+
+                                {% endfor %}
+                            </p>
                                 <!-- ============================================================== -->                        
                             </div>
                             <div class="row">

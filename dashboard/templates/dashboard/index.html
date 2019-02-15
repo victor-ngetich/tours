@@ -469,6 +469,7 @@
                                 {% for d in destination %}
                                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <div class="product-thumbnail">
+                                        <a href="/destination/{{d.pk}}/">
                                         <div class="product-img-head">
                                             <div class="product-img">
                                                 <style>
@@ -479,6 +480,7 @@
                                                 </style>
                                                 <img src="{{ d.d_pics.url }}"  alt="" class="img-fluid"></div>
                                              </div>
+                                            </a>
                                         <div class="product-content">
                                             <div class="product-content-head">
                                                 <h3 class="product-title">{{d.d_name}}</h3>
@@ -489,7 +491,7 @@
                                                     <i class="fa fa-fw fa-star"></i>
                                                     <i class="fa fa-fw fa-star"></i>
                                                 </div>
-                                                <div class="product-price">KSh. {{d.d_package_price}}</div>
+                                                <div class="product-price">{{d.d_location}}</div>
                                             </div>
                                             <div class="product-btn">
                                                 <a href="/destination/{{d.pk}}/" class="btn btn-primary">More Details</a>
@@ -499,6 +501,13 @@
                                 </div>
                                {% endfor %}
                                 
+                               <p>
+                                    {% for d in destination %}
+    
+                                    <div class="product-price">KSh. {{d.d_name}}</div>
+                                    
+                                    {% endfor %}
+                                </p>
                                 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <nav aria-label="Page navigation example">
