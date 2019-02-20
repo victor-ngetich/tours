@@ -17,7 +17,7 @@
     <script src="{% static 'ajax3.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax4.js' %}?{% now "U" %}"></script>
   
-    <title>Dashboard</title>
+    <title>Explore</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="/dashboard/">Dashboard</a>
+                <a class="navbar-brand" href="/explore/">Explore</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -125,9 +125,9 @@
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">vic</h5>
-                                    <span class="status"></span><span class="ml-2">Available</span>
+                                    
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-clipboard-check mr-2"></i>Bookings</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -469,7 +469,7 @@
                                 {% for d in destination %}
                                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <div class="product-thumbnail">
-                                        <a href="/destination/{{d.pk}}/">
+                                        <a href="/explore/destination/{{d.pk}}/">
                                         <div class="product-img-head">
                                             <div class="product-img">
                                                 <style>
@@ -494,20 +494,44 @@
                                                 <div class="product-price">{{d.d_location}}</div>
                                             </div>
                                             <div class="product-btn">
-                                                <a href="/destination/{{d.pk}}/" class="btn btn-primary">More Details</a>
+                                                <a href="/explore/destination/{{d.pk}}/" class="btn btn-primary">More Details</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                {% endfor %}
                                 
-                               <p>
-                                    {% for d in destination %}
-    
-                                    <div class="product-price">KSh. {{d.d_name}}</div>
-                                    
-                                    {% endfor %}
-                                </p>
+                                                       <!-- card masonary  -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                                <style>
+                                        .round1 {
+                                        border: 2px solid gray;
+                                        border-radius: 5px;
+                                        border-collapse: separate;
+                                        border-spacing: 15px;
+                                    }
+                                    </style>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="row">
+                                            {% for d in destination %}
+                                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <img class="card-img-top" src="{% static 'images/card-img.jpg' %}?{% now "U" %}" alt="Card image cap">
+                                            <div class="card-body" style="background-color:white">
+                                                <h3 class="card-title">Card title that wraps to a new line</h3>
+                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            </div>
+                                            <br>
+                                        </div>
+                                           {% endfor%}                                 
+                                                                               
+                                                                                
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end card masonary  -->
                                 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <nav aria-label="Page navigation example">
@@ -528,6 +552,26 @@
                                     <h4 class="mb-0">Filter Destinations</h4>
                                 </div>
                                 <div class="product-sidebar-widget">
+                                        <h4 class="product-sidebar-widget-title">Places</h4>
+    
+                                        <div class="dropdown" >
+                                                <select id="cat-2" class="btn btn-primary form-control" style="color:white;">
+                                                        <option value="">All</option>
+                                                        <option value="Mombasa">Mombasa</option>
+                                                        <option value="Kisumu">Kisumu</option>
+                                                        <option value="Maasai Mara">Maasai Mara</option>
+                                                        <option value="Mt. Kenya">Mt. Kenya</option>
+                                                        <option value="Naivasha">Naivasha</option>
+                                                        <option value="Nairobi">Nairobi</option>
+                                                        <option value="Nakuru">Nakuru</option>
+                                                        <option value="Tsavo">Tsavo</option>
+                                                        </select>{% csrf_token %}
+                                                      
+                                                      
+                                              </div>
+                                        
+                                    </div>
+                                <div class="product-sidebar-widget">
                                     <h4 class="product-sidebar-widget-title">Categories</h4>
                                     
                                     <div class="dropdown" >
@@ -547,26 +591,6 @@
                                                   
                                                   
                                           </div>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <h4 class="product-sidebar-widget-title">Places</h4>
-
-                                    <div class="dropdown" >
-                                            <select id="cat-2" class="btn btn-primary form-control" style="color:white;">
-                                                    <option value="">All</option>
-                                                    <option value="Coast">Coast</option>
-                                                    <option value="Kisumu">Kisumu</option>
-                                                    <option value="Maasai Mara">Maasai Mara</option>
-                                                    <option value="Mt. Kenya">Mt. Kenya</option>
-                                                    <option value="Naivasha">Naivasha</option>
-                                                    <option value="Nairobi">Nairobi</option>
-                                                    <option value="Nakuru">Nakuru</option>
-                                                    <option value="Tsavo">Tsavo</option>
-                                                    </select>{% csrf_token %}
-                                                  
-                                                  
-                                          </div>
-                                    
                                 </div>
                                 <div class="product-sidebar-widget">
                                     <h4 class="product-sidebar-widget-title">Package Size</h4>

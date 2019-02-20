@@ -2,25 +2,30 @@
 <html lang="en">
  
 <head>
-        {% load staticfiles %}
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
-        <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
-
+    {% load staticfiles %}
     <!-- Required meta tags -->
-    <!-- <meta charset="utf-8"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css"> -->
-    <!-- <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="assets/libs/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css"> -->
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
+    <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
+    <script src="{% static 'jquery-2.0.0.min.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'ajax.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'ajax2.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'ajax3.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'ajax4.js' %}?{% now "U" %}"></script>
+  
+    <title>Dashboard</title>
+
+    <style>
+        .pic1{
+            max-height: 313px;
+            max-width: 285px;
+            
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +38,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">Concept</a>
+                <a class="navbar-brand" href="/dashboard/">Concept</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -53,7 +58,7 @@
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action active">
                                                 <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-2.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
                                                         <div class="notification-date">2 min ago</div>
                                                     </div>
@@ -61,7 +66,7 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-3.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
                                                         <div class="notification-date">2 days ago</div>
                                                     </div>
@@ -69,7 +74,7 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-4.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
                                                         <div class="notification-date">2 min ago</div>
                                                     </div>
@@ -77,7 +82,7 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-5.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
                                                         <div class="notification-date">2 min ago</div>
                                                     </div>
@@ -97,24 +102,24 @@
                                 <li class="connection-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="assets/images/github.png" alt="" > <span>Github</span></a>
+                                            <a href="#" class="connection-item"><img src="{% static 'images/github.png' %}?{% now "U" %}" alt="" > <span>Github</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="assets/images/dribbble.png" alt="" > <span>Dribbble</span></a>
+                                            <a href="#" class="connection-item"><img src="{% static 'images/dribbble.png' %}?{% now "U" %}" alt="" > <span>Dribbble</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="assets/images/dropbox.png" alt="" > <span>Dropbox</span></a>
+                                            <a href="#" class="connection-item"><img src="{% static 'images/dropbox.png' %}?{% now "U" %}" alt="" > <span>Dropbox</span></a>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="assets/images/bitbucket.png" alt=""> <span>Bitbucket</span></a>
+                                            <a href="#" class="connection-item"><img src="{% static 'images/bitbucket.png' %}?{% now "U" %}" alt=""> <span>Bitbucket</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="assets/images/mail_chimp.png" alt="" ><span>Mail chimp</span></a>
+                                            <a href="#" class="connection-item"><img src="{% static 'images/mail_chimp.png' %}?{% now "U" %}" alt="" ><span>Mail chimp</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="assets/images/slack.png" alt="" > <span>Slack</span></a>
+                                            <a href="#" class="connection-item"><img src="{% static 'images/slack.png' %}?{% now "U" %}" alt="" > <span>Slack</span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -124,7 +129,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
@@ -145,10 +150,10 @@
         <!-- ============================================================== -->
         <!-- left sidebar -->
         <!-- ============================================================== -->
-       <div class="nav-left-sidebar sidebar-dark">
+        <div class="nav-left-sidebar sidebar-dark">
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <a class="d-xl-none d-lg-none" href="#">Explore</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -158,12 +163,12 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
-                                <div id="submenu-1" class="collapse submenu" style="">
+                                <a class="nav-link active" href="/dashboard" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-globe"></i>Explore <span class="badge badge-success">6</span></a>
+                                <!-- <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a>
-                                            <div id="submenu-1-2" class="collapse submenu" style="">
+                                        <li class="nav-item"> -->
+                                            <!-- <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a> -->
+                                            <!-- <div id="submenu-1-2" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="index.html">E Commerce Dashboard</a>
@@ -178,17 +183,17 @@
                                                         <a class="nav-link" href="ecommerce-product-checkout.html">Product Checkout</a>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
+                                            </div> -->
+                                        <!-- </li> -->
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link" href="dashboard-finance.html">Finance</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="dashboard-sales.html">Sales</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
-                                            <div id="submenu-1-1" class="collapse submenu" style="">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a> -->
+                                            <!-- <div id="submenu-1-1" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="dashboard-influencer.html">Influencer</a>
@@ -200,12 +205,12 @@
                                                         <a class="nav-link" href="influencer-profile.html">Influencer Profile</a>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                        </li>
+                                            </div> -->
+                                        <!-- </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
@@ -274,7 +279,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/datepicker.html">Date Picker</a>
                                         </li>
-                                         <li class="nav-item">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="pages/bootstrap-select.html">Bootstrap Select</a>
                                         </li>
                                     </ul>
@@ -292,11 +297,11 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="nav-divider">
-                                Features
+                                Account Options
                             </li>
-                            <li class="nav-item">
+                            <!--li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Pages </a>
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
@@ -342,7 +347,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/color-picker.html">Color Picker</a>
                                         </li>
-                                        
                                     </ul>
                                 </div>
                             </li>
@@ -428,7 +432,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -449,16 +453,16 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Concept - Bootstrap 4 Admin Dashboard Template </h2>
+                                <h2 class="pageheader-title">Destination </h2>
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
-                                <div class="page-breadcrumb">
+                                <!-- <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">E-coommerce</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Concept - Bootstrap 4 Admin Dashboard Template</li>
+                                            <li class="breadcrumb-item active" aria-current="page">E-Commerce Product Single</li>
                                         </ol>
                                     </nav>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -466,15 +470,254 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     <div class="row">
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
+                                    <div class="product-slider">
+                                        <div id="productslider-1" class="product-carousel carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                            </ol>
+                                            <div class="carousel-inner pic1">
+                                                <div class="carousel-item active">
+                                                    <img class="d-block" src="{% static 'images/custom1/1.jpg' %}?{% now "U" %}" alt="First slide">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img class="d-block" src="{% static 'images/custom1/2.jpg' %}?{% now "U" %}" alt="Second slide">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img class="d-block" src="{% static 'images/custom1/3.jpg' %}?{% now "U" %}" alt="Third slide">
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Previous</span>
+                                                  </a>
+                                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                 <span class="sr-only">Next</span>
+                                                     </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
+                                    <div class="product-details">
+                                        <div class="border-bottom pb-3 mb-3">
+                                            <h2 class="mb-3">{{f.d_name}}</h2>
+                                            <div class="product-rating d-inline-block float-right">
+                                                <i class="fa fa-fw fa-star"></i>
+                                                <i class="fa fa-fw fa-star"></i>
+                                                <i class="fa fa-fw fa-star"></i>
+                                                <i class="fa fa-fw fa-star"></i>
+                                                <i class="fa fa-fw fa-star"></i>
+                                            </div>
+                                            <h3 class="mb-0 text-primary">{{f.p_package_price}}</h3>
+                                        </div>
+                                        <div class="product-colors border-bottom">
+                                            <h4>Select Colors</h4>
+                                            <input type="radio" class="radio" id="radio-1" name="group" />
+                                            <label for="radio-1"></label>
+                                            <input type="radio" class="radio" id="radio-2" name="group" />
+                                            <label for="radio-2"></label>
+                                            <input type="radio" class="radio" id="radio-3" name="group" />
+                                            <label for="radio-3"></label>
+                                        </div>
+                                        <div class="product-size border-bottom">
+                                            <h4>Size</h4>
+                                            <div class="btn-group" role="group" aria-label="First group">
+                                                <button type="button" class="btn btn-outline-light">SM</button>
+                                                <button type="button" class="btn btn-outline-light">L</button>
+                                                <button type="button" class="btn btn-outline-light">XL</button>
+                                                <button type="button" class="btn btn-outline-light">XXl</button>
+                                            </div>
+                                            <div class="product-qty">
+                                                <h4>Number of people</h4>
+                                                <div class="quantity">
+                                                    <input type="number" min="1" max="9" step="1" value="1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-description">
+                                            <h4 class="mb-1">Description</h4>
+                                            <p>{{f.d_description}}</p>
+                                            <!-- <a href="#" class="btn btn-primary btn-block btn-lg">Add to Cart</a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
+                                    <div class="simple-card">
+                                        <ul class="nav nav-tabs" id="myTab5" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true">Descriptions</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">Reviews</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent5">
+                                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
+                                                <p>Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubiliaurae.</p>
+                                                <p>Nam condimentum erat aliquet rutrum fringilla. Suspendisse potenti. Vestibulum placerat elementum sollicitudin. Aliquam consequat molestie tortor, et dignissim quam blandit nec. Donec tincidunt dui libero, ac convallis urna dapibus eu. Praesent volutpat mi eget diam efficitur, a mollis quam ultricies. Morbi eu turpis odio.</p>
+                                                <ul class="list-unstyled arrow">
+                                                    <li>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                                    <li>Donec ut elit sodales, dignissim elit et, sollicitudin nulla.</li>
+                                                    <li>Donec at leo sed nisl vestibulum fermentum.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="product-tab-2">
+                                                <div class="review-block">
+                                                    <p class="review-text font-italic m-0">“Vestibulum cursus felis vel arcu convallis, viverra commodo felis bibendum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin non auctor est, sed lacinia velit. Orci varius natoque penatibus et magnis dis parturient montes nascetur ridiculus mus.”</p>
+                                                    <div class="rating-star mb-4">
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                    </div>
+                                                    <span class="text-dark font-weight-bold">Virgina G. Lightfoot</span><small class="text-mute"> (Company name)</small>
+                                                </div>
+                                                <div class="review-block border-top mt-3 pt-3">
+                                                    <p class="review-text font-italic m-0">“Integer pretium laoreet mi ultrices tincidunt. Suspendisse eget risus nec sapien malesuada ullamcorper eu ac sapien. Maecenas nulla orci, varius ac tincidunt non, ornare a sem. Aliquam sed massa volutpat, aliquet nibh sit amet, tincidunt ex. Donec interdum pharetra dignissim.”</p>
+                                                    <div class="rating-star mb-4">
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                    </div>
+                                                    <span class="text-dark font-weight-bold">Ruby B. Matheny</span><small class="text-mute"> (Company name)</small>
+                                                </div>
+                                                <div class="review-block  border-top mt-3 pt-3">
+                                                    <p class="review-text font-italic m-0">“ Cras non rutrum neque. Sed lacinia ex elit, vel viverra nisl faucibus eu. Aenean faucibus neque vestibulum condimentum maximus. In id porttitor nisi. Quisque sit amet commodo arcu, cursus pharetra elit. Nam tincidunt lobortis augueat euismod ante sodales non. ”</p>
+                                                    <div class="rating-star mb-4">
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                    </div>
+                                                    <span class="text-dark font-weight-bold">Gloria S. Castillo</span><small class="text-mute"> (Company name)</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <!-- card influencer one -->
+                            <!-- ============================================================== -->
+                            {% for p in g %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+
+                                        
+                                        <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="user-avatar float-xl-left pr-4 float-none">
+                                                <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl">
+                                                    </div>
+                                                <div class="pl-xl-3">
+                                                    <div class="m-b-0">
+                                                        <div class="user-avatar-name d-inline-block">
+                                                            <h2 class="font-24 m-b-10">{{p.p_name}}</h2>
+                                                        </div>
+                                                        <div class="rating-star d-inline-block pl-xl-2 mb-2 mb-xl-0">
+                                                            <i class="fa fa-fw fa-star"></i>
+                                                            <i class="fa fa-fw fa-star"></i>
+                                                            <i class="fa fa-fw fa-star"></i>
+                                                            <i class="fa fa-fw fa-star"></i>
+                                                            <i class="fa fa-fw fa-star"></i>
+                                                            <p class="d-inline-block text-dark">14 Reviews </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-avatar-address">
+                                                        <p>
+
+                                                        </p>
+                                                        <p class="mb-2">Offered: {{p.p_agent}} Days<span class="m-l-10"><span class="m-l-20">Duration: {{g.p_duration}}</span></span>
+                                                        </p>
+                                                        <div class="mt-3">
+                                                            <p>
+                                                                    {{p.p_description}}
+                                                            </p>
+                                                            <!-- <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                    <a href="#" class="btn-wishlist m-r-10"><i class="far fa-star"></i></a>
+                                                    <a href="#" class="btn btn-secondary">Book</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border-top user-social-box">
+                                        <div class="user-social-media d-xl-inline-block "><span class="mr-2 twitter-color"> <i class="fab fa-twitter-square"></i></span><span>13,291</span></div>
+                                        <div class="user-social-media d-xl-inline-block"><span class="mr-2 instagram-color"> <i class="fab fa-instagram"></i></span><span>12,300</span></div>
+                                        <div class="user-social-media d-xl-inline-block"><span class="mr-2  facebook-color"> <i class="fab fa-facebook-square "></i></span><span>92,920</span></div>
+                                        <div class="user-social-media d-xl-inline-block"><span class="mr-2 youtube-color"> <i class="fab fa-youtube"></i></span><span>1291</span></div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                            </div>
+
+                            <p>
+                                {% for g in package %}
+
+                                <div class="product-price">KSh. {{g.p_name}}</div>
+
+                                {% endfor %}
+                            </p>
+                                <!-- ============================================================== -->                        
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-10">
+                                    <h3> Related Products</h3>
+                                </div>
                                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <div class="product-thumbnail">
                                         <div class="product-img-head">
                                             <div class="product-img">
-                                                <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                            <div class="ribbons"></div>
-                                            <div class="ribbons-text">New</div>
+                                                <img src="{% static 'images/eco-product-img-1.png' %}?{% now "U" %}" alt="" class="img-fluid"></div>
+                                            <div class="ribbons">New</div>
+                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-content-head">
+                                                <h3 class="product-title">T-Shirt Product Title</h3>
+                                                <div class="product-rating d-inline-block">
+                                                    <i class="fa fa-fw fa-star"></i>
+                                                    <i class="fa fa-fw fa-star"></i>
+                                                    <i class="fa fa-fw fa-star"></i>
+                                                    <i class="fa fa-fw fa-star"></i>
+                                                    <i class="fa fa-fw fa-star"></i>
+                                                </div>
+                                                <div class="product-price">$49.00</div>
+                                            </div>
+                                            <div class="product-btn">
+                                                <a href="#" class="btn btn-primary">Book</a>
+                                                <a href="#" class="btn btn-outline-light">Details</a>
+                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="product-thumbnail">
+                                        <div class="product-img-head">
+                                            <div class="product-img">
+                                                <img src="{% static 'images/eco-product-img-2.png' %}?{% now "U" %}" alt="" class="img-fluid"></div>
+                                            <div class="ribbons bg-danger">Sold</div>
                                             <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
                                         </div>
                                         <div class="product-content">
@@ -501,38 +744,8 @@
                                     <div class="product-thumbnail">
                                         <div class="product-img-head">
                                             <div class="product-img">
-                                                <img src="assets/images/eco-product-img-2.png" alt="" class="img-fluid"></div>
-                                            <div class="ribbons bg-danger"></div>
-                                            <div class="ribbons-text">Sold</div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00</div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-3.png" alt="" class="img-fluid"></div>
-                                            <div class="ribbons bg-brand"></div>
-                                            <div class="ribbons-text">Offer</div>
+                                                <img src="{% static 'images/eco-product-img-3.png' %}?{% now "U" %}" alt="" class="img-fluid"></div>
+                                            <div class="ribbons bg-brand">Offer</div>
                                             <div class=""><a href="#" class="product-wishlist-btn active"><i class="fas fa-heart"></i></a></div>
                                         </div>
                                         <div class="product-content">
@@ -556,288 +769,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-4.png" alt="" class="img-fluid"></div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00</div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-3.png" alt="" class="img-fluid"></div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00
-                                                    <del class="product-del">$69.00</del>
-                                                </div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-2.png" alt="" class="img-fluid"></div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00</div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00</div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-2.png" alt="" class="img-fluid"></div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00</div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <img src="assets/images/eco-product-img-4.png" alt="" class="img-fluid"></div>
-                                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">T-Shirt Product Title</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">$49.00
-                                                    <del class="product-del">$69.00</del>
-                                                </div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                                <a href="#" class="btn btn-outline-light">Details</a>
-                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link " href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
-                            <div class="product-sidebar">
-                                <div class="product-sidebar-widget">
-                                    <h4 class="mb-0">E-Commerce Filter</h4>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <h4 class="product-sidebar-widget-title">Category</h4>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="cat-1">
-                                        <label class="custom-control-label" for="cat-1">Categories #1</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="cat-2">
-                                        <label class="custom-control-label" for="cat-2">Categories #2</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="cat-3">
-                                        <label class="custom-control-label" for="cat-3">Categories #3</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="cat-4">
-                                        <label class="custom-control-label" for="cat-4">Categories #4</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="cat-5">
-                                        <label class="custom-control-label" for="cat-5">Categories #5</label>
-                                    </div>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <h4 class="product-sidebar-widget-title">Size</h4>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="size-1">
-                                        <label class="custom-control-label" for="size-1">Small</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="size-2">
-                                        <label class="custom-control-label" for="size-2">Medium</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="size-3">
-                                        <label class="custom-control-label" for="size-3">Large</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="size-4">
-                                        <label class="custom-control-label" for="size-4">Extra Large</label>
-                                    </div>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <h4 class="product-sidebar-widget-title">Brand</h4>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brand-1">
-                                        <label class="custom-control-label" for="brand-1">Brand Name #1</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brand-2">
-                                        <label class="custom-control-label" for="brand-2">Brand Name #2</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brand-3">
-                                        <label class="custom-control-label" for="brand-3">Brand Name #3</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brand-4">
-                                        <label class="custom-control-label" for="brand-4">Brand Name #4</label>
-                                    </div>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <h4 class="product-sidebar-widget-title">Color</h4>
-                                    <div class="custom-control custom-radio custom-color-blue ">
-                                        <input type="radio" id="color-1" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="color-1">Blue</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-color-red ">
-                                        <input type="radio" id="color-2" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="color-2">Red</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-color-yellow ">
-                                        <input type="radio" id="color-3" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="color-3">Yellow</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-color-black ">
-                                        <input type="radio" id="color-4" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="color-4">Black</label>
-                                    </div>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <h4 class="product-sidebar-widget-title">Price</h4>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="price-1">
-                                        <label class="custom-control-label" for="price-1">$$</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="price-2">
-                                        <label class="custom-control-label" for="price-2">$$$</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="price-3">
-                                        <label class="custom-control-label" for="price-3">$$$$</label>
-                                    </div>
-                                </div>
-                                <div class="product-sidebar-widget">
-                                    <a href="#" class="btn btn-outline-light">Reset Filter</a>
                                 </div>
                             </div>
                         </div>
@@ -870,27 +801,45 @@
             <!-- end wrapper  -->
             <!-- ============================================================== -->
         </div>
-    </div>
-        <!-- ============================================================== -->
-        <!-- end main wrapper  -->
-        <!-- ============================================================== -->
-        <!-- Optional JavaScript -->
-        <!-- jquery 3.3.1 -->
-        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-        <!-- bootstap bundle js -->
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-        <!-- slimscroll js -->
-        <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-        <!-- main js -->
-        <script src="assets/libs/js/main-js.js"></script>
 
-        <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
+    </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+    <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
     <!-- bootstap bundle js -->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
     <!-- slimscroll js -->
     <script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
     <!-- main js -->
     <script src="{% static 'libs/js/main-js.js"></script>
+    <!-- chart chartist js -->
+    <script src="{% static 'vendor/charts/chartist-bundle/chartist.min.js' %}?{% now "U" %}"></script>
+    <!-- sparkline js -->
+    <script src="{% static 'vendor/charts/sparkline/jquery.sparkline.js' %}?{% now "U" %}"></script>
+    <!-- morris js -->
+    <script src="{% static 'vendor/charts/morris-bundle/raphael.min.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'vendor/charts/morris-bundle/morris.js' %}?{% now "U" %}"></script>
+    <!-- chart c3 js -->
+    <script src="{% static 'vendor/charts/c3charts/c3.min.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'vendor/charts/c3charts/d3-5.4.0.min.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'vendor/charts/c3charts/C3chartjs.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'libs/js/dashboard-ecommerce.js' %}?{% now "U" %}"></script>
 </body>
  
 </html>

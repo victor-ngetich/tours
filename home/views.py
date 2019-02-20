@@ -6,6 +6,3 @@ def home(request):
 
 def contact(request):
     return render(request, 'home/contact.html')
-
-def explore(request):
-    return render(request, 'home/explore.html')

@@ -6,7 +6,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
 
-def dashboard(request):
+def explore(request):
 	now = datetime.datetime.now()
 	d = destination.objects.all()
 	# inq= len(Inquiries.objects.all().filter(user_id = request.user))
@@ -42,4 +42,13 @@ def filter3 (request):
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
 	g = package.objects.all().filter(d_name=f)
-	return render(request, 'dashboard/destination-item.html',{'f':f,'g':g},locals())
+	return render(request, 'dashboard/destination.html',{'f':f,'g':g},locals())
+
+def editprofile(request):
+    return render(request, 'dashboard/pages/edit-profile.html')
+
+def bookings(request):
+    return render(request, 'dashboard/bookings.html')
+
+def payments(request):
+    return render(request, 'dashboard/payments.html')
