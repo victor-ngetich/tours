@@ -24,7 +24,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="/explore">Explore</a>
+                <a class="navbar-brand" href="/explore/">Explore</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,7 +35,7 @@
                                 <input class="form-control" type="text" placeholder="Search..">
                             </div>
                         </li>
-                        <li class="nav-item dropdown notification">
+                        <!-- <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
@@ -60,7 +60,7 @@
                                             </a>
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-4.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
+                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
                                                         <div class="notification-date">2 min ago</div>
                                                     </div>
@@ -81,8 +81,8 @@
                                     <div class="list-footer"> <a href="#">View all notifications</a></div>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item dropdown connection">
+                        </li> -->
+                        <!-- <li class="nav-item dropdown connection">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                                 <li class="connection-list">
@@ -113,7 +113,7 @@
                                     <div class="conntection-footer"><a href="#">More</a></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -121,9 +121,9 @@
                                     <h5 class="mb-0 text-white nav-user-name">vic</h5>
                                     
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-clipboard-check mr-2"></i>Boookings</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
+                                <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>Profile</a>
+                                <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -149,11 +149,16 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="/dashboard/bookings" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Bookings <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="/dashboard/bookings" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-list"></i>Bookings <span class="badge badge-success">6</span></a>
                                 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/payments" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Payment History</a>
+                                <a class="nav-link active" href="/dashboard/payments" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-clipboard-check"></i>Payment History</a>
+                                
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/addpackage" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-plus-circle"></i>Add Package</a>
                                 
                             </li>
                                                         
@@ -162,7 +167,7 @@
                                 Account
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/editprofile" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Edit Profile </a>
+                                <a class="nav-link" href="/dashboard/editprofile" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
                                 
                             </li>
                             

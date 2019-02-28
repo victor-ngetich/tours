@@ -45,3 +45,13 @@ class package(models.Model):
     p_description = models.CharField(max_length=255,blank=True)
     p_reviews = models.CharField(max_length=255,blank=True)
 
+    def __str__(self):
+        return self.p_name
+
+class booking(models.Model):
+    destinations = models.ManyToManyField(package)
+    d_name = models.OneToOneField(destination, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_added = models.DateTimeField(auto_now_add=True)
+    p_price = models.IntegerField(blank=True,default=0)
+    t_number = models.IntegerField(blank=True,default=0)

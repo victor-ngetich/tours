@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
-from .models import destination,package
+from .models import destination,package, booking
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
@@ -47,8 +49,21 @@ def test1(request,pk):
 def editprofile(request):
     return render(request, 'dashboard/pages/edit-profile.html')
 
-def bookings(request):
-    return render(request, 'dashboard/bookings.html')
+def bookings1(request):
+	a = booking.objects.all().filter(username=request.user)
+	return render(request, 'dashboard/bookings.html', {'a':a},locals())
 
 def payments(request):
     return render(request, 'dashboard/payments.html')
+
+def addpackage(request):
+    return render(request, 'dashboard/pages/add-package.html')
+
+def bookpackage(request, pk): 
+	if request.method == 'POST':
+		name = request.POST['name']
+		p = package.objects.get(pk=pk)
+		b = booking.objects.create(t_number=name,p_name=p, username=request.user, p_price=p.p_price)
+		return HttpResponseRedirect('/dashboard/bookings/')
+	else:
+		return HttpResponseRedirect('/')

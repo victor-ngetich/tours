@@ -6,3 +6,6 @@ class DashboardConfig(AppConfig):
 
 class PackageConfig(AppConfig):
     name = 'package'
+
+class PackageConfig(AppConfig):
+    name = 'booking'

@@ -38,9 +38,9 @@ def login_view(request):
 			user = authenticate(username=username,password=password)
 			login(request, user)
 			if user.groups.filter(name='Tourist').exists():
-				return HttpResponseRedirect('/dashboard/')
+				return HttpResponseRedirect('/explore/')
 			if user.groups.filter(name='Tour Agency').exists():
-				return HttpResponseRedirect('/dashboard/')
+				return HttpResponseRedirect('/explore/')
 		else:
 			return render(request,'accounts/login1.html',{"form":form})
 
@@ -105,9 +105,9 @@ def activate(request, uidb64, token):
     	return render(request,'accounts/invalid.html')
 @csrf_protect
 def logout_page(request):
-	user = User.objects.get(username='username')
-	[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
-	logout(request,user)
+	user = User.objects.get(username=request.user.username)
+	# [s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
+	logout(user)
 	return HttpResponseRedirect('/accounts/login/')
 @csrf_protect
 def forgot_view(request):
@@ -121,3 +121,4 @@ def reset_view(request):
 		return render(request,'freelance/forgot-password.html',{"form":form})
 def refer_view(request):
 	return render(request, 'accounts/referal.html')
+	

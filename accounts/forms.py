@@ -42,12 +42,13 @@ class MyRegistrationForm(UserCreationForm):
 	last_name = forms.CharField(max_length=30, required=True,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Last name','name':'last_name'}))
 	username = forms.CharField(label="Username",max_length=30,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your username','name':'username'}))
 	email = forms.CharField(max_length=75,help_text="Note: Your account activation and password reset links will be sent to this email.", required=True,widget=forms.TextInput(attrs={'class':'form-control','id':'exampleInputEmail1','placeholder':'Enter your email','name':'email'}))
+	phone = forms.CharField(label="Phone No.",max_length=10,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your phone number','name':'phone'}))
 	password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Type in your password','name':'password1'}))
 	password2 = forms.CharField(label='Password Confirmation',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Repeat the password above','name':'password2'}))
 
 	class Meta:
 		model = User
-		fields = ('group','first_name','last_name','username','email',)
+		fields = ('group','first_name','last_name','username','email','phone')
 
 	def clean_email(self):
 		if User.objects.filter(email__iexact=self.cleaned_data['email']):

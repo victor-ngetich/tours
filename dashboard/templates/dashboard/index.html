@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.css' %}?{% now "U" %}"> -->
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
@@ -127,8 +128,8 @@
                                     <h5 class="mb-0 text-white nav-user-name">vic</h5>
                                     
                                 </div>
-                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-clipboard-check mr-2"></i>Bookings</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
+                                <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>Profile</a>
                                 <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
@@ -155,7 +156,7 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="/dashboard" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-globe"></i>Explore <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="/explore" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-globe"></i>Explore <span class="badge badge-success">6</span></a>
                                 <!-- <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item"> -->
@@ -290,9 +291,9 @@
                                     </ul>
                                 </div>
                             </li> -->
-                            <li class="nav-divider">
+                            <!-- <li class="nav-divider">
                                 Account Options
-                            </li>
+                            </li> -->
                             <!--li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Pages </a>
                                 <div id="submenu-6" class="collapse submenu" style="">
@@ -465,71 +466,46 @@
                     <div class="row">
                         <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
                             <div class="row" id="search-results">
-                                   
-                                {% for d in destination %}
-                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="product-thumbnail">
-                                        <a href="/explore/destination/{{d.pk}}/">
-                                        <div class="product-img-head">
-                                            <div class="product-img">
-                                                <style>
-                                                    .pic{
-                                                        max-height: 150px ;
-                                                        overflow: hidden;
-                                                    }
-                                                </style>
-                                                <img src="{{ d.d_pics.url }}"  alt="" class="img-fluid"></div>
-                                             </div>
-                                            </a>
-                                        <div class="product-content">
-                                            <div class="product-content-head">
-                                                <h3 class="product-title">{{d.d_name}}</h3>
-                                                <div class="product-rating d-inline-block">
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                    <i class="fa fa-fw fa-star"></i>
-                                                </div>
-                                                <div class="product-price">{{d.d_location}}</div>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="/explore/destination/{{d.pk}}/" class="btn btn-primary">More Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               {% endfor %}
+                               
                                 
                                                        <!-- card masonary  -->
                         <!-- ============================================================== -->
-                        <div class="row">
                                 <style>
                                         .round1 {
                                         border: 2px solid gray;
                                         border-radius: 5px;
                                         border-collapse: separate;
                                         border-spacing: 15px;
-                                    }
-                                    </style>
+                                        }
+                                        .pic{
+                                        max-height: 150px ;
+                                        overflow: hidden;
+                                        }                                                
+                                </style>
+                        <div class="row">
+                                
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="row">
-                                            {% for d in destination %}
+                                        {% for d in destination %}
+                                            
                                         <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                                            <img class="card-img-top" src="{% static 'images/card-img.jpg' %}?{% now "U" %}" alt="Card image cap">
+                                                <a href="/destination/{{d.pk}}/">
+                                            <img class="card-img-top" src="{{ d.d_pics.url }}" alt="Card image cap">
                                             <div class="card-body" style="background-color:white">
-                                                <h3 class="card-title">Card title that wraps to a new line</h3>
-                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                <h3 class="card-title">{{d.d_name}}</h3>
+                                                <p class="card-text">{{d.d_description}}</p>
                                             </div>
                                             <br>
+                                        </a>
                                         </div>
+                                    
                                            {% endfor%}                                 
                                                                                
                                                                                 
                                         
                                     </div>
-                                </div>
                             </div>
+                        </div>
                             <!-- ============================================================== -->
                             <!-- end card masonary  -->
                                 

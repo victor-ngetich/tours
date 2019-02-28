@@ -2382,7 +2382,7 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 
 
 
-.product-slider{background-color: #fff;  border-top-left-radius: 4px; border-bottom-left-radius: 4px; padding: 110px;}
+.product-slider{background-color: #fff;}
 .product-carousel{}
 .product-carousel .carousel-indicators {
     position: absolute;
@@ -6764,7 +6764,7 @@ Media Query
 @media only screen and (max-width:1400px) {.product-price{position: initial;}.product-slider {
     background-color: #fff;
     border-top-left-radius: 4px;
-    padding: 131px 28px;}
+    
 
     .influencer-profile-data .user-social-media {
     padding: 16px 56px;
@@ -6772,7 +6772,7 @@ Media Query
     border-right: 1px solid #e6e6f2;
 }
 }
-@media only screen and (max-width:1200px) {.product-price{position: initial;}.product-slider{padding: 131px 30px;}
+@media only screen and (max-width:1200px) {.product-price{position: initial;}
 /*--------- dashboard-influence -------- */
     .user-social-media {
         padding: 16px 45px;
@@ -6856,8 +6856,8 @@ Media Query
     }
 
     /*--------- dashboard-product-single -------- */
-.product-slider{padding: 131px 30px;}
-.product-carousel .carousel-indicators{bottom: -30px;}
+
+
 
 /*--------- dashboard-influence -------- */
     .user-social-media {
@@ -6966,7 +6966,7 @@ Media Query
         margin-bottom: 5px;
     }
   /*--------- dashboard-product-single -------- */
-.product-slider{padding: 30px 10px;}
+
 .product-carousel .carousel-indicators{bottom: -30px;}
 .simple-card .nav.nav-tabs .nav-item .nav-link {
     padding: 17px 29px;}
@@ -6979,3 +6979,9 @@ Media Query
 @media only screen and (max-width:320px) {}
 
 /* Custom CSS @vic */
+.carousel-img1{
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    border-bottom-left-radius: calc(.25rem - 1px);
+    border-bottom-right-radius: calc(.25rem - 1px);
+}

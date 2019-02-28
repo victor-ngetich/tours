@@ -140,7 +140,7 @@ MEDIA_URL = '/tours/dashboard/static/uploads/'
 MEDIA_ROOT = os.path.join(REPOSITORY_ROOT, 'tours/dashboard/static/uploads/')
 
 
-LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL = '/explore/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Static files (CSS, JavaScript, Images)

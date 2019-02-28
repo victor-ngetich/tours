@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, filter3, test1, editprofile, bookings, payments)
+from dashboard.views import (explore, filter, filter2, filter3, test1, editprofile, bookings1, payments, addpackage, bookpackage)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -54,11 +54,13 @@ urlpatterns = [
     url(r'^d_filter/', filter, name='filter'),
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
-    url(r'^explore/destination/(?P<pk>\w+)/',test1,name='test1'),
+    url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
+    url(r'^destination/(?P<pk>\w+)/',test1,name='test1'),
     url(r'^dashboard/editprofile/',editprofile,name='editprofile'),
-    url(r'^dashboard/bookings/',bookings,name='bookings'),
+    url(r'^dashboard/bookings/',bookings1,name='bookings1'),
     url(r'^dashboard/payments/',payments,name='payments'),
-
+    url(r'^dashboard/addpackage/',addpackage,name='addpackage'),
+   
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
 
