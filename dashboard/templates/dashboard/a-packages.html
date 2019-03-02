@@ -1,18 +1,17 @@
 <!doctype html>
 <html lang="en">
-
  
 <head>
     {% load staticfiles %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Form Validation</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 </head>
 
 <body>
@@ -20,7 +19,7 @@
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
-         <!-- ============================================================== -->
+        <!-- ============================================================== -->
         <!-- navbar -->
         <!-- ============================================================== -->
         <div class="dashboard-header">
@@ -122,7 +121,7 @@
                                     <h5 class="mb-0 text-white nav-user-name">vic</h5>
                                     
                                 </div>
-                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
+                                <a class="dropdown-item" href="/dashboard/allpackages/"><i class="fas fa-list mr-2"></i>Our Packages</a>
                                 <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>Profile</a>
                                 <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -150,7 +149,7 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="/dashboard/allpackages" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-list"></i>Our Packages <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="/dashboard/allpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-list"></i>Our Packages <span class="badge badge-success">6</span></a>
                                 
                             </li>
                             <li class="nav-item">
@@ -159,7 +158,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="/dashboard/addpackage" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-plus-circle"></i>Add Package</a>
+                                <a class="nav-link" href="/dashboard/addpackage" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-plus-circle"></i>Add Package</a>
                                 
                             </li>
                                                         
@@ -187,160 +186,169 @@
         <!-- wrapper  -->
         <!-- ============================================================== -->
         <div class="dashboard-wrapper">
-            <div class="container-fluid  dashboard-content">
-                <!-- ============================================================== -->
-                <!-- pageheader -->
-                <!-- ============================================================== -->
-                <!-- <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h2 class="pageheader-title">Form Validations </h2>
-                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Form Validations</li>
-                                    </ol>
-                                </nav>
+            <div class="influence-finder">
+                <div class="container-fluid dashboard-content">
+                    <!-- ============================================================== -->
+                    <!-- pageheader -->
+                    <!-- ============================================================== -->
+                    <!-- <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h3 class="mb-2">Influencer Finder </h3>
+                                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                                <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Influencer Finder Template</li>
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div> -->
-                <!-- ============================================================== -->
-                <!-- end pageheader -->
-                <!-- ============================================================== -->
-             
+                    </div> -->
+                    <!-- ============================================================== -->
+                    <!-- end pageheader -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- content -->
+                    <!-- ============================================================== -->
                     <div class="row">
                         <!-- ============================================================== -->
-                        <!-- validation form -->
+                        <!-- search bar  -->
                         <!-- ============================================================== -->
-                        
-                        <!-- ============================================================== -->
-                        <!-- end validation form -->
-                        <!-- ============================================================== -->
-                    </div>
-                    <div class="row">
-                        <!-- ============================================================== -->
-                        <!-- basic form -->
-                        <!-- ============================================================== -->
-                        
-                        <!-- ============================================================== -->
-                        <!-- end basic form -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- horizontal form -->
-                        <!-- ============================================================== -->
-                        
-                        <!-- ============================================================== -->
-                        <!-- end horizontal form -->
-                        <!-- ============================================================== -->
-                    </div>
-                    <div class="row">
-                        <!-- ============================================================== -->
-                        <!-- valifation types -->
-                        <!-- ============================================================== -->
-                        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Add Package</h5>
                                 <div class="card-body">
-                                   
-                                    <!-- Start of formm -->
-
-    <div class="panel-body">
-            <form action="/dashboard/addpackage/" method="post">
-                {% csrf_token %}
-                <p class="bs-component">
-                        <table class="radii">
-                                <tbody> 
-                    {{ form.as_table }}
-                </tbody>
-            </table>
-                </p>	
-                    
-                <div class="form-group row text-right">
-                        <div class="col col-sm-10 col-lg-10 offset-sm-1 offset-lg-0">
-                            <center>
-                            <input class="btn btn-outline-success" type="submit" value="Submit"/>
-                            </center>
-                        </div>
-                    </div>
-
-                        
-                    
-            </form>
-        </div>
-    
-    <!-- End of formm -->
-
-                                        
-                                     
+                                    <form>
+                                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-primary search-btn" type="submit">Search</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <!-- ============================================================== -->
-                        <!-- end valifation types -->
+                        <!-- end search bar  -->
                         <!-- ============================================================== -->
-                    </div>
-           
-            </div>
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            Copyright © 2019. All rights reserved.</a>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                            <!-- ============================================================== -->
+                            <!-- card influencer one -->
+                            <!-- ============================================================== -->
+                            {% for p in a %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="pl-xl-3">
+                                                    <div class="m-b-0">
+                                                        <div class="user-avatar-name d-inline-block">
+                                                            <h2 class="font-24 m-b-10 text-primary">{{p.packages}}</h2>
+                                                            <h2 class="font-18 m-b-10 text-warning">{{p.d_name}}</h2>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="user-avatar-address">                                                        
+                                                        <div class="mt-3">
+                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Travellers:
+                                                                <a href="#" class="mr-1 badge badge-light">{{p.t_number}}</a>
+                                                            </p>
+                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Date Booked:
+                                                                <a href="#" class="mr-1 badge badge-light">{{p.date_added}}</a>
+                                                            </p>
+                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
+                                                                <a href="#" class="mr-1 badge badge-light">KSh. {{p.total_price}}</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                    <a href="#" class="btn btn-secondary">Proceed to Pay</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                {% endfor %}
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                                <!-- ============================================================== -->
+
+
+                            <!-- ============================================================== -->
+
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                        
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                            <!-- card influencer one -->
+                            <!-- ============================================================== -->
+                       
+                           
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                                <!-- ============================================================== -->
+                                
+
+                                <!-- ============================================================== -->
+                                <!-- end content -->
+                                <!-- ============================================================== -->
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- influencer sidebar  -->
+                            <!-- ============================================================== -->
+
+                            <!-- ============================================================== -->
+                            <!-- end influencer sidebar  -->
+                            <!-- ============================================================== -->
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">About</a>
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- footer -->
+                    <!-- ============================================================== -->
+                    <div class="footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    Copyright © 2019. All rights reserved.</a>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="text-md-right footer-links d-none d-sm-block">
+                                        <a href="javascript: void(0);">About</a>
+                                        <a href="javascript: void(0);">Support</a>
+                                        <a href="javascript: void(0);">Contact Us</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- ============================================================== -->
+                    <!-- end footer -->
+                    <!-- ============================================================== -->
                 </div>
+                <!-- ============================================================== -->
+                <!-- end wrapper  -->
+                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
-            <!-- end footer -->
+            <!-- end main wrapper  -->
             <!-- ============================================================== -->
-        </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
-    <script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
-    <script src="{% static 'vendor/parsley/parsley.js' %}?{% now "U" %}"></script>
-    <script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
-    <script>
-    $('#form').parsley();
-    </script>
-    <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-    </script>
+            <!-- Optional JavaScript -->
+            <!-- jquery 3.3.1 -->
+            <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
+            <!-- bootstap bundle js -->
+            <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
+            <!-- slimscroll js -->
+            <script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
+            <!-- main js -->
+            <script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
 </body>
  
 </html>

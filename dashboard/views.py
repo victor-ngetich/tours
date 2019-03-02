@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.template.context_processors import csrf
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
-from .models import destination,package, booking
+from django.contrib import messages
+from .models import destination, package, booking
+from dashboard.forms import AddPackage
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
@@ -50,20 +55,57 @@ def editprofile(request):
     return render(request, 'dashboard/pages/edit-profile.html')
 
 def bookings1(request):
-	a = booking.objects.all().filter(username=request.user)
+	a = booking.objects.all().filter(user=request.user)
 	return render(request, 'dashboard/bookings.html', {'a':a},locals())
 
 def payments(request):
     return render(request, 'dashboard/payments.html')
 
-def addpackage(request):
-    return render(request, 'dashboard/pages/add-package.html')
+def allpackages(request):
+    return render(request, 'dashboard/a-packages.html')
+
+def payments1(request):
+    return render(request, 'dashboard/a-payments.html')
+
+def editprofile1(request):
+    return render(request, 'dashboard/pages/a-edit-profile.html')
 
 def bookpackage(request, pk): 
 	if request.method == 'POST':
 		name = request.POST['name']
 		p = package.objects.get(pk=pk)
-		b = booking.objects.create(t_number=name,p_name=p, username=request.user, p_price=p.p_price)
+		b = booking.objects.create(t_number=name,packages=p, user=request.user, p_price=p.p_price, d_name=p.d_name)
+		# b.packages.set(p)
 		return HttpResponseRedirect('/dashboard/bookings/')
 	else:
 		return HttpResponseRedirect('/')
+
+@csrf_protect
+@ensure_csrf_cookie
+def post(request):
+	if request.method=="POST":
+		form = AddPackage(request.POST or None)
+
+		if form.is_valid():
+			name = form.cleaned_data['p_name']
+			category = form.cleaned_data['p_category']
+			destination = form.cleaned_data['d_name']
+			agency = form.cleaned_data['p_agency']
+			email = form.cleaned_data['email']
+			phone = form.cleaned_data['phone']
+			price = form.cleaned_data['price']
+			payinfo = form.cleaned_data['payment_info']
+			duration = form.cleaned_data['duration']
+			description = form.cleaned_data['description']
+
+			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=agency,agency_email=email,agency_phone=phone,p_price=price,p_payment_info=payinfo,p_duration=duration,p_description=description)
+			return HttpResponseRedirect('/dashboard/allpackages/')
+			messages.info(request, 'Your product was posted successfully.')
+		else:
+			return render(request, 'dashboard/pages/add-package.html',{'form':form})
+	else:			
+		form = AddPackage()
+		args = {'form':form}
+		args.update(csrf(request))
+		args['form'] = AddPackage()
+		return render(request, 'dashboard/pages/add-package.html',args)

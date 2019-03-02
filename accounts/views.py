@@ -40,7 +40,7 @@ def login_view(request):
 			if user.groups.filter(name='Tourist').exists():
 				return HttpResponseRedirect('/explore/')
 			if user.groups.filter(name='Tour Agency').exists():
-				return HttpResponseRedirect('/explore/')
+				return HttpResponseRedirect('/dashboard/allpackages/')
 		else:
 			return render(request,'accounts/login1.html',{"form":form})
 
@@ -105,9 +105,9 @@ def activate(request, uidb64, token):
     	return render(request,'accounts/invalid.html')
 @csrf_protect
 def logout_page(request):
-	user = User.objects.get(username=request.user.username)
+	# user = User.objects.get(username=request.user.username)
 	# [s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
-	logout(user)
+	logout(request)
 	return HttpResponseRedirect('/accounts/login/')
 @csrf_protect
 def forgot_view(request):
