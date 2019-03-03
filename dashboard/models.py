@@ -28,7 +28,6 @@ class package(models.Model):
     p_category = models.CharField(max_length=255, choices=MAYBECHOICE,blank=True)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
     p_agency = models.CharField(max_length=255,blank=True)
-    agency_email = models.EmailField(blank=True)
     agency_phone = models.IntegerField(blank=True,default=1)
     p_price = models.IntegerField(blank=True,default=0)
     p_payment_info = models.CharField(max_length=255,blank=True)
@@ -40,7 +39,7 @@ class package(models.Model):
         return self.p_name
 
 class booking(models.Model):
-    packages = models.OneToOneField(package, on_delete=models.CASCADE)
+    packages = models.ForeignKey(package, on_delete=models.CASCADE)
     d_name = models.CharField(max_length=255,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)

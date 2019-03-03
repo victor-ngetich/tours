@@ -114,18 +114,23 @@
                                 </li>
                             </ul>
                         </li> -->
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">vic</h5>
-                                    
+                        <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
                                 </div>
-                                <a class="dropdown-item" href="/dashboard/allpackages/"><i class="fas fa-list mr-2"></i>Our Packages</a>
-                                <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>Profile</a>
-                                <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                            </div>
-                        </li>
+                            </li>
+    
+                            <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
+                                </div>
+                            </li>
+    
+                            <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                </div>
+                            </li>
                     </ul>
                 </div>
             </nav>
@@ -235,42 +240,56 @@
                             <!-- card influencer one -->
                             <!-- ============================================================== -->
                             {% for p in a %}
-                            <div class="card">
+                            <div class="card text-white">
                                 <div class="card-body">
                                     <div class="row align-items-center">
-                                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                        
+                                        <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="user-avatar float-xl-left pr-4 float-none">
+                                                <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl">
+                                                    </div>
                                                 <div class="pl-xl-3">
                                                     <div class="m-b-0">
                                                         <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10 text-primary">{{p.packages}}</h2>
+                                                            <h2 class="font-24 m-b-10 text-warning">{{p.p_name}}</h2>
                                                             <h2 class="font-18 m-b-10 text-warning">{{p.d_name}}</h2>
-                                                        </div>                                                        
-                                                    </div>
-                                                    <div class="user-avatar-address">                                                        
-                                                        <div class="mt-3">
-                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Travellers:
-                                                                <a href="#" class="mr-1 badge badge-light">{{p.t_number}}</a>
-                                                            </p>
-                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Date Booked:
-                                                                <a href="#" class="mr-1 badge badge-light">{{p.date_added}}</a>
-                                                            </p>
-                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
-                                                                <a href="#" class="mr-1 badge badge-light">KSh. {{p.total_price}}</a>
-                                                            </p>
                                                         </div>
+                                                        
                                                     </div>
+                                                    <div class="user-avatar-address" style="color:black;">                                                       
+                                                        <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Price: KSh. {{p.p_price}}</span></span>
+                                                        </p>
+                                                        <p class="m-l-20" style="color:black;">Category: {{p.p_category}}<span class="m-l-10"><span class="m-l-20">Duration: {{p.p_duration}} Days</span></span>
+                                                        </p>
+                                                        <div class="mt-3">
+                                                            <p>
+                                                                    {{p.p_description}}
+                                                            </p>
+                                                            <!-- <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a> -->
+                                                        </div>
+                                                        <form method="POST" action="/editpackage/{{p.pk}}/"> {% csrf_token %}
+                                                        <div class="product-qty" style="color:white;">
+                                                                <p>Edit Buttttttton</p>
+                                                                <div class="float-none mt-xl-0 mt-4">
+                                                                        <input class="btn btn-secondary btn-lg" type="submit" value="Edit"/>
+                                                                    </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                            <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                                <input class="btn btn-secondary btn-lg" type="submit" value="Delete"/>
+                                                            </div>
+                                                        </div>
                                                 </div>
+                                                
                                             </div>
-                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                    <a href="#" class="btn btn-secondary">Proceed to Pay</a>
-                                                </div>
-                                            </div>
+                                              
                                         </div>
                                     </div>
+                                </form>
                                     
                                 </div>
-
                                 {% endfor %}
                                 <!-- ============================================================== -->
                                 <!-- end card influencer one -->

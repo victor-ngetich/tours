@@ -114,18 +114,23 @@
                                 </li>
                             </ul>
                         </li> -->
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">vic</h5>
-                                    
+                        <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
                                 </div>
-                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
-                                <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>Profile</a>
-                                <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                            </div>
-                        </li>
+                            </li>
+    
+                            <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
+                                </div>
+                            </li>
+    
+                            <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                </div>
+                            </li>
                     </ul>
                 </div>
             </nav>
@@ -267,7 +272,12 @@
                                                 <div class="float-xl-right float-none mt-xl-0 mt-4">
                                                     <br>
                                                     <br>
-                                                        <a href="#" class="btn btn-danger">Cancel Booking</a>
+
+<!-- Test -->
+
+<a href="/dashbard/bookings/delete/{{ p.pk }}/" class="btn btn-danger">Cancel Booking</a>
+
+<!-- End Test -->
                                                        <br>
                                                     </div>
                                             </div>

@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, filter3, test1, editprofile, bookings1, payments, bookpackage, allpackages, payments1, editprofile1, post)
+from dashboard.views import (explore, filter, filter2, filter3, test1, editprofile, bookings1, payments, bookpackage, allpackages, payments1, editprofile1, post, delete_bookings, editpackage)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -63,6 +63,9 @@ urlpatterns = [
     url(r'^dashboard/allpackages/',allpackages,name='allpackages'),
     url(r'^dashboard/payments1/',payments1,name='payments1'),
     url(r'^dashboard/editprofile1/',editprofile1,name='editprofile1'),
+    url(r'^dashboard/bookings/delete/<int:pk>/', delete_bookings, name='delete'),
+    url(r'^editpackage/(?P<pk>\w+)/',editpackage,name='editpackage'),
+
    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()

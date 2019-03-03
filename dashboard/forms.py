@@ -8,8 +8,6 @@ class AddPackage(forms.ModelForm):
 	p_name = forms.CharField(label='Package Name:',max_length=200,required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
 	p_category = forms.ChoiceField(label='Categories:', choices = MAYBECHOICE, initial='', widget=forms.Select(), required=True)
 	d_name = forms.ModelChoiceField(label='Destination Name:',required=True, queryset=destination.objects.all())
-	p_agency = forms.CharField(label='Tour Agent:',max_length=200,required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
-	email = forms.CharField(label="Email:", required = True,max_length=70,widget=forms.TextInput(attrs={'multiple':True,'class':'form-control','name':'email'}))
 	phone =forms.IntegerField(label="Cellphone:",required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
 	price =forms.IntegerField(label="Price (KSh):",required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
 	payment_info = forms.CharField(label="Payment Information", required =True,max_length=200,widget=forms.TextInput(attrs={'class':'form-control','name':'payment_info'}))	
@@ -20,7 +18,7 @@ class AddPackage(forms.ModelForm):
 
 	class Meta:
 		model = package
-		fields = ('p_name','p_category','d_name','p_agency','email','phone', 'price','payment_info', 'duration', 'description')
+		fields = ('p_name','p_category','d_name','phone', 'price','payment_info', 'duration', 'description')
 
 	def clean_phone(self):
 		phone = self.cleaned_data.get("phone")

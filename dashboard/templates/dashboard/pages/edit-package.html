@@ -254,7 +254,7 @@
                                     <!-- Start of formm -->
 
     <div class="panel-body">
-            <form action="/dashboard/addpackage/" method="post">
+            <form action="/editpackage/{{p.pk}}/" method="post">
                 {% csrf_token %}
                 <p class="bs-component">
                         <table class="radii">

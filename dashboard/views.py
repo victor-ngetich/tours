@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -62,7 +63,24 @@ def payments(request):
     return render(request, 'dashboard/payments.html')
 
 def allpackages(request):
-    return render(request, 'dashboard/a-packages.html')
+	b = request.user.get_full_name()
+	a = package.objects.all().filter(p_agency=b)
+	return render(request, 'dashboard/a-packages.html', {'a':a},locals())
+
+@csrf_protect
+@ensure_csrf_cookie
+def editpackage(request, pk):
+	if request.method == 'POST':
+		b = request.user.get_full_name()
+		instance = package.objects.get(pk=pk)
+
+		form = AddPackage(initial={'Package Name': instance.p_name})
+		if form.is_valid():
+			form.save()
+		return HttpResponseRedirect('dashboard/editpackage/')
+	else:
+		form = AddPackage()
+	return render(request, 'dashboard/pages/edit-package.html', {'form':form})
 
 def payments1(request):
     return render(request, 'dashboard/a-payments.html')
@@ -83,6 +101,7 @@ def bookpackage(request, pk):
 @csrf_protect
 @ensure_csrf_cookie
 def post(request):
+	b = request.user.get_full_name()
 	if request.method=="POST":
 		form = AddPackage(request.POST or None)
 
@@ -90,15 +109,13 @@ def post(request):
 			name = form.cleaned_data['p_name']
 			category = form.cleaned_data['p_category']
 			destination = form.cleaned_data['d_name']
-			agency = form.cleaned_data['p_agency']
-			email = form.cleaned_data['email']
 			phone = form.cleaned_data['phone']
 			price = form.cleaned_data['price']
 			payinfo = form.cleaned_data['payment_info']
 			duration = form.cleaned_data['duration']
 			description = form.cleaned_data['description']
 
-			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=agency,agency_email=email,agency_phone=phone,p_price=price,p_payment_info=payinfo,p_duration=duration,p_description=description)
+			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b,agency_phone=phone,p_price=price,p_payment_info=payinfo,p_duration=duration,p_description=description)
 			return HttpResponseRedirect('/dashboard/allpackages/')
 			messages.info(request, 'Your product was posted successfully.')
 		else:
@@ -109,3 +126,20 @@ def post(request):
 		args.update(csrf(request))
 		args['form'] = AddPackage()
 		return render(request, 'dashboard/pages/add-package.html',args)
+
+def delete_bookings(request, pk=None):
+
+    item= get_object_or_404(booking, pk=pk)
+
+    creator= item.user.username
+
+    if request.method == "POST" and request.user.is_authenticated and request.user.username == creator:
+        item.delete()
+        messages.success(request, "Post successfully deleted!")
+        return HttpResponseRedirect("/dashboard/bookings/")
+    
+    context= {'item': item,
+              'creator': creator,
+              }
+    
+    return render(request, 'Blog/movies-delete-view.html', context)
