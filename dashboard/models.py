@@ -9,7 +9,7 @@ class destination(models.Model):
 
     d_name = models.CharField(max_length=255,blank=True)
     d_location = models.CharField(max_length=255,blank=True)
-    d_description = models.CharField(max_length=255,blank=True)
+    d_description = models.TextField(blank=True)
     d_pics = models.FileField(upload_to='dashboard/', max_length=255,blank=True)
     d_days = models.DateField(blank=True,default="2019-01-01")
     d_phone = models.CharField(max_length=15,blank=True)

@@ -6,12 +6,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/core-img/favicon.ico' %}?{% now "U" %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <title>Our Packages</title>
 </head>
 
 <body>
@@ -257,12 +259,12 @@
                                                         </div>
                                                         
                                                     </div>
-                                                    <div class="user-avatar-address" style="color:black;">                                                       
-                                                        <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Price: KSh. {{p.p_price}}</span></span>
+                                                    <div class="user-avatar-address">                                                       
+                                                        <p class="mb-2" style="color:purple;">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Price: KSh. {{p.p_price}}</span></span>
                                                         </p>
-                                                        <p class="m-l-20" style="color:black;">Category: {{p.p_category}}<span class="m-l-10"><span class="m-l-20">Duration: {{p.p_duration}} Days</span></span>
+                                                        <p class="m-l-20" style="color:purple;">Category: {{p.p_category}}<span class="m-l-10"><span class="m-l-20">Duration: {{p.p_duration}} Days</span></span>
                                                         </p>
-                                                        <div class="mt-3">
+                                                        <div class="mt-3" style="color:gray;">
                                                             <p>
                                                                     {{p.p_description}}
                                                             </p>

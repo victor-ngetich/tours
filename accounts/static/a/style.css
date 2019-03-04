@@ -355,7 +355,7 @@ li {
 }
 
 .dorne-btn {
-    min-width: 180px;
+    min-width: 100px;
     height: 52px;
     background-color: rgb(204, 102, 0);
     /* border-radius: 0; */

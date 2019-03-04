@@ -6,6 +6,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/core-img/favicon.ico' %}?{% now "U" %}">    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
@@ -17,7 +19,7 @@
     <script src="{% static 'ajax3.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax4.js' %}?{% now "U" %}"></script>
   
-    <title>Dashboard</title>
+    <title>Destination</title>
 
     <style>
         .pic1{
@@ -522,17 +524,14 @@
                                                 <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true">Descriptions</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">Reviews</a>
+                                                <!-- <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">Reviews</a> -->
                                             </li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent5">
-                                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
-                                                    <p></p>                                                <ul class="list-unstyled arrow">
-                                                    <li>
-                                                    {{f.d_description}}
-                                                    </li>
-                                                    
-                                                </ul>
+                                            <div class="tab-pane fade show active" style="font-size:120%;" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
+                                                    <p>
+                                                    {{f.d_description|linebreaks}}
+                                                    </p>
                                             </div>
                                             <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="product-tab-2">
                                                 <div class="review-block">
@@ -577,7 +576,7 @@
                                 <!-- card influencer one -->
                             <!-- ============================================================== -->
                             {% for p in g %}
-                            <div class="card text-white" style="background-color:gray;">
+                            <div class="card text-white" style="background-color:rgba(52, 26, 121, 0.99);">
                                 <div class="card-body">
                                     <div class="row align-items-center">
 
