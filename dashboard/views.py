@@ -63,10 +63,21 @@ def bookings1(request):
 def payments(request):
     return render(request, 'dashboard/payments.html')
 
-def allpackages(request):
+def ourpackages(request):
 	b = request.user.get_full_name()
 	a = package.objects.all().filter(p_agency=b)
 	return render(request, 'dashboard/a-packages.html', {'a':a},locals())
+
+def allpackages(request):
+	b = request.user.get_full_name()
+	a = package.objects.all()
+	return render(request, 'dashboard/allpackages.html', {'a':a},locals())
+
+def allpackages1(request):
+	b = request.user.get_full_name()
+	a = package.objects.all()
+	return render(request, 'dashboard/a-allpackages.html', {'a':a},locals())
+
 
 @csrf_protect
 @ensure_csrf_cookie
@@ -76,9 +87,10 @@ def editpackage(request, pk):
 		instance = package.objects.get(pk=pk)
 
 		form = AddPackage(initial={'Package Name': instance.p_name})
+		print(form)
 		if form.is_valid():
 			form.save()
-		return HttpResponseRedirect('dashboard/editpackage/')
+		return HttpResponseRedirect('/editpackage/')
 	else:
 		form = AddPackage()
 	return render(request, 'dashboard/pages/edit-package.html', {'form':form})
