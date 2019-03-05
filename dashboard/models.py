@@ -32,7 +32,7 @@ class package(models.Model):
     p_price = models.IntegerField(blank=True,default=0)
     p_payment_info = models.CharField(max_length=255,blank=True)
     p_duration = models.CharField(max_length=255,blank=True)
-    p_description = models.CharField(max_length=255,blank=True)
+    p_description = models.TextField(blank=True)
     p_reviews = models.CharField(max_length=255,blank=True)
 
     def __str__(self):
