@@ -57,6 +57,7 @@ def editprofile(request):
 
 def bookings1(request):
 	a = booking.objects.all().filter(user=request.user)
+	print(a)
 	return render(request, 'dashboard/bookings.html', {'a':a},locals())
 
 def payments(request):

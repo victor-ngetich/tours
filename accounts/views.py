@@ -40,7 +40,7 @@ def login_view(request):
 			if user.groups.filter(name='Tourist').exists():
 				return HttpResponseRedirect('/explore/')
 			if user.groups.filter(name='Tour Agency').exists():
-				return HttpResponseRedirect('/dashboard/allpackages/')
+				return HttpResponseRedirect('/allpackages/')
 		else:
 			return render(request,'accounts/login1.html',{"form":form})
 

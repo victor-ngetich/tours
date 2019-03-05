@@ -156,7 +156,7 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="/dashboard/allpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-list"></i>Our Packages <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="/allpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-list"></i>Our Packages <span class="badge badge-success">6</span></a>
                                 
                             </li>
                             <li class="nav-item">
@@ -254,8 +254,8 @@
                                                 <div class="pl-xl-3">
                                                     <div class="m-b-0">
                                                         <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10 text-warning">{{p.p_name}}</h2>
-                                                            <h2 class="font-18 m-b-10 text-warning">{{p.d_name}}</h2>
+                                                            <h2 class="font-24 m-b-10" style="color:rgb(185, 93, 0);">{{p.p_name}}</h2>
+                                                            <h2 class="font-18 m-b-10" style="color:rgb(185, 93, 0);">{{p.d_name}}</h2>
                                                         </div>
                                                         
                                                     </div>
@@ -272,9 +272,9 @@
                                                         </div>
                                                         <form method="POST" action="/editpackage/{{p.pk}}/"> {% csrf_token %}
                                                         <div class="product-qty" style="color:white;">
-                                                                <!-- <p>Edit Buttttttton</p> -->
+                                                                <p>Edit Buttttttton</p>
                                                                 <div class="float-none mt-xl-0 mt-4">
-                                                                        <!-- <input class="btn btn-secondary btn-lg" type="submit" value="Edit"/> -->
+                                                                        <input class="btn btn-secondary btn-lg" type="submit" value="Edit"/>
                                                                     </div>
                                                             </div>
                                                     </div>
