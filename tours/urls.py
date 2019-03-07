@@ -55,6 +55,7 @@ urlpatterns = [
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
     url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
+    # url(r'^destination/(?P<d_name>[-\w]+)/(?P<pk>\d+)/$',test1,name='test1'),
     url(r'^destination/(?P<pk>\w+)/',test1,name='test1'),
     url(r'^dashboard/editprofile/',editprofile,name='editprofile'),
     url(r'^dashboard/bookings/',bookings1,name='bookings1'),

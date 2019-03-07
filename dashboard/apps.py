@@ -9,3 +9,6 @@ class PackageConfig(AppConfig):
 
 class PackageConfig(AppConfig):
     name = 'booking'
+
+class PackageConfig(AppConfig):
+    name = 'DestinationImage'

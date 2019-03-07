@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'dashboard',
     'widget_tweaks',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
