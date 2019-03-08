@@ -26,15 +26,6 @@ from dashboard.views import (explore, filter, filter2, filter3, test1, editprofi
 from django.conf.urls.static import static
 from django.conf import settings
 
-# from django.contrib.staticfiles.views import serve
-# from django.views.decorators.cache import never_cache
-
-# from django.conf.urls.static import static
-# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-# from django.conf.urls.static import static
-# from django.contrib.staticfiles.views import serve
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('home.urls')),

@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
 from django.contrib import messages
-from .models import destination, package, booking
+from django.forms import modelformset_factory
+from django.views.generic.edit import FormView
+from .models import destination, package, booking, Hotel
 from dashboard.forms import AddPackage, BookingOptions
 from django.shortcuts import get_list_or_404, get_object_or_404
 
@@ -47,15 +49,42 @@ def filter3 (request):
 		articles = destination.objects.all().filter(d_package_size__icontains=search_text)
 		return render(request,'dashboard/filter.html',{'articles':articles})
 
+
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
 	g = package.objects.all().filter(d_name=f)
-	# if request.method == 'POST':
-	form = BookingOptions(request.POST or None)
-	print(form)
-	return render(request, 'dashboard/destination.html',{'f':f,'g':g,'form':form},locals())
+	h = Hotel.objects.all().filter(destination=f)
+	instance = get_object_or_404(destination, id=pk)
+	print(instance)
+	print(h)
+
+# ---Form Start---
+	if request.method == 'POST':
+		form = BookingOptions(request.POST or None, instance=instance)
+		if form.is_valid():
+			product = form.save(commit=False)
+			product.save()
+
+		return HttpResponseRedirect('/')
+	else:
+		form = BookingOptions(instance=instance)
+
+# ---Formset Start---
+	# HotelFormSet = modelformset_factory(Hotel, fields=('h_name',))
+	# if request.method == "POST":
+	# 	formset = HotelFormSet(
+    #     request.POST,
+    #     queryset=Hotel.objects.filter(destination=instance),
+    #     )
+	# 	if formset.is_valid():
+	# 		formset.save()
+    #         # Do something.
 	# else:
-	# 	return HttpResponseRedirect('/')
+	# 		formset = HotelFormSet(queryset=Hotel.objects.filter(destination=instance))
+	# return render(request, 'dashboard/destination.html', {'f':f,'g':g, 'h':h,'instance':instance,'formset': formset})	
+# ---Formset End---
+
+	return render(request, 'dashboard/destination.html',{'f':f,'g':g, 'h':h,'instance':instance, 'form': form},locals())
 
 def editprofile(request):
     return render(request, 'dashboard/pages/edit-profile.html')
@@ -107,14 +136,28 @@ def editprofile1(request):
 def bookpackage(request, pk): 
 	if request.method == 'POST':
 		form = BookingOptions(request.POST or None)
-		print(form)
-		name = request.POST['name']
+		# if form.is_valid():
+		# 	adults = form.cleaned_data['adults']
+		# 	kids = form.cleaned_data['kids']
+		# 	start = form.cleaned_data['start_date']
+		# 	end = form.cleaned_data['end_date']
+
+		# print(form)
+		# name = request.POST['name']
+		adults = request.POST['name1']
+		kids = request.POST['name2']
+		start = request.POST['name3']
+		end = request.POST['name4']
+
+		q = destination.objects.all().get(pk=pk)
 		p = package.objects.get(pk=pk)
-		b = booking.objects.create(t_number=name,packages=p, user=request.user, p_price=p.p_price, d_name=p.d_name)
+
+		b = booking.objects.create(user=request.user, packages=p, d_name=q, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
 		# b.packages.set(p)
 		return HttpResponseRedirect('/dashboard/bookings/')
 	else:
-		return HttpResponseRedirect('/')
+		form = BookingOptions(request.POST or None)
+		return render(request, 'dashboard/bookings.html', {'p':p, 'form':form, 'b':b},locals())
 
 @csrf_protect
 @ensure_csrf_cookie
@@ -134,10 +177,10 @@ def post(request):
 			to_date = form.cleaned_data['to_date']
 			duration = form.cleaned_data['duration']
 			description = form.cleaned_data['description']
-			colors = form.cleaned_data['favorite_colors']
+			# colors = form.cleaned_data['favorite_colors']
 
 
-			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b,agency_phone=phone,p_price=price,p_payment_info=payinfo, from_day=from_date, to_day=to_date,p_duration=duration,p_description=description, favorite_colors=colors)
+			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b,agency_phone=phone,p_price=price,p_payment_info=payinfo, from_day=from_date, to_day=to_date,p_duration=duration,p_description=description)
 			return HttpResponseRedirect('/ourpackages/')
 			messages.info(request, 'Your product was posted successfully.')
 		else:

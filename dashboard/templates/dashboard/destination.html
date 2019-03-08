@@ -37,6 +37,10 @@
         border-width: 1px;
         color:rgb(160, 5, 5)
     }
+    .badge-light {
+    background-color: #2d2d2e;
+    color: #757691;
+}
     </style>
 </head>
 
@@ -320,9 +324,35 @@
                                     </ul>
                                 </div>
                             </li> -->
-                            <!-- <li class="nav-divider">
-                                Account Options
-                            </li> -->
+                            <li class="nav-divider">
+                                Package Options
+                            </li>
+                            <div class="panel-body">
+                                    <form action="/bookpackage/{{p.pk}}/" method="post">
+                                        {% csrf_token %}
+                                        <p class="bs-component">
+                                                <table class="radii">
+                                                        <tbody> 
+                                            {{ form.as_table }}
+                                        </tbody>
+                                    </table>
+
+
+                                        </p>	
+                                            
+                                        <div class="form-group row text-right">
+                                                <div class="col col-sm-10 col-lg-10 offset-sm-1 offset-lg-0">
+                                                    <center>
+                                                    <input class="btn btn-outline-success" type="submit" value="Submit"/>
+                                                    </center>
+                                                </div>
+                                            </div>
+                        
+                                                
+                                            
+                                    </form>
+                                </div>
+
                             <!--li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Pages </a>
                                 <div id="submenu-6" class="collapse submenu" style="">
@@ -526,14 +556,14 @@
                                     <div class="simple-card">
                                         <ul class="nav nav-tabs" id="myTab5" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true">Descriptions</a>
+                                                <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true" style="font-size:120%;">Description</a>
                                             </li>
                                             <li class="nav-item">
                                                 <!-- <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">Reviews</a> -->
                                             </li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent5">
-                                            <div class="tab-pane fade show active" style="font-size:120%;" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
+                                            <div class="tab-pane fade show active" style="font-size:120%; color:#28a745;" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
                                                     <p>
                                                     {{f.d_description|linebreaks}}
                                                     </p>
@@ -615,10 +645,13 @@
                                                         </div>
                                                         <form method="POST" action="/bookpackage/{{p.pk}}/"> {% csrf_token %}
                                                         <div class="product-qty" style="color:white;">
-                                                                <p>Number of people</p>
-                                                                <div class="quantity">
-                                                                    <input type="number" min="1" max="500" step="1" name="name" value="1">
-                                                                </div>
+                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
+                                                                <a class="mr-1 badge badge-light">KSh. {{p.total_price}}</a>
+                                                            </p>
+                                                                    <input type="text" name="name1" id="adults11"><br>
+                                                                    <input type="text" name="name2" id="kids11"><br>
+                                                                    <input type="text" name="name3" id="start11"><br>
+                                                                    <input type="text" name="name4" id="end11"><br>
                                                             </div>
                                                     </div>
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -639,13 +672,6 @@
                                 <!-- end card influencer one -->
                             </div>
 
-                            <p>
-                                {% for g in package %}
-
-                                <div class="product-price">KSh. {{g.p_name}}</div>
-
-                                {% endfor %}
-                            </p>
                                 <!-- ============================================================== -->                        
                             </div>
                             
@@ -660,17 +686,6 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 Copyright © 2019. All rights reserved.</a>
-                                <ul>
-                                    {% for choice in form.hotel.field.choices %}
-                                      <li>
-                                        <input type="radio" name="hotel" value="{{choice.0}}"
-                                          {% ifequal form.hotel.data choice.0 %} 
-                                             checked="checked"
-                                          {% endifequal %}/>
-                                        <label for="">{{choice.1}}</label>
-                                      </li>
-                                    {% endfor %}
-                                    </ul>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="text-md-right footer-links d-none d-sm-block">
@@ -729,7 +744,11 @@
     <script src="{% static 'vendor/charts/c3charts/d3-5.4.0.min.js' %}?{% now "U" %}"></script>
     <script src="{% static 'vendor/charts/c3charts/C3chartjs.js' %}?{% now "U" %}"></script>
     <script src="{% static 'libs/js/dashboard-ecommerce.js' %}?{% now "U" %}"></script>
-    <script>
+
+<!-- Custom JS -->
+<script src="{% static 'libs/js/jsautoinput.js' %}?{% now "U" %}"></script>
+
+    <!-- <script>
             jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
             jQuery('.quantity').each(function() {
                 var spinner = jQuery(this),
@@ -762,7 +781,7 @@
                 });
     
             });
-            </script>
+            </script> -->
 </body>
  
 </html>

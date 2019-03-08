@@ -26,6 +26,15 @@ class destination(models.Model):
     class Meta:
         ordering = ('d_name',)
 
+class Hotel(models.Model):
+    h_name = models.CharField(max_length=255,blank=True)
+    destination = models.ForeignKey(destination, on_delete=models.CASCADE)
+    pricep_adult = models.IntegerField(blank=True,default=0)
+    pricep_kid = models.IntegerField(blank=True,default=0)
+
+    def __str__(self):
+        return self.h_name
+
 class DestinationImage(models.Model):
     destination = models.ForeignKey(destination, on_delete=models.CASCADE, related_name='images')
     image = models.FileField(upload_to="dashboard/")
@@ -41,12 +50,14 @@ class package(models.Model):
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
     p_agency = models.CharField(max_length=255,blank=True)
     agency_phone = models.IntegerField(blank=True,default=1)
-    p_price = models.IntegerField(blank=True,default=0)
+    pricep_adult = models.IntegerField(blank=True,default=0)
+    pricep_kid = models.IntegerField(blank=True,default=0)
     p_payment_info = models.CharField(max_length=255,blank=True)
     p_duration = models.CharField(max_length=255,blank=True)
     p_description = models.TextField(blank=True)
     from_day = models.DateField(default=date.today,blank=True, null=True)
     to_day = models.DateField(default=one_month_from_today,blank=True, null=True)
+    pricep_day = models.IntegerField(blank=True,default=0)
     p_reviews = models.CharField(max_length=255,blank=True)
     favorite_colors = models.CharField(max_length=255,blank=True)
 
@@ -57,22 +68,34 @@ class package(models.Model):
     class Meta:
         ordering = ('p_name', 'd_name')
 
+
 class booking(models.Model):
 
-    FAVORITE_COLORS_CHOICE = (
-    ('blue', 'Blue'),
-    ('green', 'Green'),
-    ('black', 'Black'),
-)
     packages = models.ForeignKey(package, on_delete=models.CASCADE)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
-    p_price = models.IntegerField(blank=True,default=0)
-    t_number = models.IntegerField(blank=True,default=1)
-    hotel = models.CharField(max_length=255, choices=FAVORITE_COLORS_CHOICE,blank=True)
+    adults = models.IntegerField(blank=True,default=1)
+    kids = models.IntegerField(blank=True,default=0)
+    pricep_adult = models.IntegerField(blank=True,default=0)
+    pricep_kid = models.IntegerField(blank=True,default=0)
+    days = models.IntegerField(blank=True,default=1)
+    start_date = models.DateTimeField(default=date.today,blank=True, null=True)
+    end_date = models.DateTimeField(default=date.today,blank=True, null=True)
+    pricep_day = models.IntegerField(blank=True,default=0)
+    # total_price = models.IntegerField()
+
 
 
     @property
-    def total_price(self):
-        return self.p_price * self.t_number
+    def get_total_price(self):
+        a = self.pricep_adult * self.adults
+        b = self.pricep_kid * self.kids
+        return (a) + (b)
+
+    # def save(self, *args, **kwargs):
+    #   self.total_price = self.get_total_price()
+    #   super(booking, self).save(*args, **kwargs)
+
+    # def __str__(self):
+    #     return self.get_total_price

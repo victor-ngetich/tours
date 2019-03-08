@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import destination, package, booking, DestinationImage
+from .models import destination, package, booking, DestinationImage, Hotel
 
 class EventModelAdmin(admin.ModelAdmin):
     list_display = ["d_name", "d_location", "d_description", 'd_pic1', 'd_email']
@@ -24,7 +24,7 @@ class EventModelAdmin3(admin.ModelAdmin):
         model = DestinationImage
 
 class EventModelAdmin1(admin.ModelAdmin):
-    list_display = ["p_name", "p_category", "d_name","p_agency","p_price","p_duration",'p_description', 'p_reviews']
+    list_display = ["p_name", "p_category", "d_name","p_agency","pricep_adult","p_duration",'p_description', 'p_reviews']
     list_display_links = ["p_name"]
     list_filter = ["p_category", "d_name"]
     list_per_page = 5
@@ -35,7 +35,7 @@ class EventModelAdmin1(admin.ModelAdmin):
         model = package
 
 class EventModelAdmin2(admin.ModelAdmin):
-    list_display = ["packages", "d_name", "user", 'date_added', 'p_price','t_number']
+    list_display = ["packages", "d_name", "user", 'date_added']
     list_display_links = ["packages"]
     list_filter = ["d_name", 'user']
     list_per_page = 10
@@ -49,3 +49,4 @@ admin.site.register(destination,EventModelAdmin)
 admin.site.register(package,EventModelAdmin1)
 admin.site.register(booking,EventModelAdmin2)
 admin.site.register(DestinationImage,EventModelAdmin3)
+admin.site.register(Hotel)
