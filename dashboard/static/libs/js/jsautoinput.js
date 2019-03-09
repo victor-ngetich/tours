@@ -1,4 +1,4 @@
-$(function(){
+$(function autoinput1(){
     var $id_adults = $('#id_adults');
     var $adults1 = $('#adults1');
     function onChange() {
@@ -10,7 +10,7 @@ $(function(){
         .keyup(onChange);
 });
 
-$(function(){
+$(function autoinput2(){
     var $id_kids = $('#id_kids');
     var $kids1 = $('#kids1');
     function onChange() {
@@ -22,7 +22,7 @@ $(function(){
         .keyup(onChange);
 });
 
-$(function(){
+$(function autoinput3(){
     var $id_start_date = $('#id_start_date');
     var $start1 = $('#start1');
     function onChange() {
@@ -34,7 +34,7 @@ $(function(){
         .keyup(onChange);
 });
 
-$(function(){
+$(function autoinput4(){
     var $id_end_date = $('#id_end_date');
     var $end1 = $('#end1');
     function onChange() {

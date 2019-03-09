@@ -643,15 +643,22 @@
 
                                                             <!-- <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a> -->
                                                         </div>
-                                                        <form method="POST" action="/bookpackage/{{p.pk}}/"> {% csrf_token %}
+                                                        <form method="POST" action="/bookpackage/{{p.pk}}/" oninput="x.value=parseInt(name1.value)+parseInt(name2.value)"> {% csrf_token %}
                                                         <div class="product-qty" style="color:white;">
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
-                                                                <a class="mr-1 badge badge-light">KSh. {{p.total_price}}</a>
+                                                                <a class="mr-1 badge badge-light" id="total12">KSh. {{p.total_price}}</a>
                                                             </p>
-                                                                    <input type="text" name="name1" id="adults11"><br>
-                                                                    <input type="text" name="name2" id="kids11"><br>
+                                                                    <input type="text" name="name1" id="adults11" oninput="myFunction()"><br>
+                                                                    <input type="number" name="name2" id="kids11"><br>
                                                                     <input type="text" name="name3" id="start11"><br>
                                                                     <input type="text" name="name4" id="end11"><br>
+                                                                    <input type="number" name="name5" id="aprice11" value="{{p.pricep_adult}}"><br>
+                                                                    <input type="number" name="name6" id="kprice11" value="{{p.pricep_kid}}"><br>
+                                                                    <input type="number" name="name7" id="total11"><br>
+                                                                    This is <output name="x" for="name1 name2"></output><br>
+                                                                    <p id="demo"></p>
+                                                                    
+
                                                             </div>
                                                     </div>
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -686,6 +693,8 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 Copyright © 2019. All rights reserved.</a>
+                                <!-- <input type="text" name="name7" id="total12"><br> -->
+
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="text-md-right footer-links d-none d-sm-block">
@@ -747,6 +756,7 @@
 
 <!-- Custom JS -->
 <script src="{% static 'libs/js/jsautoinput.js' %}?{% now "U" %}"></script>
+<script src="{% static 'libs/js/jstotalprice.js' %}?{% now "U" %}"></script>
 
     <!-- <script>
             jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');

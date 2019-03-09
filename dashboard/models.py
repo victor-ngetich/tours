@@ -2,6 +2,7 @@ from django.db import models
 from dashboard.choices import *
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
+import datetime 
 from datetime import date
 from datetime import timedelta
 from django.utils import timezone
@@ -91,7 +92,9 @@ class booking(models.Model):
     def get_total_price(self):
         a = self.pricep_adult * self.adults
         b = self.pricep_kid * self.kids
-        return (a) + (b)
+        c = ((self.end_date - self.start_date).days) + 1
+        # d = (c * self.pricep_day)
+        return ((a) + (b)) * c
 
     # def save(self, *args, **kwargs):
     #   self.total_price = self.get_total_price()
