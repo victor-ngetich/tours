@@ -41,6 +41,12 @@ class AddPackage(forms.ModelForm):
 			package.save()
 		return package
 
+class EditPackage(forms.ModelForm):
+	class Meta:
+		model = package
+		fields = ('p_name', 'p_category', 'd_name','p_agency', 'agency_phone', 'pricep_adult','pricep_kid', 'p_payment_info', 'from_day', 'to_day', 'p_description')
+
+
 class BookingOptions(forms.ModelForm):
 
 	# hotel = forms.ModelChoiceField(label='Hotel:',required=True, queryset=Hotel.objects.all(), widget=forms.Select(attrs={'class':'hidden'}))

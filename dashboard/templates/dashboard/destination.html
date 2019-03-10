@@ -41,6 +41,12 @@
     background-color: #2d2d2e;
     color: #757691;
 }
+
+.nav-left-sidebar {
+    /* This adjusts the width of the left sidebar */
+    width: 225px;
+}
+
     </style>
 </head>
 
@@ -343,7 +349,7 @@
                                         <div class="form-group row text-right">
                                                 <div class="col col-sm-10 col-lg-10 offset-sm-1 offset-lg-0">
                                                     <center>
-                                                    <input class="btn btn-outline-success" type="submit" value="Submit"/>
+                                                    <!-- <input class="btn btn-outline-success" type="submit" value="Submit"/> -->
                                                     </center>
                                                 </div>
                                             </div>
@@ -628,9 +634,9 @@
                                                         
                                                     </div>
                                                     <div class="user-avatar-address" style="color:yellow;">                                                       
-                                                        <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Price: KSh. {{p.p_price}}</span></span>
+                                                        <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Category: {{p.p_category}}</span><span class="m-l-20">Phone: {{p.agency_phone}}</span></span>
                                                         </p>
-                                                        <p class="m-l-20" style="color:yellow;">Category: {{p.p_category}}<span class="m-l-10"><span class="m-l-20">Duration: {{p.p_duration}} Days</span></span>
+                                                        <p class="m-l-20" style="color:yellow;">Daily Price: KSh. {{p.pricep_adult}} per adult<span class="m-l-10"><span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span></span>
                                                         </p>
                                                         <div class="mt-3 text-white">
                                                             <p>
@@ -645,18 +651,18 @@
                                                         </div>
                                                         <form method="POST" action="/bookpackage/{{p.pk}}/" oninput="x.value=parseInt(name1.value)+parseInt(name2.value)"> {% csrf_token %}
                                                         <div class="product-qty" style="color:white;">
-                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
-                                                                <a class="mr-1 badge badge-light" id="total12">KSh. {{p.total_price}}</a>
-                                                            </p>
-                                                                    <input type="text" name="name1" id="adults11" oninput="myFunction()"><br>
-                                                                    <input type="number" name="name2" id="kids11"><br>
-                                                                    <input type="text" name="name3" id="start11"><br>
-                                                                    <input type="text" name="name4" id="end11"><br>
-                                                                    <input type="number" name="name5" id="aprice11" value="{{p.pricep_adult}}"><br>
-                                                                    <input type="number" name="name6" id="kprice11" value="{{p.pricep_kid}}"><br>
-                                                                    <input type="number" name="name7" id="total11"><br>
-                                                                    This is <output name="x" for="name1 name2"></output><br>
-                                                                    <p id="demo"></p>
+                                                            <!-- <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
+                                                                <a class="mr-1 badge badge-light" id="total12">KSh. </a>
+                                                            </p> -->
+                                                                    <input type="hidden" name="name1" id="adults11" oninput="myFunction()"><br>
+                                                                    <input type="hidden" name="name2" id="kids11"><br>
+                                                                    <input type="hidden" name="name3" id="start11"><br>
+                                                                    <input type="hidden" name="name4" id="end11"><br>
+                                                                    <input type="hidden" name="name5" id="aprice11" value="{{p.pricep_adult}}"><br>
+                                                                    <input type="hidden" name="name6" id="kprice11" value="{{p.pricep_kid}}"><br>
+                                                                    <!-- <input type="number" name="name7" id="total11"><br> -->
+                                                                    <!-- This is <output name="x" for="name1 name2"></output><br> -->
+                                                                    <!-- <p id="demo"></p> -->
                                                                     
 
                                                             </div>

@@ -46,10 +46,10 @@ var numKid = 0;
 // });
 
 
-function myFunction() {
-  var x = document.getElementById("adults11").value;
-  document.getElementById("demo").innerHTML = "You wrote: " + x;
-}
+// function myFunction() {
+//   var x = document.getElementById("adults11").value;
+//   document.getElementById("demo").innerHTML = "You wrote: " + x;
+// }
 
 
 $('#id_adults').on('keypress keyup keydown',function(event) { 

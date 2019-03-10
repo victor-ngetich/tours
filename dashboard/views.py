@@ -10,8 +10,13 @@ from django.utils import timezone
 from django.contrib import messages
 from django.forms import modelformset_factory
 from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView, UpdateView
+
+# from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse
 from .models import destination, package, booking, Hotel
-from dashboard.forms import AddPackage, BookingOptions
+from dashboard.forms import AddPackage, EditPackage, BookingOptions
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
@@ -55,8 +60,8 @@ def test1(request,pk):
 	g = package.objects.all().filter(d_name=f)
 	h = Hotel.objects.all().filter(destination=f)
 	instance = get_object_or_404(destination, id=pk)
-	print(instance)
-	print(h)
+	# print(instance)
+	# print(h)
 
 # ---Form Start---
 	if request.method == 'POST':
@@ -127,6 +132,28 @@ def editpackage(request, pk):
 		form = AddPackage()
 	return render(request, 'dashboard/pages/edit-package.html', {'form':form})
 
+class PackageUpdate(UpdateView):
+    # model = package
+    # fields = ['p_name', 'p_category', 'd_name','p_agency', 'agency_phone', 'pricep_adult','pricep_kid', 'p_payment_info', 'from_day', 'to_day', 'p_description']
+    template_name = 'dashboard/editt-package.html'
+    form_class = EditPackage
+    success_url = '/ourpackages/'
+
+    def get_object(self):
+        rr = self.kwargs.get("pk")
+        return get_object_or_404(package, pk=rr)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+class BookingDelete(DeleteView):
+    model = booking
+    success_url = reverse_lazy('bookings1')
+	
+# def get_success_url(self):
+#         return reverse('bookings')
+
 def payments1(request):
     return render(request, 'dashboard/a-payments.html')
 
@@ -192,7 +219,7 @@ def post(request):
 		args['form'] = AddPackage()
 		return render(request, 'dashboard/pages/add-package.html',args)
 
-def delete_bookings(request, pk=None):
+def delete_bookings1(request, pk=None):
 
     item= get_object_or_404(booking, pk=pk)
 
@@ -208,3 +235,18 @@ def delete_bookings(request, pk=None):
               }
     
     return render(request, 'Blog/movies-delete-view.html', context)
+
+def delete_booking(request, pk):
+	pp = get_object_or_404(booking, pk=pk)
+    # p = booking.objects.get(pk=pk)
+	# try:
+	if request.method == 'POST':
+		pp.delete()
+		messages.success(request, "Successfully Deleted")
+	else:
+		messages.success(request, "Not Deleted")
+	# except Exception as e:
+	# 	messages.warning(request, "Not Deleted at all: Error{}".format(e))
+	context= {'pp': pp,
+              }
+	return HttpResponseRedirect('/dashboard/bookings/')

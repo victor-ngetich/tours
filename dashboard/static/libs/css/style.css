@@ -4078,8 +4078,9 @@ Pills vertical
 }
 
 .badge-light {
-    background-color: #efeff6;
-    color: #757691;
+    background-color: #d7d7df;
+    color: #2e2f39 !important;
+    text-decoration: none;
 }
 
 .badge-light[href]:focus,

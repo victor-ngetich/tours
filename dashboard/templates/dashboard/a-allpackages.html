@@ -265,11 +265,11 @@
                                                         
                                                     </div>
                                                     <div class="user-avatar-address">                                                       
-                                                        <p class="mb-2" style="color:purple;">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Price: KSh. {{p.p_price}}</span></span>
-                                                        </p>
-                                                        <p class="m-l-20" style="color:purple;">Category: {{p.p_category}}<span class="m-l-10"><span class="m-l-20">Duration: {{p.p_duration}} Days</span></span>
-                                                        </p>
-                                                        <div class="mt-3" style="color:gray;">
+                                                            <p class="mb-2" style="color:purple;">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Category: {{p.p_category}}</span><span class="m-l-20">Phone: {{p.agency_phone}}</span></span>
+                                                            </p>
+                                                            <p class="m-l-20" style="color:purple;">Daily Price: KSh. {{p.pricep_adult}} per adult<span class="m-l-10"><span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span></span>
+                                                            </p>
+                                                            <div class="mt-3" style="color:gray;">
                                                             <p>
                                                                     {{p.p_description}}
                                                             </p>

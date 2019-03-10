@@ -96,9 +96,17 @@ class booking(models.Model):
         # d = (c * self.pricep_day)
         return ((a) + (b)) * c
 
+    @property
+    def get_total_days(self):
+        a = ((self.end_date - self.start_date).days) + 1
+        return a
+
     # def save(self, *args, **kwargs):
     #   self.total_price = self.get_total_price()
     #   super(booking, self).save(*args, **kwargs)
 
     # def __str__(self):
     #     return self.get_total_price
+
+    class Meta:
+        ordering = ('-date_added',)

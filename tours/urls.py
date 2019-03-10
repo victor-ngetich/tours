@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, filter3, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_bookings, editpackage)
+from dashboard.views import (explore, filter, filter2, filter3, test1, BookingDelete, PackageUpdate, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_booking, editpackage)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -46,7 +46,6 @@ urlpatterns = [
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
     url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
-    # url(r'^destination/(?P<d_name>[-\w]+)/(?P<pk>\d+)/$',test1,name='test1'),
     url(r'^destination/(?P<pk>\w+)/',test1,name='test1'),
     url(r'^dashboard/editprofile/',editprofile,name='editprofile'),
     url(r'^dashboard/bookings/',bookings1,name='bookings1'),
@@ -57,8 +56,9 @@ urlpatterns = [
     url(r'^allpackages1/',allpackages1,name='allpackages1'),
     url(r'^dashboard/payments1/',payments1,name='payments1'),
     url(r'^dashboard/editprofile1/',editprofile1,name='editprofile1'),
-    url(r'^dashboard/bookings/delete/<int:pk>/', delete_bookings, name='delete'),
-    url(r'^editpackage/(?P<pk>\w+)/',editpackage,name='editpackage'),
+    url(r'^editpackage/(?P<pk>\w+)/$',PackageUpdate.as_view(),name='editpackage'),
+    url(r'^deletebooking/(?P<pk>\d+)/$', BookingDelete.as_view(), name='delete_booking'),
+
 
    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
