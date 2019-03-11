@@ -6,7 +6,7 @@
     <img class="card-img-top" src="{{ article.d_pic1.url }}" alt="Card image cap">
     <div class="card-body" style="background-color:white">
         <h3 class="card-title">{{article.d_name}}</h3>
-        <p class="card-text">{{article.d_description}}</p>
+        <p class="card-text">{{article.d_description|truncatechars:50}}</p>
     </div>
     <br>
 </a>
@@ -14,7 +14,11 @@
 
 {% endfor %}
 {% else %}
+<div class="alert alert-warning" role="alert">
+    <p style="color:rgb(80, 80, 80)">No destinations matching that keyword!</p>
+</div>
 {% endif %}
+
 
 
                                    

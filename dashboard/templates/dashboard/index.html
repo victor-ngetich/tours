@@ -71,7 +71,7 @@
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
                             <div id="custom-search" class="top-search-bar">
-                                <input class="form-control" type="text" placeholder="Search..">
+                                <input class="form-control" id="isearch" type="text" placeholder="Search.."> {% csrf_token %}
                             </div>
                         </li>
                         <!-- <li class="nav-item dropdown notification">
@@ -223,6 +223,7 @@
                     <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                                <div class="row" id="searchresults">
                             <div class="row" id="search-results">
                                
                                 
@@ -232,6 +233,9 @@
                                 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="row">
+                                            
+              
+                                            
                                         {% for d in destination %}
                                             
                                         <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -268,6 +272,7 @@
                                     </nav>
                                 </div>
                             </div>
+                        </div>
                         </div>
                         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="product-sidebar">
@@ -421,6 +426,7 @@
 
 <!-- Custom JS -->
 <script src="{% static 'libs/js/jscroptext.js' %}?{% now "U" %}"></script>
+<script src="{% static 'libs/js/ajaxsearch.js' %}?{% now "U" %}"></script>
 
 
 

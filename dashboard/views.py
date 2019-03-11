@@ -12,12 +12,12 @@ from django.forms import modelformset_factory
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
-
-# from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse
 from .models import destination, package, booking, Hotel
+from django.db.models import Q
 from dashboard.forms import AddPackage, EditPackage, BookingOptions
 from django.shortcuts import get_list_or_404, get_object_or_404
+from django.contrib import messages
 
 # Create your views here.
 
@@ -48,6 +48,15 @@ def filter2 (request):
 		articles = destination.objects.all().filter(d_location__icontains=search_text)
 		return render(request,'dashboard/filter.html',{'articles':articles})
 
+def indexsearch (request):
+	if request.method=="POST":
+		search_text = request.POST['search_text']
+		articles = destination.objects.all().filter(Q(d_name__icontains=search_text) | Q(d_location__icontains=search_text)| Q(d_description__icontains=search_text))[:15]
+		return render(request,'dashboard/isearch.html',{'articles':articles})
+	else:
+		search_text = ''
+		pass
+	
 def filter3 (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
@@ -117,35 +126,48 @@ def allpackages1(request):
 	return render(request, 'dashboard/a-allpackages.html', {'a':a},locals())
 
 
+# class PackageUpdate(UpdateView):
+#     # model = package
+#     # fields = ['p_name', 'p_category', 'd_name','p_agency', 'agency_phone', 'pricep_adult','pricep_kid', 'p_payment_info', 'from_day', 'to_day', 'p_description']
+#     template_name = 'dashboard/editt-package.html'
+#     form_class = EditPackage
+#     success_url = '/ourpackages/'
+
+#     def get_object(self):
+#         rr = self.kwargs.get("pk")
+#         return get_object_or_404(package, pk=rr)
+
+#     def form_valid(self, form):
+#         print(form.cleaned_data)
+#         return super().form_valid(form)
+
 @csrf_protect
 @ensure_csrf_cookie
-def editpackage(request, pk):
-	if request.method == 'POST':
-		b = request.user.get_full_name()
-		instance = package.objects.get(pk=pk)
+def editpackage (request, pk=None):
+	instance = get_object_or_404 (package, pk=pk)
+	if request.method=="POST":
 
-		form = AddPackage(initial={'Package Name': instance.p_name})
+		form = EditPackage(request.POST or None, instance=instance)
+
 		if form.is_valid():
-			form.save()
-		return HttpResponseRedirect('/editpackage/')
+			instance = form.save(commit=False)
+			instance.save()
+			
+			return HttpResponseRedirect('/ourpackages/')
+			messages.info(request, 'Your product was updated successfully.')
+		else:
+			return render(request, 'dashboard/editt-package.html',{'form':form})
+
+
 	else:
-		form = AddPackage()
-	return render(request, 'dashboard/pages/edit-package.html', {'form':form})
+		form = EditPackage(request.POST or None, instance=instance)
 
-class PackageUpdate(UpdateView):
-    # model = package
-    # fields = ['p_name', 'p_category', 'd_name','p_agency', 'agency_phone', 'pricep_adult','pricep_kid', 'p_payment_info', 'from_day', 'to_day', 'p_description']
-    template_name = 'dashboard/editt-package.html'
-    form_class = EditPackage
-    success_url = '/ourpackages/'
+	context = {
+		"instance": instance,
+		"form": form,
+	}
+	return render(request, "dashboard/editt-package.html", context)
 
-    def get_object(self):
-        rr = self.kwargs.get("pk")
-        return get_object_or_404(package, pk=rr)
-
-    def form_valid(self, form):
-        print(form.cleaned_data)
-        return super().form_valid(form)
 
 class BookingDelete(DeleteView):
     model = booking

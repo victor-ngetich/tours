@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, filter3, test1, BookingDelete, PackageUpdate, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_booking, editpackage)
+from dashboard.views import (explore, filter, filter2, filter3, indexsearch, test1, BookingDelete, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_booking, editpackage)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^success/',success,name='success'),
     url(r'^explore/',explore,name='explore'),
     url(r'^d_filter/', filter, name='filter'),
+    url(r'^indexsearch/', indexsearch, name='indexsearch'),
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
     url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
@@ -56,7 +57,7 @@ urlpatterns = [
     url(r'^allpackages1/',allpackages1,name='allpackages1'),
     url(r'^dashboard/payments1/',payments1,name='payments1'),
     url(r'^dashboard/editprofile1/',editprofile1,name='editprofile1'),
-    url(r'^editpackage/(?P<pk>\w+)/$',PackageUpdate.as_view(),name='editpackage'),
+    url(r'^editpackage/(?P<pk>\w+)/$',editpackage,name='editpackage'),
     url(r'^deletebooking/(?P<pk>\d+)/$', BookingDelete.as_view(), name='delete_booking'),
 
 
