@@ -10,7 +10,7 @@
     <link rel="icon" href="{% static 'images/core-img/favicon.ico' %}?{% now "U" %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
-    <!-- <link rel="stylesheet" href="{% static 'bootstrap-4.2.1-dist/css/bootstrap.css' %}?{% now "U" %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.css' %}?{% now "U" %}"> -->
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
@@ -168,7 +168,7 @@
 
                         <li class="nav-item">
                             <div id="custom-search" class="top-search-bar">
-                                <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
+                                <a class="dropdown-item" style="color:darkblue" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
                             </div>
                         </li>
 
@@ -223,7 +223,7 @@
                     <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
-                                <div class="row" id="searchresults">
+                            <div class="row" id="searchresults">
                             <div class="row" id="search-results">
                                
                                 
@@ -244,7 +244,7 @@
                                             <div class="card-body" style="background-color:white">
                                                 <h3 class="card-title">{{d.d_name}}</h3>
                                                 <hr>
-                                                <p class="card-text text">{{d.d_description}}</p>
+                                                <p class="card-text">{{d.d_description|truncatechars:240}}</p>
                                             </div>
                                             <br>
                                         </a>
@@ -299,7 +299,7 @@
                                               </div>
                                         
                                     </div>
-                                <div class="product-sidebar-widget">
+                                <!-- <div class="product-sidebar-widget">
                                     <h4 class="product-sidebar-widget-title">Categories</h4>
                                     
                                     <div class="dropdown" >
@@ -315,11 +315,11 @@
                                                     <option value="Scenery">Scenery</option>
                                                     <option value="Vacation">Vacation</option>
                                                     <option value="Wildlife">Wildlife</option>
-                                                  </select>{% csrf_token %}
+                                                  </select>
                                                   
                                                   
                                           </div>
-                                </div>
+                                </div> -->
                                 <!-- <div class="product-sidebar-widget">
                                     <h4 class="product-sidebar-widget-title">Package Size</h4>
                                     
@@ -425,7 +425,6 @@
     <script src="{% static 'libs/js/dashboard-ecommerce.js' %}?{% now "U" %}"></script>
 
 <!-- Custom JS -->
-<script src="{% static 'libs/js/jscroptext.js' %}?{% now "U" %}"></script>
 <script src="{% static 'libs/js/ajaxsearch.js' %}?{% now "U" %}"></script>
 
 

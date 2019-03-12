@@ -49,19 +49,18 @@ class package(models.Model):
     p_name = models.CharField(max_length=255,blank=True)
     p_category = models.CharField(max_length=255, choices=MAYBECHOICE,blank=True)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
+    p_hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     p_agency = models.CharField(max_length=255,blank=True)
-    agency_phone = models.IntegerField(blank=True,default=1)
+    agency_phone = models.CharField(max_length=10, blank=True)
     pricep_adult = models.IntegerField(blank=True,default=0)
     pricep_kid = models.IntegerField(blank=True,default=0)
     p_payment_info = models.CharField(max_length=255,blank=True)
-    p_duration = models.CharField(max_length=255,blank=True)
     p_description = models.TextField(blank=True)
     from_day = models.DateField(default=date.today,blank=True, null=True)
     to_day = models.DateField(default=one_month_from_today,blank=True, null=True)
     pricep_day = models.IntegerField(blank=True,default=0)
+    p_slots = models.IntegerField(blank=True,default=0)
     p_reviews = models.CharField(max_length=255,blank=True)
-    favorite_colors = models.CharField(max_length=255,blank=True)
-
 
     def __str__(self):
         return self.p_name
@@ -75,6 +74,7 @@ class booking(models.Model):
     packages = models.ForeignKey(package, on_delete=models.CASCADE)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     adults = models.IntegerField(blank=True,default=1)
     kids = models.IntegerField(blank=True,default=0)
@@ -84,8 +84,6 @@ class booking(models.Model):
     start_date = models.DateTimeField(default=date.today,blank=True, null=True)
     end_date = models.DateTimeField(default=date.today,blank=True, null=True)
     pricep_day = models.IntegerField(blank=True,default=0)
-    # total_price = models.IntegerField()
-
 
 
     @property

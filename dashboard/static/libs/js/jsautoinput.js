@@ -45,3 +45,15 @@ $(function autoinput4(){
         .change(onChange)
         .keyup(onChange);
 });
+
+$(function autoinput5(){
+    var $id_hotel = $('#id_hotel');
+    var $hotel1 = $('#hotel1');
+    function onChange() {
+        $( "input[id^='hotel1']" ).val($id_hotel.val());
+    };
+    $('#id_hotel')
+        .ready(onChange)
+        .change(onChange)
+        .keyup(onChange);
+});

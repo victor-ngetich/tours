@@ -10,6 +10,12 @@ $(document).on('click', '.confirm-cancel1', function(){
 })
 // Django Cancel Booking Confirmation
 
+// Django Package Delete Confirmation
+$(document).on('click', '.confirm-delete1', function(){
+    return confirm('Are you sure you want to delete this package?');
+})
+// Django Package Delete Confirmation
+
 // Delete Confirmation
 function deleteFunction(e) {
     if(!confirm("Are you sure you want to delete?")){
@@ -18,4 +24,4 @@ function deleteFunction(e) {
      $('#person-delete').submit();
     }            
 }
-//
+// Delete Confirmation

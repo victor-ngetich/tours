@@ -34,8 +34,8 @@
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
                             <div id="custom-search" class="top-search-bar">
-                                <input class="form-control" type="text" placeholder="Search..">
-                            </div>
+                                <input class="form-control" id="apsearch" type="text" placeholder="Search.."> {% csrf_token %}
+                            </div> 
                         </li>
                         <!-- <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
@@ -118,13 +118,13 @@
                         </li> -->
                         <li class="nav-item">
                                 <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
+                                    <a class="dropdown-item" href="/ourpackages"><i class="fas fa-map-marker-alt mr-2"></i>Our Packages</a>
                                 </div>
                             </li>
     
                             <li class="nav-item">
                                 <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
+                                    <a class="dropdown-item" style="color:darkblue" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
                                 </div>
                             </li>
     
@@ -156,7 +156,7 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="/ourpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-list"></i>Our Packages <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="/ourpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-map-marker-alt"></i>Our Packages <span class="badge badge-success">6</span></a>
                                 
                             </li>
                             <li class="nav-item">
@@ -220,109 +220,122 @@
                     <!-- ============================================================== -->
                     <!-- content -->
                     <!-- ============================================================== -->
-                    <div class="row">
+                    <div">
                         <!-- ============================================================== -->
                         <!-- search bar  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form>
-                                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
-                                        <button class="btn btn-primary search-btn" type="submit">Search</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!-- ============================================================== -->
                         <!-- end search bar  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
-                            <!-- ============================================================== -->
-                            <!-- card influencer one -->
-                            <!-- ============================================================== -->
-                            {% for p in a %}
-                            <div class="card text-white">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
+                        <div id="searchresults2">
 
-                                        
-                                        <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="user-avatar float-xl-left pr-4 float-none">
-                                                <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl">
-                                                    </div>
-                                                <div class="pl-xl-3">
-                                                    <div class="m-b-0">
-                                                        <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10" style="color:rgb(185, 93, 0);">{{p.p_name}}</h2>
-                                                            <h2 class="font-18 m-b-10" style="color:rgb(185, 93, 0);">{{p.d_name}}</h2>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div class="user-avatar-address">                                                       
-                                                        <p class="mb-2" style="color:purple;">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Category: {{p.p_category}}</span><span class="m-l-20">Phone: {{p.agency_phone}}</span></span>
-                                                        </p>
-                                                        <p class="m-l-20" style="color:purple;">Daily Price: KSh. {{p.pricep_adult}} per adult<span class="m-l-10"><span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span></span>
-                                                        </p>
-                                                        <div class="mt-3" style="color:gray;">
-                                                            <p>
-                                                                    {{p.p_description}}
-                                                            </p>
-                                                            <!-- <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a> -->
-                                                        </div>
-                                                        <!-- <form method="POST" action="/editpackage/{{p.pk}}/"> {% csrf_token %} -->
-                                                        <div class="product-qty" style="color:white;">
-                                                                <p>Edit Buttttttton</p>
-                                                                <div class="float-none mt-xl-0 mt-4">
-                                                                        <!-- <input href="/editpackage/{{p.pk}}/" class="btn btn-secondary btn-lg" type="submit" value="Edit"/> -->
-                                                                    <a class="btn btn-primary" href="/editpackage/{{p.pk}}/" role="button">Edit</a>
-                                                                    </div>
-                                                            </div>
-                                                            <!-- </form> -->
-                                                    </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <!-- <div> -->
+        
+        
+                                    <!-- ============================================================== -->
+                                    <!-- card influencer one -->
+                                    <!-- ============================================================== -->
+                                    {% for p in a %}
+        
+                                    <div class="card text-white" style="background-color:rgba(52, 26, 121, 0.99);">
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+            
+                                                    
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                                <input class="btn btn-secondary btn-lg" type="submit" value="Delete"/>
+                                                        <div class="user-avatar float-xl-left pr-4 float-none">
+                                                            <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl">
+                                                                </div>
+                                                            <div class="pl-xl-3">
+                                                                <div class="m-b-0">
+                                                                    <div class="user-avatar-name d-inline-block">
+                                                                        <h2 class="font-24 m-b-10 text-warning">{{p.p_name}}</h2>
+                                                                        <h2 class="font-18 m-b-10 text-warning">{{p.d_name}}</h2>
+        
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                <div class="user-avatar-address" style="color:yellow;">                                                       
+                                                                    <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Category: {{p.p_category}}</span><span class="m-l-20">Phone: {{p.agency_phone}}</span></span>
+                                                                    </p>
+                                                                    <p class="m-l-20" style="color:yellow;">Daily Price: KSh. {{p.pricep_adult}} per adult<span class="m-l-10"><span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span></span>
+                                                                    </p>
+                                                                    <div class="mt-3 text-white">
+                                                                        <p>
+                                                                                {{p.p_description|linebreaks}}
+                                                                        </p>
+                                                                            
+            
+                                                                    </div>
+                                                                        
+            
+                                                                        <!-- <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a> -->
+                                                                    </div>
+                                                                    <div class="product-qty" style="color:white;">
+                                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                    
+                                                                                    <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                                                        <a class="btn btn-primary" href="/editpackage/{{p.pk}}/" role="button">Edit</a>
+
+                                                                                    </div>
+                                                                        </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                    
+                                                                        <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                                                <form method="POST" action="/deletepackage/{{p.pk}}/">
+                                                                                    {% csrf_token %}<input class="btn btn-danger confirm-delete1" type="submit" value="Delete">
+                                                                            </form>
+                                                                        </div>
                                                             </div>
+                                                            
                                                         </div>
+                                                          
+                                                    </div>
                                                 </div>
                                                 
                                             </div>
-                                              
-                                        </div>
+                                        {% endfor %}
+                                        <!-- ============================================================== -->
+                                        <!-- end card influencer one -->
+                                        <!-- ============================================================== -->
+        
+        
+                                    <!-- ============================================================== -->
+        
+                                        <!-- ============================================================== -->
+                                        <!-- end card influencer one -->
+                                        <!-- ============================================================== -->
+                                        <!-- ============================================================== -->
+                                
+                                        <!-- ============================================================== -->
+                                        <!-- end card influencer one -->
+                                        <!-- ============================================================== -->
+                                        <!-- ============================================================== -->
+                                    <!-- card influencer one -->
+                                    <!-- ============================================================== -->
+                               
+                                   
+                                        <!-- ============================================================== -->
+                                        <!-- end card influencer one -->
+                                        <!-- ============================================================== -->
+                                        
+        
+                                        <!-- ============================================================== -->
+                                        <!-- end content -->
+                                        <!-- ============================================================== -->
                                     </div>
-                                
-                                    
+                                    <!-- ============================================================== -->
+                                    <!-- influencer sidebar  -->
+                                    <!-- ============================================================== -->
+        
+                                    <!-- ============================================================== -->
+                                    <!-- end influencer sidebar  -->
+                                    <!-- ============================================================== -->
                                 </div>
-                                {% endfor %}
-                                <!-- ============================================================== -->
-                                <!-- end card influencer one -->
-                                <!-- ============================================================== -->
-
-
-                            <!-- ============================================================== -->
-
-                                <!-- ============================================================== -->
-                                <!-- end card influencer one -->
-                                <!-- ============================================================== -->
-                                <!-- ============================================================== -->
-                        
-                                <!-- ============================================================== -->
-                                <!-- end card influencer one -->
-                                <!-- ============================================================== -->
-                                <!-- ============================================================== -->
-                            <!-- card influencer one -->
-                            <!-- ============================================================== -->
-                       
-                           
-                                <!-- ============================================================== -->
-                                <!-- end card influencer one -->
-                                <!-- ============================================================== -->
-                                
-
-                                <!-- ============================================================== -->
-                                <!-- end content -->
-                                <!-- ============================================================== -->
                             </div>
                             <!-- ============================================================== -->
                             <!-- influencer sidebar  -->
@@ -372,6 +385,11 @@
             <script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
             <!-- main js -->
             <script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
+
+<!-- Custom JS -->
+<script src="{% static 'libs/js/ajaxapsearch.js' %}?{% now "U" %}"></script>
+<script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
+
 </body>
  
 </html>

@@ -1,0 +1,81 @@
+{% load staticfiles %}
+{% if articles.count > 0 %}
+{% for p in articles %}
+<body>
+<div class="card text-white" style="background-color:rgba(52, 26, 121, 0.99);">
+        <div class="card-body">
+            <div class="row align-items-center">
+
+                
+                <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="user-avatar float-xl-left pr-4 float-none">
+                        <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl">
+                            </div>
+                        <div class="pl-xl-3">
+                            <div class="m-b-0">
+                                <div class="user-avatar-name d-inline-block">
+                                    <h2 class="font-24 m-b-10 text-warning">{{p.p_name}}</h2>
+                                    <h2 class="font-18 m-b-10 text-warning">{{p.d_name}}</h2>
+
+                                </div>
+                                
+                            </div>
+                            <div class="user-avatar-address" style="color:yellow;">                                                       
+                                <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Category: {{p.p_category}}</span><span class="m-l-20">Phone: {{p.agency_phone}}</span></span>
+                                </p>
+                                <p class="m-l-20" style="color:yellow;">Daily Price: KSh. {{p.pricep_adult}} per adult<span class="m-l-10"><span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span></span>
+                                </p>
+                                <div class="mt-3 text-white">
+                                    <p>
+                                            {{p.p_description|linebreaks}}
+                                    </p>
+                                        
+
+                                </div>
+                                    
+
+                                    <!-- <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a> -->
+                                </div>
+                                <form method="POST" action="/bookpackage/{{p.pk}}/"> {% csrf_token %}
+                                <div class="product-qty" style="color:white;">
+                                    <!-- <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
+                                        <a class="mr-1 badge badge-light" id="total12">KSh. </a>
+                                    </p> -->
+                                            <input type="type" name="name1" id="adults11"><br>
+                                            <input type="type" name="name2" id="kids11"><br>
+                                            <input type="type" name="name3" id="start11"><br>
+                                            <input type="type" name="name4" id="end11"><br>
+                                            <input type="type" name="name5" id="aprice11" value="{{p.pricep_adult}}"><br>
+                                            <input type="type" name="name6" id="kprice11" value="{{p.pricep_kid}}"><br>
+                                            <!-- <input type="number" name="name7" id="total11"><br> -->
+                                            <!-- This is <output name="x" for="name1 name2"></output><br> -->
+                                            <!-- <p id="demo"></p> -->
+                                            
+
+                                    </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                        <input class="btn btn-warning btn-lg" type="submit" value="Book"/>
+                                    </div>
+                        </div>
+                        
+                    </div>
+                      
+                </div>
+            </div>
+        </form>
+            
+        </div>
+
+{% endfor %}
+{% else %}
+<div class="alert alert-warning" role="alert">
+    <p style="color:rgb(80, 80, 80)">No destinations matching that keyword!</p>
+</div>
+{% endif %}
+</body>
+<!-- Custom JS -->
+<script src="{% static 'libs/js/jsautoinput.js' %}?{% now "U" %}"></script>
+
+                                   

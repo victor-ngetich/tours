@@ -57,6 +57,26 @@ def indexsearch (request):
 		search_text = ''
 		pass
 	
+def packagesearch (request):
+	if request.method=="POST":
+		search_text = request.POST['search_text']
+		articles = package.objects.all().filter(Q(p_name__icontains=search_text)| Q(p_category__icontains=search_text) | Q(p_agency__icontains=search_text))[:15]
+		return render(request,'dashboard/psearch.html',{'articles':articles})
+	else:
+		search_text = ''
+		pass
+
+def ourpackagesearch (request):
+	if request.method=="POST":
+		search_text = request.POST['search_text']
+		b = request.user.get_full_name()
+		a = package.objects.all().filter(p_agency=b)
+		articles = a.filter(Q(p_name__icontains=search_text)| Q(p_category__icontains=search_text) | Q(p_agency__icontains=search_text))[:15]
+		return render(request,'dashboard/psearch.html',{'articles':articles})
+	else:
+		search_text = ''
+		pass
+
 def filter3 (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
@@ -118,7 +138,19 @@ def ourpackages(request):
 def allpackages(request):
 	b = request.user.get_full_name()
 	a = package.objects.all()
-	return render(request, 'dashboard/allpackages.html', {'a':a},locals())
+	# instance = get_object_or_404(destination, id=pk)
+
+	if request.method == 'POST':
+		form = BookingOptions(request.POST or None)
+		if form.is_valid():
+			product = form.save(commit=False)
+			product.save()
+
+		return HttpResponseRedirect('/')
+	else:
+		form = BookingOptions()
+
+	return render(request, 'dashboard/allpackages.html', {'a':a, 'form':form},locals())
 
 def allpackages1(request):
 	b = request.user.get_full_name()
@@ -173,8 +205,9 @@ class BookingDelete(DeleteView):
     model = booking
     success_url = reverse_lazy('bookings1')
 	
-# def get_success_url(self):
-#         return reverse('bookings')
+class PackageDelete(DeleteView):
+    model = package
+    success_url = reverse_lazy('ourpackages')
 
 def payments1(request):
     return render(request, 'dashboard/a-payments.html')
@@ -197,12 +230,16 @@ def bookpackage(request, pk):
 		kids = request.POST['name2']
 		start = request.POST['name3']
 		end = request.POST['name4']
+		hotel = request.POST['name7']
 
 		q = destination.objects.all().get(pk=pk)
 		p = package.objects.get(pk=pk)
+		# r = Hotel.objects.get(pk=hotel)
 
-		b = booking.objects.create(user=request.user, packages=p, d_name=q, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
-		# b.packages.set(p)
+		# r.entry_set.add(q)
+
+		b = booking.objects.create(user=request.user, packages=p, d_name=q, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, hotel=hotel, pricep_day=p.pricep_day)
+		
 		return HttpResponseRedirect('/dashboard/bookings/')
 	else:
 		form = BookingOptions(request.POST or None)
@@ -220,16 +257,15 @@ def post(request):
 			category = form.cleaned_data['p_category']
 			destination = form.cleaned_data['d_name']
 			phone = form.cleaned_data['phone']
-			price = form.cleaned_data['price']
+			price1 = form.cleaned_data['adult_price']
+			price2 = form.cleaned_data['kid_price']
 			payinfo = form.cleaned_data['payment_info']
 			from_date = form.cleaned_data['from_date']
 			to_date = form.cleaned_data['to_date']
-			duration = form.cleaned_data['duration']
+			slots = form.cleaned_data['slots']
 			description = form.cleaned_data['description']
-			# colors = form.cleaned_data['favorite_colors']
 
-
-			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b,agency_phone=phone,p_price=price,p_payment_info=payinfo, from_day=from_date, to_day=to_date,p_duration=duration,p_description=description)
+			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b,agency_phone=phone,pricep_adult=price1, pricep_kid=price2, p_payment_info=payinfo, from_day=from_date, to_day=to_date,p_slots=slots,p_description=description)
 			return HttpResponseRedirect('/ourpackages/')
 			messages.info(request, 'Your product was posted successfully.')
 		else:

@@ -1,3 +1,4 @@
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +72,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Packages</a>
+                                    <a class="nav-link dropdown-toggle" href="/allpackages" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Packages</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                         <a class="dropdown-item" href="/">Home</a>
                                         <!-- <a class="dropdown-item" href="/explore">Explore</a>
@@ -85,9 +86,7 @@
                                 </li>
                             </ul>
                             <!-- Search btn -->
-                            <div class="dorne-search-btn">
-                                <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
-                            </div>
+                            
                             <!-- Signin btn -->
                             <div class="dorne-signin-btn">
                                 <a href="/accounts/login" class="btn dorne-btn dorne-btn1">Sign In</a>
@@ -122,16 +121,62 @@
                         <h6><i class="fa fa-map-signs" aria-hidden="true"></i> South B</h6>
                     </div>
                     <div class="single-contact-info">
-                        <h6><i class="fa fa-envelope-o" aria-hidden="true"></i> thekenyanthrill@gmail.com</h6>
+                        <h6><i class="fa fa-envelope-o" aria-hidden="true"></i>                    
+                                <a href="mailto:thekenyanthrill@gmail.com?cc=vicngetichvictor@gmail.com&Subject=Website Feedback&body=Your website...">thekenyanthrill@gmail.com</a>
+                                </h6>
+                        
+
                         <h6><i class="fa fa-phone" aria-hidden="true"></i> +254 722 000000</h6>
                     </div>
                 </div>
             </div>
             <div class="contact-form">
                 <div class="contact-form-title">
-                    <h6>Contact Business</h6>
+                    <h6>Contact Us</h6>
                 </div>
-                <form action="#">
+                <form method="post" novalidate>
+                        {% csrf_token %}
+                      
+                        {% for hidden_field in form.hidden_fields %}
+                          {{ hidden_field }}
+                        {% endfor %}
+                      
+                        {% if form.non_field_errors %}
+                          <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                              {{ error }}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      
+                        {% for field in form.visible_fields %}
+                          <div class="form-group">
+                            {{ field.label_tag }}
+                      
+                            {% if form.is_bound %}
+                              {% if field.errors %}
+                                {% render_field field class="form-control is-invalid" %}
+                                {% for error in field.errors %}
+                                  <div class="invalid-feedback">
+                                    {{ error }}
+                                  </div>
+                                {% endfor %}
+                              {% else %}
+                                {% render_field field class="form-control is-valid" %}
+                              {% endif %}
+                            {% else %}
+                              {% render_field field class="form-control" %}
+                            {% endif %}
+                      
+                            {% if field.help_text %}
+                              <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                          </div>
+                        {% endfor %}
+                      
+                        <button type="submit" class="btn dorne-btn">Send</button>
+                      </form>
+                <!-- <form action="#">
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <input type="text" name="name" class="form-control" placeholder="Your Name">
@@ -149,7 +194,7 @@
                             <button type="submit" class="btn dorne-btn">Send</button>
                         </div>
                     </div>
-                </form>
+                </form> -->
             </div>
         </div>
         <!-- Map Area --

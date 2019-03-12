@@ -1814,7 +1814,7 @@ Leftsidebar - dark
 
 .sidebar-dark .nav-divider {
     color: peachpuff;
-    font-size: 12px;
+    font-size: 15px;
     letter-spacing: 1px;
 }
 
@@ -6982,7 +6982,7 @@ Media Query
 /* Custom CSS @vic */
 
 .carousel .carousel-item {
-    height: 480px;
+    height: 450px;
     }
 
 .carousel-img1{
@@ -6993,7 +6993,7 @@ Media Query
     position: absolute;
     top: 0;
     left: 0;
-    min-height: 360px;
+    min-height: 30px;
     /* max-height: 200px !important; */
     }
 

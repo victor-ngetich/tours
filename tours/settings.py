@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'dashboard',
     'widget_tweaks',
     'multiselectfield',
+    # 'sendemail',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,8 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 '''
 STATICFILES_DIRS = (

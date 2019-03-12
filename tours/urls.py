@@ -17,19 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from home.views import (home, contact)
+from home.views import home, contact, successView
 from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, filter3, indexsearch, test1, BookingDelete, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_booking, editpackage)
+from dashboard.views import (explore, filter, filter2, filter3, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, BookingDelete, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_booking, editpackage)
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('home.urls')),
-    url(r'^contact/', contact, name='contact'),
     url(r'^accounts/login/',login_view,name='login'),
     url(r'^logout/',logout_page,name='logout'),
     url(r'^register/',register_view,name='register'),
@@ -44,6 +43,8 @@ urlpatterns = [
     url(r'^explore/',explore,name='explore'),
     url(r'^d_filter/', filter, name='filter'),
     url(r'^indexsearch/', indexsearch, name='indexsearch'),
+    url(r'^packagesearch/', packagesearch, name='packagesearch'),
+    url(r'^ourpackagesearch/', ourpackagesearch, name='ourpackagesearch'),
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
     url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
@@ -59,6 +60,10 @@ urlpatterns = [
     url(r'^dashboard/editprofile1/',editprofile1,name='editprofile1'),
     url(r'^editpackage/(?P<pk>\w+)/$',editpackage,name='editpackage'),
     url(r'^deletebooking/(?P<pk>\d+)/$', BookingDelete.as_view(), name='delete_booking'),
+    url(r'^deletepackage/(?P<pk>\d+)/$', PackageDelete.as_view(), name='delete_package'),
+    path('contact/', contact, name='sendemail'),
+    path('emailsuccess/', successView, name='emailsuccess'),
+
 
 
    

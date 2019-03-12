@@ -33,9 +33,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
-                            <div id="custom-search" class="top-search-bar">
-                                <input class="form-control" type="text" placeholder="Search..">
-                            </div>
+                            
                         </li>
                         <!-- <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
@@ -129,7 +127,7 @@
     
                             <li class="nav-item">
                                 <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
+                                    <a class="dropdown-item" style="color:darkblue" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
                                 </div>
                             </li>
     
@@ -226,16 +224,7 @@
                         <!-- ============================================================== -->
                         <!-- search bar  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form>
-                                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
-                                        <button class="btn btn-primary search-btn" type="submit">Search</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!-- ============================================================== -->
                         <!-- end search bar  -->
                         <!-- ============================================================== -->
@@ -271,6 +260,9 @@
                                                             </p>
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>To:
                                                                 <a class="mr-1 badge badge-light">{{p.end_date.date}}</a>
+                                                            </p>
+                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Hotel:
+                                                                <a class="mr-1 badge badge-light">{{p.hotel}}</a>
                                                             </p>
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>Total Days:
                                                                 <a class="mr-1 badge badge-light">{{p.get_total_days}}</a>
