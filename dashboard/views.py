@@ -184,9 +184,9 @@ def editpackage (request, pk=None):
 		if form.is_valid():
 			instance = form.save(commit=False)
 			instance.save()
-			
-			return HttpResponseRedirect('/ourpackages/')
 			messages.info(request, 'Your product was updated successfully.')
+			return HttpResponseRedirect('/ourpackages/')
+			
 		else:
 			return render(request, 'dashboard/editt-package.html',{'form':form})
 
@@ -218,6 +218,31 @@ def editprofile1(request):
 def bookpackage(request, pk): 
 	if request.method == 'POST':
 		form = BookingOptions(request.POST or None)
+		try:
+			adults = request.POST['name1']
+			kids = request.POST['name2']
+			start = request.POST['name3']
+			end = request.POST['name4']
+			hotel = request.POST['name7']
+			h = Hotel.objects.get(pk=hotel)
+			ph = Hotel.objects.values_list('pricep_adult', flat=True).get(pk=hotel)
+			print(ph)
+			#q = destination.objects.all().get(id=pk)
+			# q = get_object_or_404(destination, pk=pk)
+			price = int(adults)*int(ph)
+			print(price)
+			p = package.objects.get(pk=pk)
+			#v = destination.objects.all().get(id=pk)
+			# r = Hotel.objects.get(pk=hotel)
+
+			# r.entry_set.add(q)
+
+			b = booking.objects.create(user=request.user,hotel=h, packages=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
+			# b.hotel.add()
+			return HttpResponseRedirect('/dashboard/bookings/')
+		except:
+			messages.info(request,'Fuck you nigga you already booked!!!')
+			return HttpResponseRedirect('/dashboard/bookings/')
 		# if form.is_valid():
 		# 	adults = form.cleaned_data['adults']
 		# 	kids = form.cleaned_data['kids']
@@ -226,21 +251,7 @@ def bookpackage(request, pk):
 
 		# print(form)
 		# name = request.POST['name']
-		adults = request.POST['name1']
-		kids = request.POST['name2']
-		start = request.POST['name3']
-		end = request.POST['name4']
-		hotel = request.POST['name7']
-
-		q = destination.objects.all().get(pk=pk)
-		p = package.objects.get(pk=pk)
-		# r = Hotel.objects.get(pk=hotel)
-
-		# r.entry_set.add(q)
-
-		b = booking.objects.create(user=request.user, packages=p, d_name=q, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, hotel=hotel, pricep_day=p.pricep_day)
 		
-		return HttpResponseRedirect('/dashboard/bookings/')
 	else:
 		form = BookingOptions(request.POST or None)
 		return render(request, 'dashboard/bookings.html', {'p':p, 'form':form, 'b':b},locals())
