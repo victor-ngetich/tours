@@ -51,7 +51,7 @@ def filter2 (request):
 def indexsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		articles = destination.objects.all().filter(Q(d_name__icontains=search_text) | Q(d_location__icontains=search_text)| Q(d_description__icontains=search_text))[:15]
+		articles = destination.objects.all().filter(Q(d_name__icontains=search_text) | Q(d_location__icontains=search_text)| Q(d_phone__icontains=search_text))[:15]
 		return render(request,'dashboard/isearch.html',{'articles':articles})
 	else:
 		search_text = ''
@@ -86,8 +86,10 @@ def filter3 (request):
 
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
+	print(f)
 	g = package.objects.all().filter(d_name=f)
 	h = Hotel.objects.all().filter(destination=f)
+	print(h)
 	instance = get_object_or_404(destination, id=pk)
 	# print(instance)
 	# print(h)
@@ -241,7 +243,7 @@ def bookpackage(request, pk):
 			# b.hotel.add()
 			return HttpResponseRedirect('/dashboard/bookings/')
 		except:
-			messages.info(request,'Fuck you nigga you already booked!!!')
+			messages.info(request,'You have already booked with the same hotel, please choose another hotel')
 			return HttpResponseRedirect('/dashboard/bookings/')
 		# if form.is_valid():
 		# 	adults = form.cleaned_data['adults']

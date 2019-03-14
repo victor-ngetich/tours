@@ -49,7 +49,7 @@ class EditPackage(forms.ModelForm):
 
 class BookingOptions(forms.ModelForm):
 
-	hotel = forms.ModelChoiceField(label='Hotel:',required=True, queryset=Hotel.objects.all(), widget=forms.Select(attrs={'class':'hidden'}))
+	# hotel = forms.ModelChoiceField(label='Hotel:',required=True, queryset=Hotel.objects.all(), widget=forms.Select(attrs={'class':'hidden'}))
 	# hotel3 = forms.ModelChoiceField(label='Destination Hotel2:',required=True, queryset=Hotel.objects.filter(destination=f), widget=forms.Select(attrs={'class':'hidden'}))
 	start_date = forms.DateField(label='From:', initial=datetime.date.today, required=True,widget=DateInput(attrs={'class':'form-control'}))
 	end_date = forms.DateField(label='To:', initial=datetime.date.today, required=True,widget=DateInput(attrs={'class':'form-control'}))
