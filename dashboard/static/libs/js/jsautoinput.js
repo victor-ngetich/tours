@@ -47,13 +47,25 @@ $(function autoinput4(){
 });
 
 $(function autoinput5(){
-    var $id_hotel = $('#id_hotel');
+    var $d_hotel = $('#d_hotel');
     var $hotel1 = $('#hotel1');
     function onChange() {
-        $( "input[id^='hotel1']" ).val($id_hotel.val());
+        $( "input[id^='hotel1']" ).val($d_hotel.val());
     };
-    $('#id_hotel')
+    $('#d_hotel')
         .ready(onChange)
         .change(onChange)
         .keyup(onChange);
 });
+
+// $(function autoinput5(){
+//     var $id_hotel = $('#id_hotel');
+//     var $hotel1 = $('#hotel1');
+//     function onChange() {
+//         $( "input[id^='hotel1']" ).val($id_hotel.val());
+//     };
+//     $('#id_hotel')
+//         .ready(onChange)
+//         .change(onChange)
+//         .keyup(onChange);
+// });

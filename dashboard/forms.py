@@ -51,6 +51,8 @@ class BookingOptions(forms.ModelForm):
 
 	# hotel = forms.ModelChoiceField(label='Hotel:',required=True, queryset=Hotel.objects.all(), widget=forms.Select(attrs={'class':'hidden'}))
 	# hotel3 = forms.ModelChoiceField(label='Destination Hotel2:',required=True, queryset=Hotel.objects.filter(destination=f), widget=forms.Select(attrs={'class':'hidden'}))
+	adults =forms.IntegerField(label="Adults:", initial = 1, required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
+	kids =forms.IntegerField(label="Kids:", initial = 0, required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
 	start_date = forms.DateField(label='From:', initial=datetime.date.today, required=True,widget=DateInput(attrs={'class':'form-control'}))
 	end_date = forms.DateField(label='To:', initial=datetime.date.today, required=True,widget=DateInput(attrs={'class':'form-control'}))
 

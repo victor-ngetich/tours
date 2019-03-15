@@ -337,10 +337,15 @@
                                                 <table class="radii">
                                                         <tbody> 
                                             {{ form.as_p }}
-                                            <select id="id_hotel">
-                                            <option value="">---------</option>
+                                            <!-- <li class="nav-divider">
+                                                Hotel
+                                            </li> -->
+                                            <label for="hotel">Hotel:</label>
+                                            <br>
+                                            <select id="d_hotel">
+                                            <option value="1">-------</option>
                                             {% for city in h %}
-                                            <option name="hotel12"  value="{{ city.pk }}">{{ city.h_name }}</option>
+                                            <option name="hotel22"  value="{{ city.pk }}">{{ city.h_name }}</option>
                                             {% endfor %}
                                             </select>
                                         </tbody>
@@ -660,7 +665,7 @@
                                                                     <input type="hidden" name="name2" id="kids11"><br>
                                                                     <input type="hidden" name="name3" id="start11"><br>
                                                                     <input type="hidden" name="name4" id="end11"><br>
-                                                                    <input type="text" name="name7" id="hotel11"><br>
+                                                                    <input type="hidden" name="name7" id="hotel11"><br>
                                                                     <input type="hidden" name="name5" id="aprice11" value="{{p.pricep_adult}}"><br>
                                                                     <input type="hidden" name="name6" id="kprice11" value="{{p.pricep_kid}}"><br>
                                                                     <!-- <input type="number" name="name7" id="total11"><br> -->

@@ -71,9 +71,9 @@ class package(models.Model):
 class booking(models.Model):
 
     packages = models.ForeignKey(package, on_delete=models.CASCADE)
-    d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
+    # d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    hotel = models.OneToOneField(Hotel,on_delete=models.CASCADE,default=36)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     adults = models.IntegerField(blank=True,default=1)
     kids = models.IntegerField(blank=True,default=0)

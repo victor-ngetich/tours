@@ -86,13 +86,9 @@ def filter3 (request):
 
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
-	print(f)
 	g = package.objects.all().filter(d_name=f)
 	h = Hotel.objects.all().filter(destination=f)
-	print(h)
 	instance = get_object_or_404(destination, id=pk)
-	# print(instance)
-	# print(h)
 
 # ---Form Start---
 	if request.method == 'POST':
@@ -140,6 +136,8 @@ def ourpackages(request):
 def allpackages(request):
 	b = request.user.get_full_name()
 	a = package.objects.all()
+	e = Hotel.objects.all()
+	print(e)
 	# instance = get_object_or_404(destination, id=pk)
 
 	if request.method == 'POST':
@@ -152,7 +150,7 @@ def allpackages(request):
 	else:
 		form = BookingOptions()
 
-	return render(request, 'dashboard/allpackages.html', {'a':a, 'form':form},locals())
+	return render(request, 'dashboard/allpackages.html', {'a':a, 'e':e, 'form':form},locals())
 
 def allpackages1(request):
 	b = request.user.get_full_name()
@@ -232,18 +230,18 @@ def bookpackage(request, pk):
 			#q = destination.objects.all().get(id=pk)
 			# q = get_object_or_404(destination, pk=pk)
 			price = int(adults)*int(ph)
-			print(price)
+			# print(price)
 			p = package.objects.get(pk=pk)
 			#v = destination.objects.all().get(id=pk)
 			# r = Hotel.objects.get(pk=hotel)
 
 			# r.entry_set.add(q)
 
-			b = booking.objects.create(user=request.user,hotel=h, packages=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
+			b = booking.objects.create(user=request.user,hotel=h, packages=p, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
 			# b.hotel.add()
 			return HttpResponseRedirect('/dashboard/bookings/')
 		except:
-			messages.info(request,'You have already booked with the same hotel, please choose another hotel')
+			messages.info(request,'There must have been a problem, please try again')
 			return HttpResponseRedirect('/dashboard/bookings/')
 		# if form.is_valid():
 		# 	adults = form.cleaned_data['adults']
@@ -251,7 +249,6 @@ def bookpackage(request, pk):
 		# 	start = form.cleaned_data['start_date']
 		# 	end = form.cleaned_data['end_date']
 
-		# print(form)
 		# name = request.POST['name']
 		
 	else:

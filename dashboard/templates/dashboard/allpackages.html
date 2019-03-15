@@ -166,6 +166,14 @@
                                                     <table class="radii">
                                                             <tbody> 
                                                 {{ form.as_p }}
+                                                <label for="hotel">Hotel:</label>
+                                                <br>
+                                                <select id="d_hotel">
+                                                <option value="1">-------</option>
+                                                {% for city in e %}
+                                                <option name="hotel22"  value="{{ city.pk }}">{{ city.h_name }}</option>
+                                                {% endfor %}
+                                                </select>
                                             </tbody>
                                         </table>
     

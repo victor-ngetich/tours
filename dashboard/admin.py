@@ -35,9 +35,9 @@ class EventModelAdmin1(admin.ModelAdmin):
         model = package
 
 class EventModelAdmin2(admin.ModelAdmin):
-    list_display = ["packages", "d_name", "user", 'date_added']
+    list_display = ["packages", "user", 'date_added']
     list_display_links = ["packages"]
-    list_filter = ["d_name", 'user']
+    list_filter = ['user']
     list_per_page = 10
     list_editable = []
     search_fields = ["packages","user"]
