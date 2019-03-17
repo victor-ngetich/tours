@@ -16,8 +16,8 @@ from django.urls import reverse
 from .models import destination, package, booking, Hotel
 from django.db.models import Q
 from dashboard.forms import AddPackage, EditPackage, BookingOptions
+from paypal.standard.forms import PayPalPaymentsForm
 from django.shortcuts import get_list_or_404, get_object_or_404
-from django.contrib import messages
 
 # Create your views here.
 
@@ -123,14 +123,27 @@ def editprofile(request):
 
 def bookings1(request):
 	a = booking.objects.all().filter(user=request.user)
-	return render(request, 'dashboard/bookings.html', {'a':a},locals())
+	# paypal_dict = {
+    #     "business": "vicngetichvictor@gmail.com",
+    #     "amount": "100.00",
+	# 	"currency_code": "USD",
+    #     "item_name": "name of the item",
+    #     "invoice": "unique-invoice-id",
+    #     "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+    #     "return": request.build_absolute_uri(reverse('paydone')),
+    #     "cancel_return": request.build_absolute_uri(reverse('paycancel')),
+    #     "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+    # }
+	# form = PayPalPaymentsForm(initial=paypal_dict)
+	context = {"a": a}
+	return render(request, 'dashboard/bookings.html', context, locals())
 
 def payments(request):
     return render(request, 'dashboard/payments.html')
 
 def ourpackages(request):
 	b = request.user.get_full_name()
-	a = package.objects.all().filter(p_agency=b)
+	a = package.objects.all().filter(agency=request.user)
 	return render(request, 'dashboard/a-packages.html', {'a':a},locals())
 
 def allpackages(request):
@@ -235,9 +248,7 @@ def bookpackage(request, pk):
 			#v = destination.objects.all().get(id=pk)
 			# r = Hotel.objects.get(pk=hotel)
 
-			# r.entry_set.add(q)
-
-			b = booking.objects.create(user=request.user,hotel=h, packages=p, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
+			b = booking.objects.create(user=request.user,hotel=h, agency=p.agency, p_name2=p, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
 			# b.hotel.add()
 			return HttpResponseRedirect('/dashboard/bookings/')
 		except:

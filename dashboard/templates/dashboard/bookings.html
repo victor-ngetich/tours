@@ -16,6 +16,19 @@
     <title>Bookings</title>
 </head>
 
+<style>
+    .paypal-button {
+        width:200px; /* you can use % */
+        height: auto;
+    }
+    .payppal-button:focus, input:focus{
+    outline: none;
+    }
+    /* *:focus {
+    outline: none;
+    } */
+    </style>
+
 <body>
     <!-- ============================================================== -->
     <!-- main wrapper -->
@@ -247,7 +260,7 @@
                                                 <div class="pl-xl-3">
                                                     <div class="m-b-0">
                                                         <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10 text-primary">{{p.packages}}</h2>
+                                                            <h2 class="font-24 m-b-10 text-primary">{{p.pname2}}</h2>
                                                             <h2 class="font-18 m-b-10" style="color:rgb(185, 93, 0);">{{p.d_name}}</h2>
                                                         </div>                                                        
                                                     </div>
@@ -263,10 +276,10 @@
                                                                 <a class="mr-1 badge badge-light">{{p.kids}}</a><i class="mr-2  text-primary"></i>Each: <a class="mr-1 badge badge-light">KSh. {{p.pricep_kid}}</a>
                                                             </p>
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>From:
-                                                                <a class="mr-1 badge badge-light">{{p.start_date.date}}</a>
+                                                                <a class="mr-1 badge badge-light">{{p.start_date|date}}</a>
                                                             </p>
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>To:
-                                                                <a class="mr-1 badge badge-light">{{p.end_date.date}}</a>
+                                                                <a class="mr-1 badge badge-light">{{p.end_date|date}}</a>
                                                             </p>
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>Hotel:
                                                                 <a class="mr-1 badge badge-light">{{p.hotel}}</a>
@@ -283,7 +296,28 @@
                                             </div>
                                             <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                    <a href="#" class="btn btn-warning">Proceed to Pay</a>
+                                                    <!-- <a href="/payprocess/" class="btn btn-warning">Proceed to Pay</a> -->
+                                                    <!-- Form action into a sandbox account -->
+                                                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" name='_xclick' style="padding: 0; margin: 0;">
+                                                        <input type="hidden" name="cmd" value="_xclick" />
+                                                        <input type="hidden" name="business" value="vnpaypal@gmail.com" />
+                                                        <input type="hidden" name="quantity" value="1" />
+                                                        <input type="hidden" name="item_name" value="{{p.p_name2}}" />
+                                                        <input type="hidden" name="item_number" value="{{p.id}}" />
+                                                        <!-- Unique invoice to avoid paying for the same item again -->
+                                                        <!-- <input type="hidden" name="invoice" value="{{p.id}}" > -->
+                                                        <input type="hidden" name="amount" value="{{p.get_total_price}}" />
+                                                        <input type='hidden' name='no_shipping' value='1'>
+                                                        <input type="hidden" name="no_note" value="1" />
+                                                        <input type="hidden" name="notify_url" value="Your notify url">
+                                                        <input type="hidden" name="currency_code" value="USD" />
+                                                        <input type="hidden" name="rm" value="2" >
+                                                        <!-- Any random variable -->
+                                                        <!-- <input type="hidden" id="buybuttonid" name="custom" value="XXXXX" /> -->
+                                                        <input type='hidden' name='cancel_return' value='http://192.168.0.100:8000/paycancel/'>
+                                                        <input type="hidden" name="return" value="http://192.168.0.100:8000/paydone/?user={{user.get_username}}&packageid={{p.id}}">
+                                                        <input type="image" class="paypal-button" name="paypal" src="{% static 'images/Paypal-Buy-Button.png' %}?{% now "U" %}" alt="Pay with Paypal" onClick="" name="submit"/>
+                                                        </form>
                                                     <br>
                                                 
                                                 </div>

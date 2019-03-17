@@ -1,0 +1,34 @@
+{% load staticfiles %}
+<!-- Core Stylesheet -->
+<link rel="stylesheet" href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.css' %}?{% now "U" %}">
+
+{% block content %}
+    <h1>Payment success</h1>
+    <p>
+        Thank you for your payment. Your transaction has been completed.<br>Your payment was successfully received as follows:
+    </p>
+
+    <hr>
+
+    <ul>
+        <li>Username: {{request.GET.user}}</li>
+        <br>
+        <li>Package Name: {{request.GET.item_name}}</li>
+        <br>
+        <li>Package ID: {{request.GET.packageid}}</li>
+        <br>
+        <li>Total Amount: ${{request.GET.amt}} USD</li>
+        <br>
+        <li>Transaction ID: {{request.GET.tx}}</li>
+        <br>
+        <li>Transaction Status: {{request.GET.st}}</li>
+    </ul>
+    <hr>
+
+    <!-- <p>
+        Log into your PayPal account to view more details.
+    </p> -->
+
+    <a href="/dashboard/bookings/" class="btn btn-primary">Back to Bookings</a>
+
+{% endblock %}

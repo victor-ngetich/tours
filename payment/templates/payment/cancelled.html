@@ -1,0 +1,11 @@
+{% load staticfiles %}
+<!-- Core Stylesheet -->
+<link rel="stylesheet" href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.css' %}?{% now "U" %}">
+
+{% block content %}
+    <h1>Your payment has not been processed</h1>
+    <p>There was a problem processing your payment</p>
+
+    <a href="/dashboard/bookings/" class="btn btn-primary">Back to Bookings</a>
+
+{% endblock %}

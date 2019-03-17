@@ -23,6 +23,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
 from dashboard.views import (explore, filter, filter2, filter3, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, BookingDelete, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, delete_booking, editpackage)
+from payment.views import (payprocess, paydone, paycancel)
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -50,6 +51,10 @@ urlpatterns = [
     url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
     url(r'^destination/(?P<pk>\w+)/',test1,name='test1'),
     url(r'^dashboard/editprofile/',editprofile,name='editprofile'),
+    url(r'^payprocess/',payprocess,name='payprocess'),
+    url(r'^paydone/',paydone,name='paydone'),
+    url(r'^paycancel/',paycancel,name='paycancel'),
+    url(r'^this-is-a-very-hard-to-guess-url/', include('paypal.standard.ipn.urls')),
     url(r'^dashboard/bookings/',bookings1,name='bookings1'),
     url(r'^dashboard/payments/',payments,name='payments'),
     url(r'^dashboard/addpackage/',post,name='post'),

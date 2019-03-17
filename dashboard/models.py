@@ -50,6 +50,7 @@ class package(models.Model):
     p_category = models.CharField(max_length=255, choices=MAYBECHOICE,blank=True)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
     p_agency = models.CharField(max_length=255,blank=True)
+    agency = models.ForeignKey(User, on_delete=models.CASCADE, default=12)
     agency_phone = models.CharField(max_length=10, blank=True)
     pricep_adult = models.IntegerField(blank=True,default=0)
     pricep_kid = models.IntegerField(blank=True,default=0)
@@ -70,8 +71,8 @@ class package(models.Model):
 
 class booking(models.Model):
 
-    packages = models.ForeignKey(package, on_delete=models.CASCADE)
-    # d_name = models.ForeignKey(destination, on_delete=models.CASCADE)
+    p_name2 = models.ForeignKey(package, on_delete=models.CASCADE)
+    agency = models.CharField(max_length=255,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -80,10 +81,12 @@ class booking(models.Model):
     pricep_adult = models.IntegerField(blank=True,default=0)
     pricep_kid = models.IntegerField(blank=True,default=0)
     days = models.IntegerField(blank=True,default=1)
-    start_date = models.DateTimeField(default=date.today,blank=True, null=True)
+    start_date = models.DateTimeField(default=timezone.now,blank=True, null=True)
     end_date = models.DateTimeField(default=date.today,blank=True, null=True)
     pricep_day = models.IntegerField(blank=True,default=0)
 
+    def __str__(self):
+        return '%s - %s' % (self.user, self.p_name2.p_name)
 
     @property
     def get_total_price(self):
@@ -98,12 +101,27 @@ class booking(models.Model):
         a = ((self.end_date - self.start_date).days) + 1
         return a
 
-    # def save(self, *args, **kwargs):
-    #   self.total_price = self.get_total_price()
-    #   super(booking, self).save(*args, **kwargs)
-
-    # def __str__(self):
-    #     return self.get_total_price
-
     class Meta:
         ordering = ('-date_added',)
+
+class payment(models.Model):
+
+    booking = models.ForeignKey(booking, on_delete=models.CASCADE)
+    agency = models.CharField(max_length=255,blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    hotel = models.CharField(max_length=255,blank=True)
+    date_added = models.DateTimeField(blank=True)
+    date_paid = models.DateTimeField(auto_now_add=True)
+    adults = models.IntegerField(blank=True,default=1)
+    kids = models.IntegerField(blank=True,default=0)
+    pricep_adult = models.IntegerField(blank=True,default=0)
+    pricep_kid = models.IntegerField(blank=True,default=0)
+    days = models.IntegerField(blank=True,default=1)
+    start_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateTimeField(blank=True, null=True)
+    pricep_day = models.IntegerField(blank=True,default=0)
+    transaction_status = models.CharField(max_length=255,blank=True)
+    transaction_id = models.CharField(max_length=255,blank=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.user, self.booking.p_name2.p_name)

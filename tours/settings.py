@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'dashboard',
     'widget_tweaks',
     'multiselectfield',
-    # 'sendemail',
+    'paypal.standard.ipn',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -153,8 +154,12 @@ STATIC_URL = '/static/'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-'''
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-'''
+# django-paypal settings
+PAYPAL_RECEIVER_EMAIL = 'vicngetichvictor@gmail.com'
+PAYPAL_TEST = True
+
+# BT_ENVIRONMENT='sandbox',
+# # BRAINTREE_PRODUCTION = False  # We'll need this later to switch between the sandbox and live account
+# BRAINTREE_MERCHANT_ID = 'wzv3chvt3rgcnc7s',
+# BRAINTREE_PUBLIC_KEY = 'v83krfwsbyxjxbwp',
+# BRAINTREE_PRIVATE_KEY = '9643735fddd5db520c6b0791718895a1'

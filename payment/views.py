@@ -1,0 +1,80 @@
+from django.shortcuts import render
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_list_or_404, get_object_or_404
+from django.contrib.auth.models import User
+from dashboard.models import destination, package, booking, Hotel, payment
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from decimal import Decimal
+from paypal.standard.forms import PayPalPaymentsForm
+from django.contrib import messages
+
+# Create your views here.
+
+def payprocess(request, pk=None):
+    # order_id = request.session.get('order_id')
+    product = get_object_or_404(booking, pk=pk)
+    print (product)
+    # host = request.get_host()
+    # a = booking.objects.get(pk=pk)
+    # print(a)
+    # What you want the button to do.
+    paypal_dict = {
+        "business": "vicngetichvictor@gmail.com",
+        "amount": "130.00",
+		"currency_code": "USD",
+        "item_name": "name of the item",
+        "invoice": "unique-invoice-id",
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "return": request.build_absolute_uri(reverse('paydone')),
+        "cancel_return": request.build_absolute_uri(reverse('paycancel')),
+        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+    }
+
+    # Create the instance.
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {"form": form, 'product':product}
+    return render(request, "payment/process.html", context)
+
+@csrf_exempt
+def paydone(request):
+    # args = {'post': request.POST, 'get': request.GET}
+    a = request.GET.get('amt', None)
+    # b = request.GET.get('cm', None)
+    c = request.GET.get('item_name', None)
+    d = request.GET.get('item_number', None)
+    e = request.GET.get('st', None)
+    f = request.GET.get('tx', None)
+    g = request.GET.get('user', None)
+    h = request.GET.get('packageid', None)
+    print(a)
+    # print(b)
+    print(c)
+    print(d)
+    print(e)
+    print(f)
+    print(g)
+    print(h)
+    user = request.user.get_username()
+    print(user)
+
+    i = booking.objects.get(id=d)
+    # j = booking.objects.values_list('date_added', flat=True).get(pk=d)
+    print(i)
+    # print(j)
+    # try:
+    b = payment.objects.create(booking=i, user=request.user,hotel=i.hotel, agency=i.agency, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, start_date=i.start_date, end_date=i.end_date, pricep_day=i.pricep_day, days=i.days, transaction_status=e,transaction_id=f)
+
+    # except:
+    # messages.info(request,'There must have been a problem, please try again')
+    # return HttpResponseRedirect('/paydone/')
+
+    return render (request, "payment/done.html")
+    # return redirect ('/paydone/')
+
+@csrf_exempt
+def paycancel(request):
+    args = {'post': request.POST, 'get': request.GET}
+    return render (request, "payment/cancelled.html", args)
