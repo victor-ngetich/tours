@@ -239,18 +239,30 @@ def bookpackage(request, pk):
 			hotel = request.POST['name7']
 			h = Hotel.objects.get(pk=hotel)
 			ph = Hotel.objects.values_list('pricep_adult', flat=True).get(pk=hotel)
-			print(ph)
+			# print(ph)
 			#q = destination.objects.all().get(id=pk)
 			# q = get_object_or_404(destination, pk=pk)
 			price = int(adults)*int(ph)
 			# print(price)
 			p = package.objects.get(pk=pk)
+			d = package.objects.values_list('d_name',flat=True).get(pk=pk)
+			a = package.objects.values_list('p_slots',flat=True).get(pk=pk)
+			c = int(adults)+int(kids)
+			d = int(a)-int(c)
+			if d < 0:
+				messages.info(request,'The total number of people in your booking exceeds the total number of slots available.')
+				return redirect ('test1', pk=d)
+			else:
 			#v = destination.objects.all().get(id=pk)
 			# r = Hotel.objects.get(pk=hotel)
 
-			b = booking.objects.create(user=request.user,hotel=h, agency=p.agency, p_name2=p, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
-			# b.hotel.add()
-			return HttpResponseRedirect('/dashboard/bookings/')
+				b = booking.objects.create(user=request.user,hotel=h, agency=p.agency, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
+
+
+				p.p_slots = int(a)-int(c)
+				p.save()
+
+				return HttpResponseRedirect('/dashboard/bookings/')
 		except:
 			messages.info(request,'There must have been a problem, please try again')
 			return HttpResponseRedirect('/dashboard/bookings/')

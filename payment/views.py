@@ -40,7 +40,6 @@ def payprocess(request, pk=None):
 
 @csrf_exempt
 def paydone(request):
-    # args = {'post': request.POST, 'get': request.GET}
     a = request.GET.get('amt', None)
     # b = request.GET.get('cm', None)
     c = request.GET.get('item_name', None)
@@ -49,32 +48,18 @@ def paydone(request):
     f = request.GET.get('tx', None)
     g = request.GET.get('user', None)
     h = request.GET.get('packageid', None)
-    print(a)
-    # print(b)
-    print(c)
-    print(d)
-    print(e)
-    print(f)
-    print(g)
-    print(h)
     user = request.user.get_username()
-    print(user)
 
-    i = booking.objects.get(id=d)
-    # j = booking.objects.values_list('date_added', flat=True).get(pk=d)
-    print(i)
-    # print(j)
     # try:
-    b = payment.objects.create(booking=i, user=request.user,hotel=i.hotel, agency=i.agency, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, start_date=i.start_date, end_date=i.end_date, pricep_day=i.pricep_day, days=i.days, transaction_status=e,transaction_id=f)
-
+    if not payment.objects.filter(transaction_id=f).exists():
+        return HttpResponseRedirect('/dashboard/bookings/')
+    else:
+        i = booking.objects.get(id=d)
+        b = payment.objects.create(booking=i, user=request.user,hotel=i.hotel, agency=i.agency, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, start_date=i.start_date, end_date=i.end_date, pricep_day=i.pricep_day, days=i.days, transaction_status=e,transaction_id=f)
     # except:
     # messages.info(request,'There must have been a problem, please try again')
-    # return HttpResponseRedirect('/paydone/')
-
     return render (request, "payment/done.html")
-    # return redirect ('/paydone/')
 
 @csrf_exempt
 def paycancel(request):
-    args = {'post': request.POST, 'get': request.GET}
-    return render (request, "payment/cancelled.html", args)
+    return render (request, "payment/cancelled.html")

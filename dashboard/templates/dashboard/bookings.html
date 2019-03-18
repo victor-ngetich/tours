@@ -13,6 +13,8 @@
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
+    <!-- Libraries -->
+    <script src="{% static 'libs/js/jquery-3.3.1.js' %}?{% now "U" %}"></script>
     <title>Bookings</title>
 </head>
 
@@ -233,13 +235,31 @@
                     <!-- ============================================================== -->
                     <!-- content -->
                     <!-- ============================================================== -->
+
+          <!-- A Bootstrap Modal -->
+
                     {% if messages %}
-    <ul class="messagelist">{% for message in messages %}<li>
-        <!-- modal -->
-        {{ message }}
-        <!-- modal -->
-    </li>{% endfor %}</ul>
-    {% endif %}
+                    {% for message in messages %}
+                        <!-- modal -->
+                        <div id="custom-modal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Error</h4>
+                                    </div>
+                                    <div class="modal-body">
+                        {{ message }}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                        <!-- modal -->
+                    {% endfor %}
+                    {% endif %}
+
                     <div class="row">
                         <!-- ============================================================== -->
                         <!-- search bar  -->
@@ -260,7 +280,7 @@
                                                 <div class="pl-xl-3">
                                                     <div class="m-b-0">
                                                         <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10 text-primary">{{p.pname2}}</h2>
+                                                            <h2 class="font-24 m-b-10 text-primary">{{p.p_name2}}</h2>
                                                             <h2 class="font-18 m-b-10" style="color:rgb(185, 93, 0);">{{p.d_name}}</h2>
                                                         </div>                                                        
                                                     </div>
@@ -315,7 +335,7 @@
                                                         <!-- Any random variable -->
                                                         <!-- <input type="hidden" id="buybuttonid" name="custom" value="XXXXX" /> -->
                                                         <input type='hidden' name='cancel_return' value='http://192.168.0.100:8000/paycancel/'>
-                                                        <input type="hidden" name="return" value="http://192.168.0.100:8000/paydone/?user={{user.get_username}}&packageid={{p.id}}">
+                                                        <input type="hidden" name="return" value="http://192.168.60.124:8000/paydone/?user={{user.get_username}}&packageid={{p.id}}">
                                                         <input type="image" class="paypal-button" name="paypal" src="{% static 'images/Paypal-Buy-Button.png' %}?{% now "U" %}" alt="Pay with Paypal" onClick="" name="submit"/>
                                                         </form>
                                                     <br>
@@ -421,6 +441,17 @@
 
 <!-- Custom JS -->
 <script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
+<script>
+/* ----- JavaScript ----- */
+$(function () {
+  $("#custom-modal").modal("show");
+});
+
+/* Close the popup when the a selection is made */
+$("#selectCity").on("change", function () {
+  $("#custom-modal").modal("hide");
+});
+</script>
 
 </body>
  

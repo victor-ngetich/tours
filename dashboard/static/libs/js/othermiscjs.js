@@ -25,3 +25,9 @@ function deleteFunction(e) {
     }            
 }
 // Delete Confirmation
+
+//Modal auto load
+$(window).load(function(){        
+    $('#myModal').modal('show');
+     }); 
+//Modal auto load

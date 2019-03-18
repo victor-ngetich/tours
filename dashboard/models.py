@@ -72,6 +72,7 @@ class package(models.Model):
 class booking(models.Model):
 
     p_name2 = models.ForeignKey(package, on_delete=models.CASCADE)
+    d_name = models.CharField(max_length=255,blank=True)
     agency = models.CharField(max_length=255,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
