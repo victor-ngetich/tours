@@ -121,7 +121,7 @@ class payment(models.Model):
     end_date = models.DateTimeField(blank=True, null=True)
     pricep_day = models.IntegerField(blank=True,default=0)
     transaction_status = models.CharField(max_length=255,blank=True)
-    transaction_id = models.CharField(max_length=255,blank=True)
+    transaction_id = models.CharField(max_length=255,blank=True,unique=True)
 
     def __str__(self):
         return '%s - %s' % (self.user, self.booking.p_name2.p_name)
