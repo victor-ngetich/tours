@@ -86,7 +86,7 @@ def filter3 (request):
 
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
-	g = package.objects.all().filter(d_name=f)
+	g = package.objects.all().filter(d_name=f, available=True)
 	h = Hotel.objects.all().filter(destination=f)
 	instance = get_object_or_404(destination, id=pk)
 
@@ -250,30 +250,36 @@ def bookpackage(request, pk):
 			c = int(adults)+int(kids)
 			d = int(a)-int(c)
 			if d < 0:
-				messages.info(request,'The total number of people in your booking exceeds the total number of slots available.')
-				return redirect ('test1', pk=d)
+				messages.info(request,'The total number of people in your booking exceeds the number of slots available.')
+				return HttpResponseRedirect('/dashboard/bookings/')
+				# return redirect ('test1', pk=d)
 			else:
 			#v = destination.objects.all().get(id=pk)
 			# r = Hotel.objects.get(pk=hotel)
 
 				b = booking.objects.create(user=request.user,hotel=h, agency=p.agency, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
-
-
+				
 				p.p_slots = int(a)-int(c)
 				p.save()
-
+				if d < 1:
+					# These two lines work too
+					# p.available = False
+					# p.save()
+					e = package.objects.filter(pk=pk).update(available=False)
+				else:
+					pass
 				return HttpResponseRedirect('/dashboard/bookings/')
 		except:
 			messages.info(request,'There must have been a problem, please try again')
 			return HttpResponseRedirect('/dashboard/bookings/')
-		# if form.is_valid():
-		# 	adults = form.cleaned_data['adults']
-		# 	kids = form.cleaned_data['kids']
-		# 	start = form.cleaned_data['start_date']
-		# 	end = form.cleaned_data['end_date']
+			# if form.is_valid():
+			# 	adults = form.cleaned_data['adults']
+			# 	kids = form.cleaned_data['kids']
+			# 	start = form.cleaned_data['start_date']
+			# 	end = form.cleaned_data['end_date']
 
-		# name = request.POST['name']
-		
+			# name = request.POST['name']
+			
 	else:
 		form = BookingOptions(request.POST or None)
 		return render(request, 'dashboard/bookings.html', {'p':p, 'form':form, 'b':b},locals())

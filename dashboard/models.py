@@ -60,6 +60,7 @@ class package(models.Model):
     to_day = models.DateField(default=one_month_from_today,blank=True, null=True)
     pricep_day = models.IntegerField(blank=True,default=0)
     p_slots = models.IntegerField(blank=True,default=0)
+    available = models.BooleanField(default=True)
     p_reviews = models.CharField(max_length=255,blank=True)
 
     def __str__(self):
