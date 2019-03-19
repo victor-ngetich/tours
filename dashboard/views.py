@@ -7,7 +7,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
+from datetime import timedelta
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
@@ -21,6 +23,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
 
+@login_required(login_url='/accounts/login/')
 def explore(request):
 	now = datetime.datetime.now()
 	d = destination.objects.all()
@@ -86,7 +89,10 @@ def filter3 (request):
 
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
-	g = package.objects.all().filter(d_name=f, available=True)
+	t = timezone.now()
+	s = timezone.now() + timedelta(days=999999)
+	g = package.objects.all().filter(d_name=f, available=True, to_day__range=[t,s])
+
 	h = Hotel.objects.all().filter(destination=f)
 	instance = get_object_or_404(destination, id=pk)
 
@@ -146,6 +152,7 @@ def ourpackages(request):
 	a = package.objects.all().filter(agency=request.user)
 	return render(request, 'dashboard/a-packages.html', {'a':a},locals())
 
+@login_required(login_url='/accounts/login/')
 def allpackages(request):
 	b = request.user.get_full_name()
 	a = package.objects.all()
@@ -193,10 +200,19 @@ def editpackage (request, pk=None):
 	if request.method=="POST":
 
 		form = EditPackage(request.POST or None, instance=instance)
-
 		if form.is_valid():
 			instance = form.save(commit=False)
+			a = form.cleaned_data.get('p_slots')
+			print(a)
+			if a < 1:
+				instance.available = False
+				# instance.p_slots = a
+				# instance.save()
+				# print(a)
+			else:
+				pass
 			instance.save()
+
 			messages.info(request, 'Your product was updated successfully.')
 			return HttpResponseRedirect('/ourpackages/')
 			
@@ -215,9 +231,25 @@ def editpackage (request, pk=None):
 
 
 class BookingDelete(DeleteView):
-    model = booking
-    success_url = reverse_lazy('bookings1')
-	
+	model = booking
+	success_url = reverse_lazy('bookings1')
+
+def delete_bookings2(request, pk):
+	d = booking.objects.values_list('adults',flat=True).get(pk=pk)
+	e = booking.objects.values_list('kids',flat=True).get(pk=pk)
+	c = d+e
+	print(c)
+	a = booking.objects.get(pk=pk).p_name2
+	f = package.objects.values_list('p_slots',flat=True).get(pk=a.pk)
+	print(f)
+	# print(a.pk)
+	c = package.objects.filter(pk=a.pk).update(p_slots=f+c)
+	# b = a.values_list('p_slots', flat=True)
+	# print(b)
+
+	# booking.objects.filter(pk=pk).delete()
+	return HttpResponseRedirect('/dashboard/bookings/')
+
 class PackageDelete(DeleteView):
     model = package
     success_url = reverse_lazy('ourpackages')
