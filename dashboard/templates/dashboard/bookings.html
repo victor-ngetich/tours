@@ -256,10 +256,11 @@
                   </div>
                 </div>
               </div>
-                        <!-- modal -->
+                       
                     {% endfor %}
                     {% endif %}
-
+                    <!-- modal end -->
+                    
                     <div class="row">
                         <!-- ============================================================== -->
                         <!-- search bar  -->
@@ -309,8 +310,10 @@
                                                             </p>
                                                             <p class="mb-2"><i class="mr-2  text-primary"></i>Total Price:
                                                                 <a class="mr-1 badge badge-light">KSh. {{p.get_total_price}}</a>
+                                                                <a class="mr-2  text-primary">(${{p.get_usd_price}} USD)</a>
+                                                            </p>
+                                                            <p class="mb-2"><i class="mr-2  text-primary"></i>Booking ID:
                                                                 <a class="mr-1 badge badge-light">{{p.id}}</a>
-
                                                             </p>
                                                         </div>
                                                     </div>
@@ -328,7 +331,7 @@
                                                         <input type="hidden" name="item_number" value="{{p.id}}" />
                                                         <!-- Unique invoice to avoid paying for the same item again -->
                                                         <!-- <input type="hidden" name="invoice" value="{{p.id}}" > -->
-                                                        <input type="hidden" name="amount" value="{{p.get_total_price}}" />
+                                                        <input type="hidden" name="amount" value="{{p.get_usd_price}}" />
                                                         <input type='hidden' name='no_shipping' value='1'>
                                                         <input type="hidden" name="no_note" value="1" />
                                                         <input type="hidden" name="notify_url" value="Your notify url">
@@ -336,8 +339,8 @@
                                                         <input type="hidden" name="rm" value="2" >
                                                         <!-- Any random variable -->
                                                         <!-- <input type="hidden" id="buybuttonid" name="custom" value="XXXXX" /> -->
-                                                        <input type='hidden' name='cancel_return' value='http://192.168.0.100:8000/paycancel/'>
-                                                        <input type="hidden" name="return" value="http://192.168.60.124:8000/paydone/?user={{user.get_username}}&packageid={{p.id}}">
+                                                        <input type='hidden' name='cancel_return' value='http://127.0.0.1:8000/paycancel/'>
+                                                        <input type="hidden" name="return" value="http://127.0.0.1:8000/paydone/?user={{user.get_username}}&packageid={{p.id}}">
                                                         <input type="image" class="paypal-button" name="paypal" src="{% static 'images/Paypal-Buy-Button.png' %}?{% now "U" %}" alt="Pay with Paypal" onClick="" name="submit"/>
                                                         </form>
                                                     <br>
@@ -347,13 +350,9 @@
                                                     <br>
                                                     <br>
 
-<!-- Test -->
-
-<form method="POST" action="/deletebooking/{{p.pk}}/">
-        {% csrf_token %}<input class="btn btn-danger confirm-cancel1" type="submit" value="Cancel Booking">
-</form>
-
-<!-- End Test -->
+                                                    <form method="POST" action="/deletebooking/{{p.pk}}/">
+                                                            {% csrf_token %}<input class="btn btn-danger confirm-cancel1" type="submit" value="Cancel Booking">
+                                                    </form>
                                                        <br>
                                                     </div>
                                             </div>

@@ -269,7 +269,7 @@
                                         
                                         <div class="row">
                                             
-                                            <div class="col-sm-6 pl-0">
+                                            <div class="col-sm-7 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-primary">Submit</button>
                                                     <button class="btn btn-space btn-secondary">Cancel</button>
@@ -277,6 +277,18 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <hr>
+
+                                    <div class="form-group row text-right">
+                                        <div class="col col-sm-10 col-lg-10 offset-sm-1 offset-lg-0">
+                                            <center>
+                                                <form method="POST" action="/deleteaccount/">
+                                                    {% csrf_token %}<input class="btn btn-danger confirm-delete2" type="submit" value="Delete Account">
+                                                </form>
+                                            </center>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -358,6 +370,10 @@
         }, false);
     })();
     </script>
+
+<!-- Custom JS -->
+<script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
+
 </body>
  
 </html>

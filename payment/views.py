@@ -51,11 +51,11 @@ def paydone(request):
     user = request.user.get_username()
 
     # try:
-    if not payment.objects.filter(transaction_id=f).exists():
+    if payment.objects.filter(transaction_id=f).exists():
         return HttpResponseRedirect('/dashboard/bookings/')
     else:
         i = booking.objects.get(id=d)
-        b = payment.objects.create(booking=i, user=request.user,hotel=i.hotel, agency=i.agency, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, start_date=i.start_date, end_date=i.end_date, pricep_day=i.pricep_day, days=i.days, transaction_status=e,transaction_id=f)
+        b = payment.objects.create(booking=i, user=request.user,hotel=i.hotel, agency=i.agency, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, amountpaid=a, start_date=i.start_date, end_date=i.end_date, days=i.days, transaction_status=e,transaction_id=f)
     # except:
     # messages.info(request,'There must have been a problem, please try again')
     return render (request, "payment/done.html")

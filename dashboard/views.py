@@ -15,7 +15,9 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse
-from .models import destination, package, booking, Hotel
+from .models import destination, package, booking, Hotel, payment
+from dashboard.tables import PaymentsTable
+from django_tables2 import RequestConfig
 from django.db.models import Q
 from dashboard.forms import AddPackage, EditPackage, BookingOptions
 from paypal.standard.forms import PayPalPaymentsForm
@@ -145,7 +147,10 @@ def bookings1(request):
 	return render(request, 'dashboard/bookings.html', context, locals())
 
 def payments(request):
-    return render(request, 'dashboard/payments.html')
+	now = datetime.datetime.now()
+	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user).order_by('-date_paid'))
+	RequestConfig(request, paginate={"per_page": 5}).configure(payments)
+	return render(request, 'dashboard/payments.html', {'now':now, 'payments':payments})
 
 def ourpackages(request):
 	b = request.user.get_full_name()
@@ -230,25 +235,33 @@ def editpackage (request, pk=None):
 	return render(request, "dashboard/editt-package.html", context)
 
 
-class BookingDelete(DeleteView):
-	model = booking
-	success_url = reverse_lazy('bookings1')
+# class BookingDelete(DeleteView):
+# 	model = booking
+# 	success_url = reverse_lazy('bookings1')
 
 def delete_bookings2(request, pk):
 	d = booking.objects.values_list('adults',flat=True).get(pk=pk)
 	e = booking.objects.values_list('kids',flat=True).get(pk=pk)
 	c = d+e
-	print(c)
+	# print(c)
 	a = booking.objects.get(pk=pk).p_name2
 	f = package.objects.values_list('p_slots',flat=True).get(pk=a.pk)
-	print(f)
+	# print(f)
 	# print(a.pk)
 	c = package.objects.filter(pk=a.pk).update(p_slots=f+c)
 	# b = a.values_list('p_slots', flat=True)
 	# print(b)
 
-	# booking.objects.filter(pk=pk).delete()
+	booking.objects.filter(pk=pk).delete()
 	return HttpResponseRedirect('/dashboard/bookings/')
+
+def delete_account(request):
+	a = request.user.get_username()
+	print(a)
+	b = User.objects.values_list('id',flat=True).get(username=a)
+	print(b)
+	User.objects.get(id=b).delete()
+	return HttpResponseRedirect('/accounts/login/')
 
 class PackageDelete(DeleteView):
     model = package
@@ -289,7 +302,7 @@ def bookpackage(request, pk):
 			#v = destination.objects.all().get(id=pk)
 			# r = Hotel.objects.get(pk=hotel)
 
-				b = booking.objects.create(user=request.user,hotel=h, agency=p.agency, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end, pricep_day=p.pricep_day)
+				b = booking.objects.create(user=request.user,hotel=h, agency=p.agency, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end)
 				
 				p.p_slots = int(a)-int(c)
 				p.save()
@@ -347,35 +360,3 @@ def post(request):
 		args.update(csrf(request))
 		args['form'] = AddPackage()
 		return render(request, 'dashboard/pages/add-package.html',args)
-
-def delete_bookings1(request, pk=None):
-
-    item= get_object_or_404(booking, pk=pk)
-
-    creator= item.user.username
-
-    if request.method == "POST" and request.user.is_authenticated and request.user.username == creator:
-        item.delete()
-        messages.success(request, "Post successfully deleted!")
-        return HttpResponseRedirect("/dashboard/bookings/")
-    
-    context= {'item': item,
-              'creator': creator,
-              }
-    
-    return render(request, 'Blog/movies-delete-view.html', context)
-
-def delete_booking(request, pk):
-	pp = get_object_or_404(booking, pk=pk)
-    # p = booking.objects.get(pk=pk)
-	# try:
-	if request.method == 'POST':
-		pp.delete()
-		messages.success(request, "Successfully Deleted")
-	else:
-		messages.success(request, "Not Deleted")
-	# except Exception as e:
-	# 	messages.warning(request, "Not Deleted at all: Error{}".format(e))
-	context= {'pp': pp,
-              }
-	return HttpResponseRedirect('/dashboard/bookings/')

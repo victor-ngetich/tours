@@ -13,15 +13,129 @@
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
-    <script src="{% static 'jquery-2.0.0.min.js' %}?{% now "U" %}"></script>
+
+    <!-- <link rel="stylesheet" href="{% static 'libs/css/datePicker.css' %}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'libs/css/date2.css' %}?{% now "U" %}"> -->
+    <!-- Date picker start-->
+    <!-- <link href="{% static 'datepicker/css/form.css' %}?{% now "U" %}" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="{% static 'datepicker/css/566a91c2977cdfcd478b4567.css' %}?{% now "U" %}"/>
+    <link href="{% static 'datepicker/css/nova.css' %}?{% now "U" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'datepicker/css/calendarview.css' %}?{% now "U" %}" rel="stylesheet" type="text/css" /> -->
+    <!-- Date picker end-->
+    <!-- <script src="{% static 'jquery-2.0.0.min.js' %}?{% now "U" %}"></script> -->
+    <script src="{% static 'libs/js/jquery-3.3.1.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'libs/js/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
+
     <script src="{% static 'ajax.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax2.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax3.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax4.js' %}?{% now "U" %}"></script>
-  
+    <!-- Date picker start-->
+    <!-- <script src="{% static 'datepicker/js/jotform.forms.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/prototype.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/json2.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/calendarview.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/jotform.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/location.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/protoplus.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/protoplus-ui-form.js' %}?{% now "U" %}" type="text/javascript"></script>
+
+    <script src="{% static 'datepicker/js/jquery.datePicker.min-2.1.2.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'datepicker/js/jquery.datePicker-2.1.2.js' %}?{% now "U" %}" type="text/javascript"></script>
+    <script src="{% static 'libs/js/date.js' %}?{% now "U" %}"></script> -->
+    <!-- Date picker end-->
+
+    <!-- <script type="text/javascript">
+        JotForm.init(function(){
+    
+     JotForm.calendarMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+     JotForm.calendarDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+     JotForm.calendarOther = {"today":"Today"};
+     var languageOptions = document.querySelectorAll('#langList li'); 
+     for(var langIndex = 0; langIndex < languageOptions.length; langIndex++) { 
+       languageOptions[langIndex].on('click', function(e) { setTimeout(function(){ JotForm.setCalendar("3", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""}); }, 0); });
+     } 
+     JotForm.setCalendar("3", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""});
+     JotForm.formatDate({date:(new Date()), dateField:$("id_"+3)});
+          JotForm.description('input_3', 'Choose when you plan to start your tour');
+    
+     JotForm.calendarMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+     JotForm.calendarDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+     JotForm.calendarOther = {"today":"Today"};
+     var languageOptions = document.querySelectorAll('#langList li'); 
+     for(var langIndex = 0; langIndex < languageOptions.length; langIndex++) { 
+       languageOptions[langIndex].on('click', function(e) { setTimeout(function(){ JotForm.setCalendar("4", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""}); }, 0); });
+     } 
+     JotForm.setCalendar("4", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""});
+     JotForm.formatDate({date:(new Date()), dateField:$("id_"+4)});
+          JotForm.description('input_4', 'Choose when you plan to end your tour');
+          JotForm.alterTexts(undefined);
+        JotForm.clearFieldOnHide="disable";
+        JotForm.submitError="jumpToFirstError";
+        /*INIT-END*/
+        });
+    
+       JotForm.prepareCalculationsOnTheFly([null,null,null,{"description":"Choose when you plan to start your tour","name":"date","qid":"3","text":"Start Date","type":"control_datetime"},{"description":"Choose when you plan to end your tour","name":"startDate","qid":"4","text":"End Date","type":"control_datetime"}]);
+       setTimeout(function() {
+    JotForm.paymentExtrasOnTheFly([null,null,null,{"description":"Choose when you plan to start your tour","name":"date","qid":"3","text":"Start Date","type":"control_datetime"},{"description":"Choose when you plan to end your tour","name":"startDate","qid":"4","text":"End Date","type":"control_datetime"}]);}, 20); 
+    </script> -->
+
+    <!-- <script>
+    $( function() {
+          $( "#id_start_date" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
+    } );
+    </script> -->
+
+    <!-- <script>
+    $(function() {
+        $('.date-pick').datePicker({clickInput:true})
+	    // $('.date-pick').datePicker().val(new Date().asString()).trigger('change');
+    });
+    </script> -->
+
+    <!-- <script>
+    $(function() {
+        $('#datepicker2').datePicker();
+        $('#datepicker2').dpDisplay();
+    });
+    </script> -->
+
+    <!-- <script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    } );
+    </script> -->
+
     <title>Destination</title>
 
     <style>
+
+/* located in demo.css and creates a little calendar icon
+ * instead of a text link for "Choose date"
+ */
+ a.dp-choose-date {
+	float: left;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(calendar.png) no-repeat; 
+}
+a.dp-choose-date.dp-disabled {
+	background-position: 0 -20px;
+	cursor: default;
+}
+/* makes the input field shorter once the date picker code
+ * has run (to allow space for the calendar icon
+ */
+input.dp-applied {
+	width: 140px;
+	float: left;
+}
+
         .pic1{
             max-height: 313px;
             max-width: 285px;
@@ -348,6 +462,39 @@
                                             <option name="hotel22"  value="{{ city.pk }}">{{ city.h_name }}</option>
                                             {% endfor %}
                                             </select>
+
+
+                                            <!-- <div class="input-group date" id="datetimepicker"></div> -->
+                                            <!-- <input id="datepicker" onchange="checkDate()" required class="datepicker-input" type="date" data-date-format="yyyy-mm-dd" > -->
+
+                                            <!-- <form name="chooseDateForm" id="chooseDateForm" action="datePickerDefaultToday.html#">
+                                                    <fieldset>
+                                                        <legend>Test date picker form</legend>
+                                                        <ol>
+                                                            <li>
+                                                                <label for="date1">Date 1:</label>
+                                                                <input name="date1" id="date1" class="date-pick" />
+                                                            </li>
+                                                            <li>
+                                                                <label for="date2">Date 2:</label>
+                                                                <input name="date2" id="date2" class="date-pick" />
+                                                            </li>
+                                                            <li>
+                                                                <label for="test-select">Test select:</label>
+                                                                <select name="test-select" id="test-select" style="width: 170px">
+                                                                    <option value="1">Test SELECT </option>
+                                                                    <option value="2">Doesn't shine through</option>
+                                                                    <option value="3">Even in IE</option>
+                                                                    <option value="4">Yay!</option>
+                                                                </select>
+                                                            </li>
+                                                        </ol>
+                                                    </fieldset>
+                                                </form> -->
+                                    
+
+                                            <!-- <input id="datepicker" type="text"> -->
+                                            <!-- </div> -->
                                         </tbody>
                                     </table>
 
@@ -364,6 +511,119 @@
                                                 
                                             
                                     </form>
+
+                                            <!-- Date picker -->
+
+                                            <!-- <form class="jotform-form" action="https://submit.myjotform.com/submit/90782829936575/" method="post" name="form_90782829936575" id="90782829936575" accept-charset="utf-8">
+                                                <div class="form-all">
+                                                  <ul class="form-section page-section">
+                                                    <li class="form-line form-line-column form-col-1 jf-required" data-type="control_datetime" id="id_3">
+                                                      <label class="form-label form-label-top" id="label_3" for="lite_mode_3">
+                                                        Start Date
+                                                        <span class="form-required">
+                                                          *
+                                                        </span>
+                                                      </label>
+                                                      <div id="cid_3" class="form-input-wide jf-required">
+                                                        <div data-wrapper-react="true">
+                                                          <div style="display:none">
+                                                            <span class="form-sub-label-container" style="vertical-align:top">
+                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="year_3" name="q3_date[year]" size="4" data-maxlength="4" value="2019" required="" />
+                                                              <span class="date-separate">
+                                                                 -
+                                                              </span>
+                                                              <label class="form-sub-label" for="year_3" id="sublabel_year" style="min-height:13px"> Year </label>
+                                                            </span>
+                                                            <span class="form-sub-label-container" style="vertical-align:top">
+                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="month_3" name="q3_date[month]" size="2" data-maxlength="2" value="03" required="" />
+                                                              <span class="date-separate">
+                                                                 -
+                                                              </span>
+                                                              <label class="form-sub-label" for="month_3" id="sublabel_month" style="min-height:13px"> Month </label>
+                                                            </span>
+                                                            <span class="form-sub-label-container" style="vertical-align:top">
+                                                              <input type="tel" class="currentDate form-textbox validate[required, disallowPast, limitDate]" id="day_3" name="q3_date[day]" size="2" data-maxlength="2" value="20" required="" />
+                                                              <label class="form-sub-label" for="day_3" id="sublabel_day" style="min-height:13px"> Day </label>
+                                                            </span>
+                                                          </div>
+                                                          <span class="form-sub-label-container" style="vertical-align:top">
+                                                            <input type="text" class="form-textbox validate[required, disallowPast, limitDate, validateLiteDate]" id="lite_mode_3" size="12" data-maxlength="12" data-age="" value="2019-03-20" required="" data-format="yyyymmdd" data-seperator="-" placeholder="yyyy-mm-dd" />
+                                                            <img class="showAutoCalendar" alt="Pick a Date" id="input_3_pick" src="https://cdn.jotfor.ms/images/calendar.png" style="vertical-align:middle;margin-left:5px" data-component="datetime" />
+                                                            <label class="form-sub-label" for="lite_mode_3" id="sublabel_litemode" style="min-height:13px">  </label>
+                                                          </span>
+                                                          <span class="form-sub-label-container" style="vertical-align:top">
+                                                            <label class="form-sub-label" for="input_3_pick" style="min-height:13px">  </label>
+                                                          </span>
+                                                        </div>
+                                                      </div>
+                                                    </li>
+                                                    <li class="form-line form-line-column form-col-1 form-line-column-clear jf-required" data-type="control_datetime" id="id_4">
+                                                      <label class="form-label form-label-top" id="label_4" for="lite_mode_4">
+                                                        End Date
+                                                        <span class="form-required">
+                                                          *
+                                                        </span>
+                                                      </label>
+                                                      <div id="cid_4" class="form-input-wide jf-required">
+                                                        <div data-wrapper-react="true">
+                                                          <div style="display:none">
+                                                            <span class="form-sub-label-container" style="vertical-align:top">
+                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="year_4" name="q4_startDate[year]" size="4" data-maxlength="4" value="2019" required="" />
+                                                              <span class="date-separate">
+                                                                 -
+                                                              </span>
+                                                              <label class="form-sub-label" for="year_4" id="sublabel_year" style="min-height:13px"> Year </label>
+                                                            </span>
+                                                            <span class="form-sub-label-container" style="vertical-align:top">
+                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="month_4" name="q4_startDate[month]" size="2" data-maxlength="2" value="03" required="" />
+                                                              <span class="date-separate">
+                                                                 -
+                                                              </span>
+                                                              <label class="form-sub-label" for="month_4" id="sublabel_month" style="min-height:13px"> Month </label>
+                                                            </span>
+                                                            <span class="form-sub-label-container" style="vertical-align:top">
+                                                              <input type="tel" class="currentDate form-textbox validate[required, disallowPast, limitDate]" id="day_4" name="q4_startDate[day]" size="2" data-maxlength="2" value="20" required="" />
+                                                              <label class="form-sub-label" for="day_4" id="sublabel_day" style="min-height:13px"> Day </label>
+                                                            </span>
+                                                          </div>
+                                                          <span class="form-sub-label-container" style="vertical-align:top">
+                                                            <input type="text" class="form-textbox validate[required, disallowPast, limitDate, validateLiteDate]" id="lite_mode_4" size="12" data-maxlength="12" data-age="" value="2019-03-20" required="" data-format="yyyymmdd" data-seperator="-" placeholder="yyyy-mm-dd" />
+                                                            <img class="showAutoCalendar" alt="Pick a Date" id="input_4_pick" src="https://cdn.jotfor.ms/images/calendar.png" style="vertical-align:middle;margin-left:5px" data-component="datetime" />
+                                                            <label class="form-sub-label" for="lite_mode_4" id="sublabel_litemode" style="min-height:13px">  </label>
+                                                          </span>
+                                                          <span class="form-sub-label-container" style="vertical-align:top">
+                                                            <label class="form-sub-label" for="input_4_pick" style="min-height:13px">  </label>
+                                                          </span>
+                                                        </div>
+                                                      </div>
+                                                    </li>
+                                                    <li style="clear:both">
+                                                    </li>
+                                                  </ul>
+                                                </div>
+                                                <script>
+                                                    JotForm.showJotFormPowered = "new_footer";
+                                                    </script>
+                                                    <input type="hidden" id="simple_spc" name="simple_spc" value="90782829936575" />
+                                                    <script type="text/javascript">
+                                                    document.getElementById("si" + "mple" + "_spc").value = "90782829936575-90782829936575";
+                                                    </script>
+                                                    <div class="formFooter-heightMask">
+                                                    </div>
+                                                    <div class="formFooter f6">
+                                                      <a href="https://www.jotform.com/pricing?utm_source=formfooter&utm_medium=banner&utm_term=90782829936575&utm_content=jotform_logo&utm_campaign=powered_by_jotform_le" target="_blank" class="formFooter-logoLink"><img class="formFooter-logo" src="https://cdn.jotfor.ms/assets/img/logo/logo-new@1x.png" alt="" style="height: 44px;"></a>
+                                                      <div class="formFooter-rightSide">
+                                                        <span class="formFooter-text">
+                                                          Now create your own JotForm - It's free!
+                                                        </span>
+                                                        <a class="formFooter-button" href="https://www.jotform.com/?utm_source=formfooter&utm_medium=banner&utm_term=90782829936575&utm_content=jotform_button&utm_campaign=powered_by_jotform_le" target="_blank">Create your own JotForm</a>
+                                                      </div>
+                                                    </div>
+                                              </form> -->
+
+                                            <!-- Date picker -->
+
+
                                 </div>
 
                             <!--li class="nav-item">
@@ -580,6 +840,13 @@
                                                     <p>
                                                     {{f.d_description|linebreaks}}
                                                     </p>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="float-xl-right float-none mt-xl-0 mt-4" style="color:indigo;">
+                                                            <p>
+                                                                Contact us at: {{f.d_phone}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="product-tab-2">
                                                 <div class="review-block">
@@ -641,10 +908,15 @@
                                                         
                                                     </div>
                                                     <div class="user-avatar-address" style="color:yellow;">                                                       
-                                                        <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"><span class="m-l-20">Category: {{p.p_category}}</span><span class="m-l-20">Phone: {{p.agency_phone}}</span></span>
+                                                        <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"></span><span class="m-l-20">Category: {{p.p_category}}</span></span>
                                                         </p>
-                                                        <p class="m-l-20" style="color:yellow;">Daily Price: KSh. {{p.pricep_adult}} per adult<span class="m-l-10"><span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span></span>
+                                                        <p class="mb-2"" style="color:yellow;">From: {{p.from_day}}<span class="m-l-10"></span><span class="m-l-20">Until: {{p.to_day}}</span><span class="m-l-20"></span>
                                                         </p>
+                                                        <p class="mb-2"" style="color:yellow;">Daily Price: KSh. {{p.pricep_adult}} per adult,<span class="m-l-20">KSh. {{p.pricep_kid}} per child</span><span class="m-l-20"> {{p.agency_email}} </span>
+                                                        </p>
+                                                        <p class="mb-2"" style="color:yellow;">Slots Available: {{p.p_slots}}<span class="m-l-10"></span><span class="m-l-20">Phone: {{p.agency_phone}}</span><span class="m-l-20"></span>
+                                                        </p>
+                                                        <hr>
                                                         <div class="mt-3 text-white">
                                                             <p>
                                                                     {{p.p_description|linebreaks}}
@@ -771,6 +1043,14 @@
 <!-- Custom JS -->
 <script src="{% static 'libs/js/jsautoinput.js' %}?{% now "U" %}"></script>
 <script src="{% static 'libs/js/jstotalprice.js' %}?{% now "U" %}"></script>
+<script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
+<script type="text/javascript">JotForm.ownerView=true;</script>
+<!-- <script>
+$(function () {
+    $('#datepicker').datepicker({ minDate: 0 });
+});
+</script> -->
+
 
     <!-- <script>
             jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
