@@ -109,16 +109,16 @@ def logout_page(request):
 	# [s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
 	logout(request)
 	return HttpResponseRedirect('/accounts/login/')
-@csrf_protect
-def forgot_view(request):
-	return render(request,'freelance/forgot-password.html')
+# @csrf_protect
+# def forgot_view(request):
+# 	return render(request,'registration/forgot-password.html')
 @csrf_protect
 def reset_view(request):
 	form = PasswordResetForm(request.POST or None)
 	if form.is_valid():
 		return render(request,"accounts/referal.html")
 	else:
-		return render(request,'freelance/forgot-password.html',{"form":form})
+		return render(request,'registration/password_reset_form.html',{"form":form})
 def refer_view(request):
 	return render(request, 'accounts/referal.html')
 	

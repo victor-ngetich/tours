@@ -175,7 +175,7 @@
                                 Account
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/dashboard/editprofile" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
+                                <a class="nav-link active" href="/dashboard/profile/edit" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
                                 
                             </li>
                             
@@ -236,49 +236,32 @@
                             <div class="card">
                                 <h5 class="card-header">Edit Details</h5>
                                 <div class="card-body">
-                                    <form action="#" id="basicform" data-parsley-validate="">
-                                        <!-- <div class="form-group">
-                                            <label for="inputUserName">User Name</label>
-                                            <input id="inputUserName" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Enter user name" autocomplete="off" class="form-control">
-                                        </div> -->
-                                        <div class="form-group">
-                                                <label for="validationCustom01">First name</label>
-                                                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="validationCustom02">Last name</label>
-                                                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="validationCustom03">Phone</label>
-                                                <input type="text" class="form-control" id="validationCustom03" placeholder="Phone" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail">Email address</label>
-                                            <input id="inputEmail" type="email" name="email" data-parsley-trigger="change" required="" placeholder="Enter email" autocomplete="off" class="form-control">
-                                        </div>
-                                        
-                                        <div class="row">
-                                            
-                                            <div class="col-sm-7 pl-0">
-                                                <p class="text-right">
-                                                    <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                                    <button class="btn btn-space btn-secondary">Cancel</button>
-                                                </p>
-                                            </div>
-                                        </div>
+                                    <form method="POST" id="basicform">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <!-- <center> -->
+                                            <input class="btn btn-success" type="submit" value="Update"/>
+                                        <!-- </center> -->
+                                        <!-- <div class="product-qty" style="color:white;"> -->
+                                            <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> -->
+                                    
+                                                    <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                        <a class="btn btn-primary" href="/dashboard/profile/password/" role="button">Change Password</a>
+
+                                                    </div>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
                                     </form>
                                     <hr>
+                                    <!-- <div class="product-qty" style="color:white;"> -->
+                                        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> -->
+                                
+                                                <!-- <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                    <a class="btn btn-primary" href="/editpackage/{{p.pk}}/" role="button">Edit</a>
 
+                                                </div> -->
+                                    <!-- </div> -->
+                                    <!-- </div> -->
                                     <div class="form-group row text-right">
                                         <div class="col col-sm-10 col-lg-10 offset-sm-1 offset-lg-0">
                                             <center>

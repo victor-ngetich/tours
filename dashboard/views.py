@@ -5,6 +5,8 @@ from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 import datetime
 from django.utils import timezone
 from datetime import timedelta
@@ -19,7 +21,12 @@ from .models import destination, package, booking, Hotel, payment
 from dashboard.tables import PaymentsTable
 from django_tables2 import RequestConfig
 from django.db.models import Q
-from dashboard.forms import AddPackage, EditPackage, BookingOptions
+from dashboard.forms import (
+	AddPackage,
+	EditPackage,
+	BookingOptions,
+	EditProfileForm
+)
 from paypal.standard.forms import PayPalPaymentsForm
 from django.shortcuts import get_list_or_404, get_object_or_404
 
@@ -125,9 +132,6 @@ def test1(request,pk):
 # ---Formset End---
 
 	return render(request, 'dashboard/destination.html',{'f':f,'g':g, 'h':h,'instance':instance, 'form': form},locals())
-
-def editprofile(request):
-    return render(request, 'dashboard/pages/edit-profile.html')
 
 def bookings1(request):
 	a = booking.objects.all().filter(user=request.user)
@@ -270,8 +274,55 @@ class PackageDelete(DeleteView):
 def payments1(request):
     return render(request, 'dashboard/a-payments.html')
 
+def editprofile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/dashboard/editprofile')
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form':form}
+        return render(request, 'dashboard/pages/edit-profile.html', args)
+
 def editprofile1(request):
-    return render(request, 'dashboard/pages/a-edit-profile.html')
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/dashboard/editprofile1')
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form':form}
+        return render(request, 'dashboard/pages/a-edit-profile.html', args)
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('/dashboard/editprofile')
+        else:
+            return redirect('dashboard/profile/password/')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'form':form}
+        return render(request, 'dashboard/pages/change-password.html', args)
+
+def change_password1(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('/dashboard/editprofile1')
+        else:
+            return redirect('dashboard/profile1/password/')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'form':form}
+        return render(request, 'dashboard/pages/a-change-password.html', args)
 
 def bookpackage(request, pk): 
 	if request.method == 'POST':

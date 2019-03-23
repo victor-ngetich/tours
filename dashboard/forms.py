@@ -3,6 +3,7 @@ from dashboard.choices import *
 from django.forms.models import modelformset_factory
 from django.forms import BaseModelFormSet
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ValidationError
 import datetime
 from dashboard.models import package, destination, booking, Hotel
@@ -88,8 +89,11 @@ class BookingOptions(forms.ModelForm):
         		super(BookingOptions, self).__init__(*args, **kwargs)
         		self.hotel['hotel'].queryset = Hotel.objects.filter(destination=instance)
 
-# class BookingForm(forms.ModelForm):
-#     class Meta:
-#         model = booking
-#         fields = ('hotel',)
-# HotelFormSet = modelformset_factory(Hotel, fields=('h_name',), formset=BaseHotelFormSet, form=BookingForm)
+class EditProfileForm(UserChangeForm):
+	class Meta:
+		model = User
+		fields = (
+			'first_name',
+			'last_name',
+			'email'
+		)

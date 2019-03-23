@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, filter3, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
+from dashboard.views import (explore, filter, filter2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
 from payment.views import (payprocess, paydone, paycancel)
 from django.conf.urls.static import static
 from django.conf import settings
@@ -33,10 +33,9 @@ urlpatterns = [
     url(r'^accounts/login/',login_view,name='login'),
     url(r'^logout/',logout_page,name='logout'),
     url(r'^register/',register_view,name='register'),
-    url(r'^reset/',reset_view,name='reset'),
     url(r'^refer/',refer_view,name='refer'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',include('accounts.urls')),
-    url(r'^password_reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
     url(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
@@ -50,7 +49,9 @@ urlpatterns = [
     url(r'^t_filter/', filter3, name='filter3'),
     url(r'^bookpackage/(?P<pk>\w+)/',bookpackage,name='bookpackage'),
     url(r'^destination/(?P<pk>\w+)/',test1,name='test1'),
-    url(r'^dashboard/editprofile/',editprofile,name='editprofile'),
+    url(r'^dashboard/profile/edit/',editprofile,name='editprofile'),
+    url(r'^dashboard/profile/password/',change_password,name='change_password'),
+    url(r'^dashboard/profile1/password/',change_password1,name='change_password1'),
     url(r'^payprocess/',payprocess,name='payprocess'),
     url(r'^paydone/',paydone,name='paydone'),
     url(r'^paycancel/',paycancel,name='paycancel'),
@@ -62,7 +63,7 @@ urlpatterns = [
     url(r'^allpackages/',allpackages,name='allpackages'),
     url(r'^allpackages1/',allpackages1,name='allpackages1'),
     url(r'^dashboard/payments1/',payments1,name='payments1'),
-    url(r'^dashboard/editprofile1/',editprofile1,name='editprofile1'),
+    url(r'^dashboard/profile1/edit/',editprofile1,name='editprofile1'),
     url(r'^editpackage/(?P<pk>\w+)/$',editpackage,name='editpackage'),
     url(r'^deletebooking/(?P<pk>\d+)/$', delete_bookings2, name='delete_booking'),
     url(r'^deleteaccount/', delete_account, name='delete_account'),
