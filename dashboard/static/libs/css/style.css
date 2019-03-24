@@ -256,7 +256,7 @@ label {
     width: 100%;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #71748d;
+    color: black;
     background-color: #fff;
     background-image: none;
     border: 1px solid #d2d2e4;
@@ -292,7 +292,7 @@ button:focus {
 }
 
 select.form-control {
-    color: #71748d;
+    color: black;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-position: 99% 52%;
@@ -306,7 +306,7 @@ select.form-control {
 
 textarea.form-control {
     height: auto;
-    color: #71748d;
+    color: black;
     background-color: #fff;
     background-image: none;
     border: 1px solid #d2d2e4;
@@ -4532,7 +4532,7 @@ Pills vertical
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(230, 230, 242, .5);
+    background-color: rgba(175, 175, 180, 0.5);
 }
 
 
@@ -7009,4 +7009,40 @@ output {
 .user-avatar-xl1 {
         height: 150px;
         width: 150px;
+    }
+
+.badge-light1 {
+        background-color:gray;
+        color: #2e2f39 !important;
+        text-decoration: none;
+    }
+
+.badge1 {
+        display: inline-block;
+        padding: 4px 8px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+    }
+
+.badge-light2 {
+        background-color:#FFC439;
+        color: #2e2f39 !important;
+        text-decoration: none;
+    }
+
+.badge2 {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
     }

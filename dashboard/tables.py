@@ -12,11 +12,21 @@ class PaymentsTable(tables.Table):
 	# amend = CheckBoxColumnWithName(verbose_name="Select", accessor="pk")
 	class Meta:
 		model = payment
-		fields = ("booking", "amountpaid", "transaction_id", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_paid")
-		# attrs = {'class': 'mytable'}
+		fields = ("booking", "agencyname", "agencycontact", "transaction_id", "amountpaid", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_paid")
+		attrs = {'class': 'table-bordered table-striped table-hover'}
+		# template = 'django_tables2/bootstrap.html'
 
-# class servicesTable(tables.Table):
-# 	# amend = CheckBoxColumnWithName(verbose_name="Select", accessor="pk")
-# 	class Meta:
-# 		model = services
-# 		fields = ('Title','company_name','email','cellphone','attachment','user_id','created_at','location','payment_info','description','amend')
+class AgencyPaymentsTable(tables.Table):
+	# amend = CheckBoxColumnWithName(verbose_name="Select", accessor="pk")
+	class Meta:
+		model = payment
+		fields = ("user_full", "clientemail", "booking", "agencyname", "transaction_id", "amountpaid", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_paid")
+		attrs = {'class': 'table-bordered table-striped table-hover'}
+
+
+class ApprovedBookingsTable(tables.Table):
+	# amend = CheckBoxColumnWithName(verbose_name="Select", accessor="pk")
+	class Meta:
+		model = booking
+		fields = ("user_full", "p_name2", "clientemail", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_added", "approved")
+		attrs = {'class': 'table-bordered table-striped table-hover'}

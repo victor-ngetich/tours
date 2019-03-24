@@ -2,6 +2,7 @@
 <html lang="en">
  
 <head>
+    {% load django_tables2 %}
     {% load staticfiles %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -13,6 +14,17 @@
     <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
+
+    <style>
+            body {
+                color: black;
+                background-color: #efeff6;
+            }
+            a {
+                color: blue;
+            }
+            </style>
+            
     <title>Transaction History - Agency</title>
 </head>
 
@@ -150,22 +162,36 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">
-                                Menu
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="/ourpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-map-marker-alt"></i>Our Packages <span class="badge badge-success">6</span></a>
-                                
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/dashboard/payments1" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-clipboard-check"></i>Payment History</a>
-                                
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/addpackage" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-plus-circle"></i>Add Package</a>
-                                
-                            </li>
+                                <li class="nav-divider">
+                                        Packages
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/ourpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-map-marker-alt"></i>Our Packages <span class="badge badge-success">6</span></a>
+                                        
+                                    </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="/unavailable-packages/" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-exclamation-circle"></i>Unavailable Packages</a>
+                                            
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/dashboard/addpackage" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-plus-circle"></i>Add Package</a>
+                                            
+                                    </li>
+                                    <li class="nav-divider">
+                                        Bookings
+                                    </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="/booked" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-hourglass-start"></i>Unapproved Bookings</a>
+                                            
+                                    </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="/approved-bookings" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-clipboard-check"></i>Approved Bookings</a>
+                                            
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="/dashboard/payments1" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa-fw fab fa-paypal"></i>Customer Payments</a>
+                                        
+                                    </li>
                                                         
             
                             <li class="nav-divider">
@@ -226,40 +252,47 @@
                         <!-- ============================================================== -->
                         <!-- end search bar  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> -->
                             <!-- ============================================================== -->
                             <!-- card influencer one -->
                             <!-- ============================================================== -->
+                            <!-- Table -->
                             <div class="card">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="user-avatar float-xl-left pr-4 float-none">
-                                                <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl">
-                                                    </div>
-                                                <div class="pl-xl-3">
-                                                    <div class="m-b-0">
-                                                        <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10">User</h2>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="user-avatar-address">
-                                                        <p class="mb-2"><i class="fa fa-map-marker-alt mr-2  text-primary"></i>Salt Lake City, UT <span class="m-l-10">Male<span class="m-l-20">29 Year Old</span></span>
-                                                        </p>
-                                                        <div class="mt-3">
-                                                            <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a>
-                                                        </div>
-                                                    </div> -->
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                    <a href="#" class="btn btn-secondary">Paid</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="card-header" style="color:sienna">
+                                    <i class="fa fa-table"></i> Payments Report</div>
+                                <!-- <div class="card-body">
+                                    
+                                    <label>Search:</label>
+                                    {% csrf_token %}
+                                    <input type="text" name="search" id="psearch">
+                                    
+                                    </div> -->
+                                    <div class="row" id="searchresults4">
                                     </div>
+
+                                    <div class="table-responsive">
+                                    <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                            <!-- <thead class="thead-dark">
+                                                </thead> -->
+                                        <tbody>
+                                        <!-- <tr><td> -->
+                                            <!-- <form action="#" method="post">{% csrf_token%}
+                                                <input type="hidden" name="item_id"  value="{{item.id}}" />
+                                        <input type="submit" class="btn btn-success navbar-btn" style="float: right;" value="Delete">
+                                            </form> -->
+                                        <!-- </td></tr> -->
+                                        <tr><td>
+                                            {% render_table payments %}
+                                        </td></tr>
+                                        </tbody>
+                                        
+                                    </table>
+                                    </div>
+                                
+                                <div class="card-footer small text-muted">Updated at {{ now }}</div>
                                 </div>
+                            <!-- </div> -->
+                            <!-- Table -->
                                 <!-- ============================================================== -->
                                 <!-- end card influencer one -->
                                 <!-- ============================================================== -->

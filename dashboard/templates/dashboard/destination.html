@@ -269,7 +269,7 @@ input.dp-applied {
                         </li>
                         <li class="nav-item">
                                 <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
+                                    <a class="dropdown-item" href="/dashboard/to-do-trips"><i class="fas fa-tasks mr-2"></i>To Do Trips</a>
                                 </div>
                             </li>
     
@@ -456,12 +456,14 @@ input.dp-applied {
                                             </li> -->
                                             <label for="hotel">Hotel:</label>
                                             <br>
-                                            <select id="d_hotel">
-                                            <option value="1">-------</option>
-                                            {% for city in h %}
-                                            <option name="hotel22"  value="{{ city.pk }}">{{ city.h_name }}</option>
-                                            {% endfor %}
-                                            </select>
+                                            <div class="dropdown">
+                                                <select class="form-control form-control-sm" style="color:black;" id="d_hotel">
+                                                    <option value="1">None</option>
+                                                    {% for city in h %}
+                                                    <option name="hotel22"  value="{{ city.pk }}">{{ city.h_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
 
 
                                             <!-- <div class="input-group date" id="datetimepicker"></div> -->
@@ -803,10 +805,10 @@ input.dp-applied {
             <img class="d-block w-100 carousel-img1" src="{{ f.d_pic1.url }}" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100 carousel-img1" src="{% static 'images/custom1/2.jpg' %}?{% now "U" %}" alt="Second slide">
+            <img class="d-block w-100 carousel-img1" src="{{ f.d_pic2.url }}" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100 carousel-img1" src="{% static 'images/custom1/3.jpg' %}?{% now "U" %}" alt="Third slide">
+            <img class="d-block w-100 carousel-img1" src="{{ f.d_pic3.url }}" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

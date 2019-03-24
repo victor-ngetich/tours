@@ -32,6 +32,12 @@ function deleteFunction(e) {
 }
 // Delete Confirmation
 
+// Django Approve Booking Confirmation
+$(document).on('click', '.confirm-approve1', function(){
+    return confirm('Are you sure you want to approve this booking?');
+})
+// Django Approve Booking Confirmation
+
 //Modal auto load
 $(window).load(function(){        
     $('#myModal').modal('show');

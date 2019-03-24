@@ -159,16 +159,15 @@
                                 <a class="dropdown-item" href="/allpackages"><i class="fa fa-map-signs mr-2"></i>All Packages</a>
                             </div>
                         </li>
+                        <li class="nav-item">
+                                <div id="custom-search" class="top-search-bar">
+                                    <a class="dropdown-item" href="/dashboard/to-do-trips"><i class="fas fa-tasks mr-2"></i>To Do Trips</a>
+                                </div>
+                            </li>
 
                         <li class="nav-item">
                             <div id="custom-search" class="top-search-bar">
-                                <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <div id="custom-search" class="top-search-bar">
-                                <a class="dropdown-item" style="color:darkblue" href="/dashboard/editprofile/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
+                                <a class="dropdown-item" style="color:darkblue" href="/dashboard/profile/edit"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
                             </div>
                         </li>
 
@@ -206,7 +205,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <h2 class="pageheader-title">All Destinations</h2>
-                                <p class="pageheader-text"></p>
+                                <!-- <p class="pageheader-text"></p> -->
                                 <!-- <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -260,7 +259,7 @@
                             <!-- ============================================================== -->
                             <!-- end card masonary  -->
                                 
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -270,7 +269,7 @@
                                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                         </ul>
                                     </nav>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         </div>
@@ -283,20 +282,15 @@
                                         <h4 class="product-sidebar-widget-title">Places</h4>
     
                                         <div class="dropdown" >
-                                                <select id="cat-2" class="btn btn-primary form-control" style="color:white;">
-                                                        <option value="">All</option>
-                                                        <option value="Mombasa">Mombasa</option>
-                                                        <option value="Kisumu">Kisumu</option>
-                                                        <option value="Maasai Mara">Maasai Mara</option>
-                                                        <option value="Mt. Kenya">Mt. Kenya</option>
-                                                        <option value="Naivasha">Naivasha</option>
-                                                        <option value="Nairobi">Nairobi</option>
-                                                        <option value="Nakuru">Nakuru</option>
-                                                        <option value="Tsavo">Tsavo</option>
-                                                        </select>{% csrf_token %}
+                                            <select id="cat-2" class="btn btn-primary form-control" style="color:white;">
+                                                <option value="">All</option>
+                                                {% for city in destination %}
+                                                <option name="places11"  value="{{ city.d_location }}">{{ city.d_location }}</option>
+                                                {% endfor %}
+                                            </select>{% csrf_token %}
                                                       
                                                       
-                                              </div>
+                                        </div>
                                         
                                     </div>
                                 <!-- <div class="product-sidebar-widget">
@@ -350,8 +344,7 @@
 
                                 </div> -->
                                 <div class="product-sidebar-widget">
-                                    <a href="#" class="btn btn-outline-light">Reset Filter</a>
-                                    <!-- <a href="/test1" class="btn btn-primary">Preset</a> -->
+                                    <a href="/explore" class="btn btn-outline-light">Reset Filter</a>
                                 </div>
                             </div>
                         </div>

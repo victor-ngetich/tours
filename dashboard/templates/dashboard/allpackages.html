@@ -123,7 +123,7 @@
                         </li>
                         <li class="nav-item">
                                 <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/dashboard/bookings"><i class="fas fa-list mr-2"></i>Bookings</a>
+                                    <a class="dropdown-item" href="/dashboard/to-do-trips"><i class="fas fa-tasks mr-2"></i>To Do Trips</a>
                                 </div>
                             </li>
     
@@ -168,8 +168,8 @@
                                                 {{ form.as_p }}
                                                 <label for="hotel">Hotel:</label>
                                                 <br>
-                                                <select id="d_hotel">
-                                                <option value="1">-------</option>
+                                                <select class="form-control form-control-sm" style="color:black;" id="d_hotel">
+                                                <option value="1">None</option>
                                                 {% for city in e %}
                                                 <option name="hotel22"  value="{{ city.pk }}">{{ city.h_name }}</option>
                                                 {% endfor %}
@@ -257,8 +257,6 @@
                             <div class="card text-white" style="background-color:rgba(52, 26, 121, 0.99);">
                                     <div class="card-body">
                                         <div class="row align-items-center">
-    
-                                            
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="user-avatar float-xl-left pr-4 float-none">
                                                     <img src="{% static 'images/avatar-1.jpg' %}?{% now "U" %}" alt="User Avatar" class="rounded-circle user-avatar-xl1">
@@ -270,7 +268,6 @@
                                                                 <h3 class="font-18 m-b-10 text-warning">{{p.d_name}}</h3>
 
                                                             </div>
-                                                            
                                                         </div>
                                                         <div class="user-avatar-address" style="color:yellow;">
                                                         <p class="mb-2">Offered by: {{p.p_agency}}<span class="m-l-10"></span><span class="m-l-20">Category: {{p.p_category}}</span></span>

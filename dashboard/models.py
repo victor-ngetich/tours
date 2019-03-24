@@ -16,7 +16,7 @@ class destination(models.Model):
     d_location = models.CharField("Location", max_length=255,blank=True)
     d_description = models.TextField("Description", blank=True)
     d_pic1 = models.FileField("Pic 1", upload_to='dashboard/', blank=True)
-    d_pic2= models.FileField("Pic 1", upload_to='dashboard/', blank=True)
+    d_pic2= models.FileField("Pic 2", upload_to='dashboard/', blank=True)
     d_pic3 = models.FileField("Pic 3", upload_to='dashboard/', blank=True)
     d_phone = models.CharField("Phone", max_length=15,blank=True)
     d_email = models.EmailField("Email", blank=True)
@@ -44,7 +44,7 @@ class Hotel(models.Model):
 #     uploaded_at = models.DateTimeField("Date Added", auto_now_add=True)
 
 def one_month_from_today():
-    return timezone.now() + timedelta(days=30)
+    return timezone.now() + timedelta(days=5)
 
 class package(models.Model):
 
@@ -77,17 +77,23 @@ class booking(models.Model):
 
     p_name2 = models.ForeignKey(package, on_delete=models.CASCADE, verbose_name="Package",)
     d_name = models.CharField("Destination", max_length=255,blank=True)
-    agency = models.CharField("Travel Agency", max_length=255,blank=True)
+    agency = models.CharField("Agency", max_length=255,blank=True)
+    agencyname = models.CharField("Travel Agency", max_length=255,blank=True)
+    agencycontact = models.CharField("Agency Contact", max_length=255,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Client",)
+    user_full = models.CharField("Client", max_length=255,blank=True)
+    clientemail = models.CharField("Client's Email", max_length=255,blank=True)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, verbose_name="Hotel",)
     adults = models.IntegerField("Adults", blank=True,default=1)
     kids = models.IntegerField("Kids", blank=True,default=0)
     pricep_adult = models.FloatField("Price per Adult", blank=True,default=0)
     pricep_kid = models.FloatField("Price per Kid", blank=True,default=0)
     days = models.IntegerField("Days", blank=True,default=1)
-    start_date = models.DateTimeField("From", default=timezone.now,blank=True, null=True, validators=[validate_date])
-    end_date = models.DateTimeField("To", default=date.today,blank=True, null=True)
-    date_added = models.DateTimeField("Date Added", auto_now_add=True)
+    start_date = models.DateField("From", default=date.today,blank=True, null=True, validators=[validate_date])
+    end_date = models.DateField("To", default=date.today,blank=True, null=True)
+    approved = models.BooleanField("Approved?", default=False)
+    paid = models.BooleanField("Paid?", default=False)
+    date_added = models.DateTimeField("Date Booked", auto_now_add=True)
 
 
     def __str__(self):
@@ -124,8 +130,12 @@ class booking(models.Model):
 class payment(models.Model):
 
     booking = models.ForeignKey(booking, on_delete=models.CASCADE, verbose_name="Package",)
-    agency = models.CharField("Travel Agency", max_length=255,blank=True)
+    agency = models.CharField("Agency", max_length=255,blank=True)
+    agencyname = models.CharField("Travel Agency", max_length=255,blank=True)
+    agencycontact = models.CharField("Agency Contact", max_length=255,blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Client",)
+    user_full = models.CharField("Client", max_length=255,blank=True)
+    clientemail = models.CharField("Email", max_length=255,blank=True)
     amountpaid = models.FloatField("Amount Paid ($USD)", blank=True,default=0)
     transaction_status = models.CharField("Transaction Status", max_length=255,blank=True)
     transaction_id = models.CharField("Transaction ID", max_length=255,blank=True,unique=True)
@@ -135,9 +145,9 @@ class payment(models.Model):
     pricep_adult = models.FloatField("Price per Adult", blank=True,default=0)
     pricep_kid = models.FloatField("Price per Kid", blank=True,default=0)
     days = models.IntegerField("Days", blank=True,default=1)
-    start_date = models.DateTimeField("From", blank=True, null=True)
-    end_date = models.DateTimeField("To", blank=True, null=True)
-    date_added = models.DateTimeField("Date Added", blank=True)
+    start_date = models.DateField("From", blank=True, null=True)
+    end_date = models.DateField("To", blank=True, null=True)
+    date_added = models.DateTimeField("Date Booked", blank=True)
     date_paid = models.DateTimeField("Date Paid", auto_now_add=True)
 
 
