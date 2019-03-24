@@ -8,6 +8,7 @@ from datetime import date
 from datetime import timedelta
 from django.utils import timezone
 from django.utils.html import format_html
+from django.template.defaultfilters import truncatechars  # or truncatewords
 
 
 class destination(models.Model):
@@ -25,6 +26,10 @@ class destination(models.Model):
 
     def __str__(self):
         return self.d_name
+    
+    @property
+    def short_description(self):
+        return truncatechars(self.d_description, 100)
 
     class Meta:
         ordering = ('d_name',)
@@ -64,6 +69,10 @@ class package(models.Model):
 
     def __str__(self):
         return self.p_name
+
+    @property
+    def short_description(self):
+        return truncatechars(self.p_description, 100)
 
     class Meta:
         ordering = ('p_name', 'd_name')

@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import destination, package, booking, Hotel, payment
 
 class EventModelAdmin(admin.ModelAdmin):
-    list_display = ["d_name", "d_location", "d_description", 'd_pic1', 'd_pic2', 'd_pic3', 'd_email', 'd_reviews', 'd_uploaded_at']
+    list_display = ["d_name", "d_location", "short_description", 'd_pic1', 'd_pic2', 'd_pic3', 'd_email', 'd_reviews', 'd_uploaded_at']
     list_display_links = ["d_name", 'd_pic1', 'd_pic2', 'd_pic3']
     list_filter = ["d_location", "d_name"]
     # list_per_page = 10
@@ -13,7 +13,7 @@ class EventModelAdmin(admin.ModelAdmin):
         model = destination
 
 class EventModelAdmin1(admin.ModelAdmin):
-    list_display = ["p_name", "p_category", "d_name", 'p_agency', 'agency', 'agency_phone', 'pricep_adult', 'pricep_kid', 'from_day', 'to_day', 'p_slots', 'available']
+    list_display = ["p_name", "p_category", "d_name", 'p_agency', 'agency', 'agency_phone', 'pricep_adult', 'pricep_kid', 'from_day', 'to_day', 'p_slots', 'available', "short_description",]
     list_display_links = ["p_name"]
     list_filter = ["d_name", "p_category", "p_agency", "from_day", "available"]
     list_per_page = 10

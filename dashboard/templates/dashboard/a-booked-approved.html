@@ -214,7 +214,7 @@
                                 Account
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/profile/edit" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
+                                <a class="nav-link" href="/dashboard/profile1/edit" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
                                 
                             </li>
                             
@@ -293,13 +293,18 @@
                                                               <div class="card mb-3">
                                                                     <div class="card-header" style="color:green">
                                                                       <i class="fa fa-table"></i> Approved Bookings</div>
-                                                                    <!-- <div class="card-body">
+                                                                    <div class="card-body">
                                                                       
-                                                                        <label>Search:</label>
-                                                                        {% csrf_token %}
-                                                                        <input type="text" name="search" id="psearch">
+                                                                         <!-- Export table data -->
+                                                                  {% load querystring from django_tables2 %}
+                                                                  <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                                  <a style="color:green;" href="{% querystring '_export'='csv' %}">Export Table as CSV</a>
+                                                                  <span class="m-l-10"></span><span class="m-l-20">
+                                                                  <a style="color:green;" href="{% querystring '_export'='xls' %}">Export Table as XLS</a>
+                                                                  </div>
+                                                                  <!-- Export table data -->
                                                                        
-                                                                      </div> -->
+                                                                      </div>
                                                                       <div class="row" id="searchresults4">
                                                                       </div>
       

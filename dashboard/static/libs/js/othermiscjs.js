@@ -6,7 +6,7 @@ $(document).on('click', '.confirm-delete', function(){
 
 // Django Cancel Booking Confirmation
 $(document).on('click', '.confirm-cancel1', function(){
-    return confirm('Are you sure you want to cancel this booking?');
+    return confirm('Are you sure you want to delete this booking?');
 })
 // Django Cancel Booking Confirmation
 

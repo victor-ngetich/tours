@@ -259,14 +259,19 @@
                             <!-- Table -->
                             <div class="card">
                                 <div class="card-header" style="color:sienna">
-                                    <i class="fa fa-table"></i> Payments Report</div>
-                                <!-- <div class="card-body">
+                                    <i class="fa fa-table"></i> Customer Payments Report</div>
+                                <div class="card-body">
                                     
-                                    <label>Search:</label>
-                                    {% csrf_token %}
-                                    <input type="text" name="search" id="psearch">
+                                     <!-- Export table data -->
+                                     {% load querystring from django_tables2 %}
+                                     <div class="float-xl-right float-none mt-xl-0 mt-4" style="color:green;">
+                                     <a style="color:green;" href="{% querystring '_export'='csv' %}">Export Table as CSV</a>
+                                     <span class="m-l-10"></span><span class="m-l-20">
+                                     <a style="color:green;" href="{% querystring '_export'='xls' %}">Export Table as XLS</a>
+                                     </div>
+                                     <!-- Export table data -->
                                     
-                                    </div> -->
+                                    </div>
                                     <div class="row" id="searchresults4">
                                     </div>
 

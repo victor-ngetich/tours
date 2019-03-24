@@ -18,6 +18,8 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse
+from django_tables2.config import RequestConfig
+from django_tables2.export.export import TableExport
 from .models import destination, package, booking, Hotel, payment
 from dashboard.tables import PaymentsTable, ApprovedBookingsTable, AgencyPaymentsTable
 from django_tables2 import RequestConfig
@@ -33,7 +35,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def explore(request):
 	now = datetime.datetime.now()
 	d = destination.objects.all()
@@ -174,6 +176,11 @@ def approved_bookings(request):
 	# a = booking.objects.all().filter(agency=request.user, approved=True,)
 	b = ApprovedBookingsTable(booking.objects.all().filter(agency=request.user, approved=True, paid=False).order_by('p_name2'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(b)
+
+	export_format = request.GET.get('_export', None)
+	if TableExport.is_valid_format(export_format):
+		exporter = TableExport(export_format, b)
+		return exporter.response('Approved_Bookings.{}'.format(export_format))
 	context = {"now":now, "b": b}
 	return render(request, 'dashboard/a-booked-approved.html', context, locals())
 
@@ -181,12 +188,22 @@ def payments(request):
 	now = datetime.datetime.now()
 	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
+
+	export_format = request.GET.get('_export', None)
+	if TableExport.is_valid_format(export_format):
+		exporter = TableExport(export_format, payments)
+		return exporter.response('Payments_Report.{}'.format(export_format))
 	return render(request, 'dashboard/payments.html', {'now':now, 'payments':payments})
 
 def payments1(request):
 	now = datetime.datetime.now()
 	payments = AgencyPaymentsTable(payment.objects.all().filter(agency = request.user).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
+
+	export_format = request.GET.get('_export', None)
+	if TableExport.is_valid_format(export_format):
+		exporter = TableExport(export_format, payments)
+		return exporter.response('Customer_Payments_Report.{}'.format(export_format))
 	return render(request, 'dashboard/a-payments.html', {'now':now, 'payments':payments})
 
 def ourpackages(request):
@@ -203,7 +220,7 @@ def unavailable_packages(request):
 	a = package.objects.all().filter(Q(agency=request.user), (Q(available=False) | Q(to_day__range=[s,t])))
 	return render(request, 'dashboard/a-unavailable-packages.html', {'a':a},locals())
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def allpackages(request):
 	b = request.user.get_full_name()
 	t = timezone.now()
