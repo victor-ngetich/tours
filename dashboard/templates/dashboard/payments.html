@@ -24,6 +24,11 @@ body {
 a {
     color: blue;
 }
+input, label {
+    float:left;
+    margin:5px;
+}
+
 </style>
 
     <title>Transaction History</title>
@@ -192,6 +197,10 @@ a {
                                 
                             </li>
                             <li class="nav-item ">
+                                    <a class="nav-link" href="/dashboard/pending-bookings/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-clock"></i>Pending Bookings<span class="badge badge-success">6</span></a>
+                                    
+                            </li>
+                            <li class="nav-item ">
                                 <a class="nav-link" href="/dashboard/bookings" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-location-arrow"></i>All Bookings<span class="badge badge-success">6</span></a>
                                 
                             </li>
@@ -276,21 +285,27 @@ a {
                                                               <div class="card-header" style="color:sienna">
                                                                 <i class="fa fa-table"></i> Payments Report</div>
                                                               <div class="card-body">
-                                                                
-                                                                  <label>Search:</label>
+                                                                <form id="flight" action="/dashboard/payments-filter/" method="POST">
                                                                   {% csrf_token %}
-                                                                  <input type="text" name="search" id="psearch">
+                                                                  <input type="text" name="search" id="psearch" placeholder="Search...">
+                                                                    <label>Start:</label>
+                                                                        <input type="datetime-local" name="start1"/>
+                                                                    <label>End:</label>
+                                                                        <input type="datetime-local" name="end1"/>
+                                                                        <input class="btn btn-success btn-sm" type="submit" value="Filter by Date"/>
 
-                                                                  <!-- Export table data -->
+
+                                                                          <!-- Export table data -->
                                                                   {% load querystring from django_tables2 %}
                                                                   <div class="float-xl-right float-none mt-xl-0 mt-4">
                                                                   <a style="color:green;" href="{% querystring '_export'='csv' %}">Export Table as CSV</a>
-                                                                  <span class="m-l-10"></span><span class="m-l-20">
+                                                                  <br>
+                                                                  <!-- <span class="m-l-10"></span><span class="m-l-20"> -->
                                                                   <a style="color:green;" href="{% querystring '_export'='xls' %}">Export Table as XLS</a>
                                                                   </div>
                                                                   <!-- Export table data -->
-
-                                                                </div>
+                                                                </form>
+                                                            </div>
                                                                 <div class="row" id="searchresults4">
                                                                 
 

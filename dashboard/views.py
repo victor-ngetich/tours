@@ -84,7 +84,7 @@ def paymentsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
 		print(search_text)
-		articles = payment.objects.all().filter(Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text))[:15]
+		articles = payment.objects.all().filter(Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
 		print(articles)
 
 		now = datetime.datetime.now()
@@ -167,6 +167,16 @@ def bookings1(request):
 	context = {"a": a}
 	return render(request, 'dashboard/bookings.html', context, locals())
 
+def pending_bookings(request):
+	a = booking.objects.all().filter(user=request.user, approved=False, paid =False)
+	# b = booking.objects.all().filter(approved=False)
+
+	# b = booking.objects.get(pk=pk).approved
+	# print(b)
+	# c = booking.objects.filter(pk=pk).update(approved=True)
+	context = {"a": a}
+	return render(request, 'dashboard/pending-bookings.html', context, locals())
+
 def to_do_trips(request):
 	a = booking.objects.all().filter(user=request.user, approved=True).order_by('-paid', '-id')
 	# b = booking.objects.all().filter(approved=False)
@@ -206,9 +216,38 @@ def payments(request):
 		return exporter.response('Payments_Report.{}'.format(export_format))
 	return render(request, 'dashboard/payments.html', {'now':now, 'payments':payments})
 
-def payments2(request):
+def payments_filter(request):
+	if request.method=="POST":
+		a = request.POST['start1']
+		b = request.POST['end1']
+		print(a)
+		# f = u''b''
+		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
+		print(c)
+		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
+		# print(d)
+		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
+		# t = datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
+		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
+		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
+		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
+		print(g)
+
+		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
+		print(i)
+		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
+		# print(v)
+		# e = unicode(v, "utf-8")
+		# print(e)
+
+
+		# print(a)
+		# print(b)
+	else:
+		pass
 	now = datetime.datetime.now()
-	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user).order_by('-date_paid'))
+	payments = PaymentsTable(payment.objects.all().filter(date_paid__range=[g, i]).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
 
 	export_format = request.GET.get('_export', None)
@@ -336,6 +375,8 @@ def delete_bookings2(request, pk):
 	# print(f)
 	# print(a.pk)
 	c = package.objects.filter(pk=a.pk).update(p_slots=f+c)
+	d = package.objects.filter(pk=a.pk).update(available=True)
+
 	# b = a.values_list('p_slots', flat=True)
 	# print(b)
 
@@ -352,6 +393,7 @@ def delete_bookings3(request, pk):
 	# print(f)
 	# print(a.pk)
 	c = package.objects.filter(pk=a.pk).update(p_slots=f+c)
+	d = package.objects.filter(pk=a.pk).update(available=True)
 	# b = a.values_list('p_slots', flat=True)
 	# print(b)
 
@@ -455,7 +497,7 @@ def bookpackage(request, pk):
 		d = int(a)-int(c)
 		if d < 0:
 			messages.info(request,'The total number of people in your booking exceeds the number of slots available.')
-			return HttpResponseRedirect('/dashboard/bookings/')
+			return HttpResponseRedirect('/dashboard/pending-bookings/')
 			# return redirect ('test1', pk=d)
 		else:
 		#v = destination.objects.all().get(id=pk)
@@ -472,10 +514,10 @@ def bookpackage(request, pk):
 				e = package.objects.filter(pk=pk).update(available=False)
 			else:
 				pass
-			return HttpResponseRedirect('/dashboard/bookings/')
+			return HttpResponseRedirect('/dashboard/pending-bookings/')
 	# except:
 		messages.info(request,'There must have been a problem, please try again')
-		return HttpResponseRedirect('/dashboard/bookings/')
+		return HttpResponseRedirect('/dashboard/pending-bookings/')
 			# if form.is_valid():
 			# 	adults = form.cleaned_data['adults']
 			# 	kids = form.cleaned_data['kids']
@@ -486,7 +528,7 @@ def bookpackage(request, pk):
 			
 	else:
 		form = BookingOptions(request.POST or None)
-		return render(request, 'dashboard/bookings.html', {'p':p, 'form':form, 'b':b},locals())
+		return render(request, 'dashboard/pending-bookings.html', {'p':p, 'form':form, 'b':b},locals())
 
 def approve_booking(request, pk):
 	a = booking.objects.get(pk=pk).approved

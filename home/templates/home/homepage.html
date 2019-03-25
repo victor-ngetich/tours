@@ -100,12 +100,20 @@
     <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url({% static "img/bg-img/hero-1.jpg" %}?{% now "U" %});">
         
         <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center">
+            <div class="row h-100 justify-content-center">
                 <div class="col-12 col-md-10">
                     <div class="hero-content">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                         <h2>Discover places near you</h2>
                         <h4>Your Safari Awaits...</h4>
                     </div>
+                <!-- </div> -->
+
                     <!-- Hero Search Form -->
                     <div class="hero-search-form">
 
@@ -115,18 +123,20 @@
         <div class="carousel-inner text-center">
             <div class="carousel-item active">
                 <div class="d-flex h-100 align-items-center justify-content-center">
-                    <p style="color:white">
-                    The Kenyan Thrill is a web application system whose business operations center around two things:
+                    <p style="color:white; font-size: 14px;">
+                        <strong>The Kenyan Thrill</strong> is a web application system whose business operations center around two things:
                         <br>
-                        Travel agencies sign up for an account and offer tour packages described with all the relevant details and approved bookings for the same packages
                         <br>
-                        Tourists sign up for a tourist account whereby they can:
+                        <i class="fa fas fa-info-circle"></i> Travel agencies sign up for an account and offer tour packages described with all the relevant details and approve bookings for the same packages.
+                        <br>
+                        <br>
+                        <i class="fa fas fa-info-circle"></i> Tourists sign up for a tourist account whereby they can:
                         <br>
                         <i class="fa fas fa-check"></i> Explore destinations.
                             <br>
                             <i class="fa fas fa-check"></i> Browse through offered packages.
                             <br>
-                            <i class="fa fas fa-check"></i> Make bookings with appriate customizations.
+                            <i class="fa fas fa-check"></i> Make bookings with appropriate customizations.
                             <br>
                             <i class="fa fas fa-check"></i> Pay for bookings after approval.
                             <br>
@@ -137,7 +147,12 @@
             {% for p in d %}
             <div class="carousel-item">
                 <div class="d-flex h-100 align-items-center justify-content-center">
-                    <p>{{p.d_name}}</p>
+                    <p style="color:white">
+                        <strong>{{p.d_name}}</strong>
+                        <br>
+                        <br>
+                        {{p.d_description}}
+                    </p>
                 </div>
             </div>
             {% endfor%}
@@ -147,7 +162,7 @@
                 </div>
             </div> -->
         </div>
-    </div>
+    <!-- </div> -->
 
 <!-- test -->
 
@@ -269,7 +284,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Single Catagory Area --
+                            <!- Single Catagory Area --
                             <div class="col-12 col-sm-6 col-md">
                                 <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.8s">
                                     <div class="catagory-content">
@@ -280,7 +295,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Single Catagory Area --
+                            <! Single Catagory Area --
                             <div class="col-12 col-md">
                                 <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="1s">
                                     <div class="catagory-content">
@@ -300,18 +315,18 @@
     <!-- ***** Catagory Area End ***** -->
 
     <!-- ***** About Area Start ***** -->
-    <section class="dorne-about-area section-padding-0-0">
+    <!-- <section class="dorne-about-area section-padding-0-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="about-content text-center">
-                        <br
-                        <!-- <p...</p -->
+                        <br>
+                        The Kenyan Thrill
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- ***** About Area End ***** -->
 
     <!-- ***** Editor Pick Area Start ***** --
@@ -753,7 +768,25 @@
                     <div class="footer-text">
                         <p>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-2019
+                            <p style="color:black; font-size: 14px;">
+                                    <strong>The Kenyan Thrill</strong> is a web application system whose business operations center around two things:
+                                    <br>
+                                    <br>
+                                    <i class="fa fas fa-info-circle"></i> Travel agencies sign up for an account and offer tour packages described with all the relevant details and approve bookings for the same packages.
+                                    <br>
+                                    <br>
+                                    <i class="fa fas fa-info-circle"></i> Tourists sign up for a tourist account whereby they can:
+                                    <br>
+                                    <i class="fa fas fa-check"></i> Explore destinations.
+                                        <br>
+                                        <i class="fa fas fa-check"></i> Browse through offered packages.
+                                        <br>
+                                        <i class="fa fas fa-check"></i> Make bookings with appropriate customizations.
+                                        <br>
+                                        <i class="fa fas fa-check"></i> Pay for bookings after approval.
+                                        <br>
+                                        <i class="fa fas fa-check"></i> Travel!
+                                </p>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
