@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 from .models import destination, package, booking, Hotel, payment
 
 class EventModelAdmin(admin.ModelAdmin):
@@ -56,9 +57,17 @@ class EventModelAdmin4(admin.ModelAdmin):
     class Meta:
         model = payment
 
+class EventModelAdmin5(admin.ModelAdmin):
+    list_display = ["username", "is_active"]
+
+    class Meta:
+        model = User
+
+
 admin.site.site_header = 'The Kenyan Thrill Administration'
 admin.site.register(destination,EventModelAdmin)
 admin.site.register(package,EventModelAdmin1)
 admin.site.register(booking,EventModelAdmin2)
 admin.site.register(Hotel,EventModelAdmin3)
 admin.site.register(payment,EventModelAdmin4)
+# admin.site.register(User,EventModelAdmin5)

@@ -36,9 +36,12 @@ def login_view(request):
 			username = form.cleaned_data.get("username")
 			password = form.cleaned_data.get("password")
 			user = authenticate(username=username,password=password)
+			next = request.POST.get('next', '/')
+			
 			login(request, user)
 			if user.groups.filter(name='Tourist').exists():
 				return HttpResponseRedirect('/explore/')
+				# return HttpResponseRedirect(next)
 			if user.groups.filter(name='Tour Agency').exists():
 				return HttpResponseRedirect('/ourpackages/')
 		else:

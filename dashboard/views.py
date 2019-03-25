@@ -84,12 +84,23 @@ def paymentsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
 		print(search_text)
-		articles = payment.objects.all().filter(Q(booking__icontains=search_text) | Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text))[:15]
-		return render(request,'dashboard/isearch.html',{'articles':articles})
+		articles = payment.objects.all().filter(Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text))[:15]
+		print(articles)
+
+		now = datetime.datetime.now()
+		payments = PaymentsTable(articles)
+		RequestConfig(request, paginate={"per_page": 5}).configure(payments)
+
+		export_format = request.GET.get('_export', None)
+		if TableExport.is_valid_format(export_format):
+			exporter = TableExport(export_format, payments)
+			return exporter.response('Payments_Report.{}'.format(export_format))
+
+		return render(request,'dashboard/paysearch1.html',{'payments':payments})
 	else:
 		search_text = ''
 		pass
-	
+
 
 def ourpackagesearch (request):
 	if request.method=="POST":
@@ -147,7 +158,7 @@ def test1(request,pk):
 	return render(request, 'dashboard/destination.html',{'f':f,'g':g, 'h':h,'instance':instance, 'form': form},locals())
 
 def bookings1(request):
-	a = booking.objects.all().filter(user=request.user)
+	a = booking.objects.all().filter(user=request.user).order_by('paid', '-approved', '-id')
 	# b = booking.objects.all().filter(approved=False)
 
 	# b = booking.objects.get(pk=pk).approved
@@ -157,7 +168,7 @@ def bookings1(request):
 	return render(request, 'dashboard/bookings.html', context, locals())
 
 def to_do_trips(request):
-	a = booking.objects.all().filter(user=request.user, approved=True)
+	a = booking.objects.all().filter(user=request.user, approved=True).order_by('-paid', '-id')
 	# b = booking.objects.all().filter(approved=False)
 
 	# b = booking.objects.get(pk=pk).approved
@@ -185,6 +196,17 @@ def approved_bookings(request):
 	return render(request, 'dashboard/a-booked-approved.html', context, locals())
 
 def payments(request):
+	now = datetime.datetime.now()
+	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user).order_by('-date_paid'))
+	RequestConfig(request, paginate={"per_page": 5}).configure(payments)
+
+	export_format = request.GET.get('_export', None)
+	if TableExport.is_valid_format(export_format):
+		exporter = TableExport(export_format, payments)
+		return exporter.response('Payments_Report.{}'.format(export_format))
+	return render(request, 'dashboard/payments.html', {'now':now, 'payments':payments})
+
+def payments2(request):
 	now = datetime.datetime.now()
 	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)

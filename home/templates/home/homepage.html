@@ -81,7 +81,7 @@
                             
                             <!-- Signin btn -->
                             <div class="dorne-signin-btn">
-                                <a href="/accounts/login" class="btn dorne-btn dorne-btn1">Sign In</a>
+                                <a href="/accounts/login/?next=/explore/" class="btn dorne-btn dorne-btn1">Sign In</a>
                             </div>
 
                             <!-- Add listings btn -->
@@ -108,6 +108,49 @@
                     </div>
                     <!-- Hero Search Form -->
                     <div class="hero-search-form">
+
+<!-- test -->
+
+<div class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner text-center">
+            <div class="carousel-item active">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                    <p style="color:white">
+                    The Kenyan Thrill is a web application system whose business operations center around two things:
+                        <br>
+                        Travel agencies sign up for an account and offer tour packages described with all the relevant details and approved bookings for the same packages
+                        <br>
+                        Tourists sign up for a tourist account whereby they can:
+                        <br>
+                        <i class="fa fas fa-check"></i> Explore destinations.
+                            <br>
+                            <i class="fa fas fa-check"></i> Browse through offered packages.
+                            <br>
+                            <i class="fa fas fa-check"></i> Make bookings with appriate customizations.
+                            <br>
+                            <i class="fa fas fa-check"></i> Pay for bookings after approval.
+                            <br>
+                            <i class="fa fas fa-check"></i> Travel!
+                    </p>
+                </div>
+            </div>
+            {% for p in d %}
+            <div class="carousel-item">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                    <p>{{p.d_name}}</p>
+                </div>
+            </div>
+            {% endfor%}
+            <!-- <div class="carousel-item">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                    <p>Text 3</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+<!-- test -->
+
                         <!-- Tabs -->
                         <!-- <div class="nav nav-tabs" id="heroTab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Attractions</a>

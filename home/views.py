@@ -4,10 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.core.mail import EmailMessage
+from dashboard.models import destination, package, booking, Hotel, payment
 
 # Create your views here.
 def home(request):
-    return render(request, 'home/homepage.html')
+    d = destination.objects.all()
+    return render(request, 'home/homepage.html', {'d':d})
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
