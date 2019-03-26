@@ -361,7 +361,7 @@
                                                     <!-- Form action into a sandbox account -->
                                                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" name='_xclick' style="padding: 0; margin: 0;">
                                                         <input type="hidden" name="cmd" value="_xclick" />
-                                                        <input type="hidden" name="business" value="vnpaypal@gmail.com" />
+                                                        <input type="hidden" name="business" value="{{p.agencyemail}}" />
                                                         <input type="hidden" name="quantity" value="1" />
                                                         <input type="hidden" name="item_name" value="{{p.p_name2}}" />
                                                         <input type="hidden" name="item_number" value="{{p.id}}" />

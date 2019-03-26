@@ -28,5 +28,5 @@ class ApprovedBookingsTable(tables.Table):
 	# amend = CheckBoxColumnWithName(verbose_name="Select", accessor="pk")
 	class Meta:
 		model = booking
-		fields = ("user_full", "p_name2", "clientemail", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_added", "approved")
+		fields = ("user_full", "p_name2", "clientemail", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_added", "approved", "paid")
 		attrs = {'class': 'table-bordered table-striped table-hover'}

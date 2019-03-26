@@ -237,7 +237,7 @@ def bookings2(request):
 def approved_bookings(request):
 	now = datetime.datetime.now()
 	# a = booking.objects.all().filter(agency=request.user, approved=True,)
-	b = ApprovedBookingsTable(booking.objects.all().filter(agency=request.user, approved=True, paid=False).order_by('p_name2'))
+	b = ApprovedBookingsTable(booking.objects.all().filter(agency=request.user, approved=True).order_by('p_name2'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(b)
 
 	export_format = request.GET.get('_export', None)
@@ -613,7 +613,7 @@ def bookpackage(request, pk):
 		#v = destination.objects.all().get(id=pk)
 		# r = Hotel.objects.get(pk=hotel)
 
-			b = booking.objects.create(user=request.user, user_full=e, clientemail=f, hotel=h, agency=p.agency, agencyname=p.p_agency, agencycontact=p.agency_phone, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end)
+			b = booking.objects.create(user=request.user, user_full=e, clientemail=f, hotel=h, agency=p.agency, agencyname=p.p_agency, agencyemail=p.agencyemail, agencycontact=p.agency_phone, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end)
 			
 			p.p_slots = int(a)-int(c)
 			p.save()
@@ -650,6 +650,7 @@ def approve_booking(request, pk):
 @ensure_csrf_cookie
 def post(request):
 	b = request.user.get_full_name()
+	c = request.user.email
 	if request.method=="POST":
 		form = AddPackage(request.POST or None)
 
@@ -671,7 +672,7 @@ def post(request):
 			else:
 				pass
 
-			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b,agency_phone=phone,pricep_adult=price1, pricep_kid=price2, from_day=from_date, to_day=to_date,p_slots=slots, available=a, p_description=description)
+			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b, agencyemail=c, agency_phone=phone,pricep_adult=price1, pricep_kid=price2, from_day=from_date, to_day=to_date,p_slots=slots, available=a, p_description=description)
 			return HttpResponseRedirect('/ourpackages/')
 			messages.info(request, 'Your product was posted successfully.')
 		else:

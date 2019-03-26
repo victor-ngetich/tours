@@ -55,7 +55,7 @@ def paydone(request):
         return HttpResponseRedirect('/dashboard/bookings/')
     else:
         i = booking.objects.get(id=d)
-        j = payment.objects.create(booking=i, user=request.user, user_full=i.user_full, clientemail=i.clientemail, hotel=i.hotel, agency=i.agency, agencyname=i.agencyname, agencycontact=i.agencycontact, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, amountpaid=a, start_date=i.start_date, end_date=i.end_date, days=i.days, transaction_status=e,transaction_id=f)
+        j = payment.objects.create(booking=i, user=request.user, user_full=i.user_full, agencyemail=i.agencyemail, clientemail=i.clientemail, hotel=i.hotel, agency=i.agency, agencyname=i.agencyname, agencycontact=i.agencycontact, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, amountpaid=a, start_date=i.start_date, end_date=i.end_date, days=i.days, transaction_status=e,transaction_id=f)
         k = booking.objects.get(pk=d).paid
         l = booking.objects.filter(pk=d).update(paid=True)
     # except:
