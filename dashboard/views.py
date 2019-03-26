@@ -35,7 +35,6 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 # Create your views here.
 
-@login_required
 def explore(request):
 	now = datetime.datetime.now()
 	d = destination.objects.all()
@@ -161,6 +160,7 @@ def filter3 (request):
 		return render(request,'dashboard/filter.html',{'articles':articles})
 
 
+@login_required
 def test1(request,pk):
 	f = destination.objects.all().get(pk=pk)
 	t = timezone.now()
@@ -218,6 +218,7 @@ def pending_bookings(request):
 	context = {"a": a}
 	return render(request, 'dashboard/pending-bookings.html', context, locals())
 
+@login_required
 def to_do_trips(request):
 	a = booking.objects.all().filter(user=request.user, approved=True).order_by('-paid', '-id')
 	# b = booking.objects.all().filter(approved=False)
@@ -301,30 +302,16 @@ def payments1_filter(request):
 	if request.method=="POST":
 		a = request.POST['start1']
 		b = request.POST['end1']
-		print(a)
-		# f = u''b''
+
 		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
-		print(c)
 		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
-		# print(d)
-		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
-		# t = datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
-		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
+
 		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
 		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
-		print(g)
 
 		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
 		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
-		print(i)
-		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
-		# print(v)
-		# e = unicode(v, "utf-8")
-		# print(e)
 
-
-		# print(a)
-		# print(b)
 	else:
 		pass
 	now = datetime.datetime.now()
@@ -335,6 +322,7 @@ def payments1_filter(request):
 	if TableExport.is_valid_format(export_format):
 		exporter = TableExport(export_format, payments)
 		return exporter.response('Customer_Payments_Report.{}'.format(export_format))
+		
 	return render(request, 'dashboard/a-payments.html', {'now':now, 'payments':payments})
 
 def bookings_filter(request):
@@ -533,6 +521,7 @@ class PackageDelete(DeleteView):
     model = package
     success_url = reverse_lazy('ourpackages')
 
+@login_required
 def editprofile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
