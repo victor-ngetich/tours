@@ -84,7 +84,7 @@ def paymentsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
 		print(search_text)
-		articles = payment.objects.all().filter(Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
+		articles = payment.objects.all().filter(Q(user_id = request.user), Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
 		print(articles)
 
 		now = datetime.datetime.now()
@@ -101,6 +101,47 @@ def paymentsearch (request):
 		search_text = ''
 		pass
 
+def paymentsearch1 (request):
+	if request.method=="POST":
+		search_text = request.POST['search_text']
+		print(search_text)
+		articles = payment.objects.all().filter(Q(agency = request.user), Q(user_full__icontains=search_text)| Q(clientemail__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
+		print(articles)
+
+		now = datetime.datetime.now()
+		payments = AgencyPaymentsTable(articles)
+		RequestConfig(request, paginate={"per_page": 5}).configure(payments)
+
+		export_format = request.GET.get('_export', None)
+		if TableExport.is_valid_format(export_format):
+			exporter = TableExport(export_format, payments)
+			return exporter.response('Customer_Payments_Report.{}'.format(export_format))
+
+		return render(request,'dashboard/paysearch2.html',{'payments':payments})
+	else:
+		search_text = ''
+		pass
+
+def bookingsearch (request):
+	if request.method=="POST":
+		search_text = request.POST['search_text']
+		print(search_text)
+		articles = booking.objects.all().filter(Q(agency=request.user, approved=True, paid=False), Q(user_full__icontains=search_text) | Q(clientemail__icontains=search_text) | Q(date_added__icontains=search_text))[:15]
+		print(articles)
+
+		now = datetime.datetime.now()
+		b = ApprovedBookingsTable(articles)
+		RequestConfig(request, paginate={"per_page": 5}).configure(b)
+
+		export_format = request.GET.get('_export', None)
+		if TableExport.is_valid_format(export_format):
+			exporter = TableExport(export_format, b)
+			return exporter.response('Approved_Bookings.{}'.format(export_format))
+
+		return render(request,'dashboard/bsearch1.html',{'b':b})
+	else:
+		search_text = ''
+		pass
 
 def ourpackagesearch (request):
 	if request.method=="POST":
@@ -247,7 +288,7 @@ def payments_filter(request):
 	else:
 		pass
 	now = datetime.datetime.now()
-	payments = PaymentsTable(payment.objects.all().filter(date_paid__range=[g, i]).order_by('-date_paid'))
+	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user, date_paid__range=[g, i]).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
 
 	export_format = request.GET.get('_export', None)
@@ -255,6 +296,86 @@ def payments_filter(request):
 		exporter = TableExport(export_format, payments)
 		return exporter.response('Payments_Report.{}'.format(export_format))
 	return render(request, 'dashboard/payments.html', {'now':now, 'payments':payments})
+
+def payments1_filter(request):
+	if request.method=="POST":
+		a = request.POST['start1']
+		b = request.POST['end1']
+		print(a)
+		# f = u''b''
+		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
+		print(c)
+		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
+		# print(d)
+		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
+		# t = datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
+		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
+		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
+		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
+		print(g)
+
+		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
+		print(i)
+		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
+		# print(v)
+		# e = unicode(v, "utf-8")
+		# print(e)
+
+
+		# print(a)
+		# print(b)
+	else:
+		pass
+	now = datetime.datetime.now()
+	payments = AgencyPaymentsTable(payment.objects.all().filter(agency = request.user, date_paid__range=[g, i]).order_by('-date_paid'))
+	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
+
+	export_format = request.GET.get('_export', None)
+	if TableExport.is_valid_format(export_format):
+		exporter = TableExport(export_format, payments)
+		return exporter.response('Customer_Payments_Report.{}'.format(export_format))
+	return render(request, 'dashboard/a-payments.html', {'now':now, 'payments':payments})
+
+def bookings_filter(request):
+	if request.method=="POST":
+		a = request.POST['start1']
+		b = request.POST['end1']
+		print(a)
+		# f = u''b''
+		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
+		print(c)
+		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
+		# print(d)
+		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
+		# t = datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
+		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
+		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
+		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
+		print(g)
+
+		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
+		print(i)
+		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
+		# print(v)
+		# e = unicode(v, "utf-8")
+		# print(e)
+
+
+		# print(a)
+		# print(b)
+	else:
+		pass
+	now = datetime.datetime.now()
+	b = ApprovedBookingsTable(booking.objects.all().filter(agency=request.user, approved=True, paid=False, date_added__range=[g, i]).order_by('-date_added'))
+	RequestConfig(request, paginate={"per_page": 10}).configure(b)
+
+	export_format = request.GET.get('_export', None)
+	if TableExport.is_valid_format(export_format):
+		exporter = TableExport(export_format, b)
+		return exporter.response('Approved_Bookings_Report.{}'.format(export_format))
+	return render(request, 'dashboard/a-booked-approved.html', {'now':now, 'b':b})
 
 def payments1(request):
 	now = datetime.datetime.now()

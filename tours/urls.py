@@ -22,7 +22,7 @@ from django.contrib.auth import views
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_view, register_view,logout_page,reset_view,refer_view,success)
-from dashboard.views import (explore, filter, filter2, paymentsearch, pending_bookings, payments_filter, approve_booking, to_do_trips, unavailable_packages, approved_bookings, delete_bookings3, bookings2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
+from dashboard.views import (explore, filter, filter2, paymentsearch, bookings_filter, bookingsearch, paymentsearch1, payments1_filter, pending_bookings, payments_filter, approve_booking, to_do_trips, unavailable_packages, approved_bookings, delete_bookings3, bookings2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
 from payment.views import (payprocess, paydone, paycancel)
 from django.conf.urls.static import static
 from django.conf import settings
@@ -45,6 +45,8 @@ urlpatterns = [
     url(r'^indexsearch/', indexsearch, name='indexsearch'),
     url(r'^packagesearch/', packagesearch, name='packagesearch'),
     url(r'^paymentsearch/', paymentsearch, name='paymentsearch'),
+    url(r'^paymentsearch1/', paymentsearch1, name='paymentsearch1'),
+    url(r'^bookingsearch/', bookingsearch, name='bookingsearch'),
     url(r'^ourpackagesearch/', ourpackagesearch, name='ourpackagesearch'),
     url(r'^p_filter/', filter2, name='filter2'),
     url(r'^t_filter/', filter3, name='filter3'),
@@ -64,6 +66,8 @@ urlpatterns = [
     url(r'^approved-bookings/',approved_bookings,name='approved_bookings'),
     url(r'^dashboard/payments/',payments,name='payments'),
     url(r'^dashboard/payments-filter/',payments_filter,name='payments_filter'),
+    url(r'^dashboard/payments-filter1/',payments1_filter,name='payments1_filter'),
+    url(r'^dashboard/bookings-filter/',bookings_filter,name='bookings_filter'),
     url(r'^dashboard/addpackage/',post,name='post'),
     url(r'^ourpackages/',ourpackages,name='ourpackages'),
     url(r'^unavailable-packages/',unavailable_packages,name='unavailable_packages'),

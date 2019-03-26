@@ -293,20 +293,30 @@
                                                               <div class="card mb-3">
                                                                     <div class="card-header" style="color:green">
                                                                       <i class="fa fa-table"></i> Approved Bookings</div>
-                                                                    <div class="card-body">
+                                                                      <div class="card-body">
+                                                                        <form id="flight" action="/dashboard/bookings-filter/" method="POST">
+                                                                          {% csrf_token %}
+                                                                          <input type="text" name="search" id="bsearch" placeholder="Search...">
+                                                                            <label>Start:</label>
+                                                                                <input type="datetime-local" name="start1"/>
+                                                                            <label>End:</label>
+                                                                                <input type="datetime-local" name="end1"/>
+                                                                                <input class="btn btn-success btn-sm" type="submit" value="Filter by Date Booked"/>
+        
+        
+                                                                                  <!-- Export table data -->
+                                                                          {% load querystring from django_tables2 %}
+                                                                          <div class="float-xl-right float-none mt-xl-0 mt-4">
+                                                                          <a style="color:green;" href="{% querystring '_export'='csv' %}">Export Table as CSV</a>
+                                                                          <br>
+                                                                          <!-- <span class="m-l-10"></span><span class="m-l-20"> -->
+                                                                          <a style="color:green;" href="{% querystring '_export'='xls' %}">Export Table as XLS</a>
+                                                                          </div>
+                                                                          <!-- Export table data -->
+                                                                        </form>
+                                                                    </div>
+                                                                      <div class="row" id="searchresults6">
                                                                       
-                                                                         <!-- Export table data -->
-                                                                  {% load querystring from django_tables2 %}
-                                                                  <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                                  <a style="color:green;" href="{% querystring '_export'='csv' %}">Export Table as CSV</a>
-                                                                  <span class="m-l-10"></span><span class="m-l-20">
-                                                                  <a style="color:green;" href="{% querystring '_export'='xls' %}">Export Table as XLS</a>
-                                                                  </div>
-                                                                  <!-- Export table data -->
-                                                                       
-                                                                      </div>
-                                                                      <div class="row" id="searchresults4">
-                                                                      </div>
       
                                                                         <div class="table-responsive">
                                                                         <table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -326,7 +336,7 @@
                                                                           
                                                                         </table>
                                                                       </div>
-                                                                    
+                                                                    </div>
                                                                     <div class="card-footer small text-muted">Updated at {{ now }}</div>
                                                                   </div>
                                                                 </div>
@@ -402,6 +412,7 @@ $("#selectCity").on("change", function () {
   $("#custom-modal").modal("hide");
 });
 </script>
+<script src="{% static 'libs/js/ajaxbookingssearch.js' %}?{% now "U" %}"></script>
 
 </body>
  
