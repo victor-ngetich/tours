@@ -1,11 +1,13 @@
 {% autoescape off %}
-Hi {{ user.username }},If this is you,Please click on the link below to confirm your registration for Woo Services Account in order to activate your account,
+Hi {{ user.username }},
+If this is you, please click on the link below to confirm your registration for The Kenyan Thrill account in order to activate your account.
 
 http://{{ domain }}{% url 'activate'  uidb64=uid token=token %}
 
-If clicking the link above doesn't work, please copy and paste the URL in a new browser
-window instead.
+If clicking the link above doesn't work, please copy and paste the URL in a new browser window instead.
+
+If you think you received this email by mistake, just ignore it.
 
 Sincerely,
-The Woo-Service express Team.
+The Kenyan Thrill Team
 {% endautoescape %}
