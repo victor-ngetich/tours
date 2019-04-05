@@ -1465,3 +1465,13 @@ body.modal-open #wrap{
     background-color: rgb(199, 130, 61);
     font-weight: 600;
 }
+
+.customfont1 {
+    font-family: 'Brush Script MT', sans-serif;
+    font-size: 72px!important;
+}
+
+.customfont2 {
+    font-family: 'Brush Script MT', sans-serif;
+    font-size: 42px!important;
+}
