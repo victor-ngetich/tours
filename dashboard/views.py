@@ -206,7 +206,7 @@ def bookings1(request):
 	# print(b)
 	# c = booking.objects.filter(pk=pk).update(approved=True)
 	context = {"a": a}
-	return render(request, 'dashboard/bookings.html', context, locals())
+	return render(request, 'dashboard/bookings1.html', context, locals())
 
 def pending_bookings(request):
 	a = booking.objects.all().filter(user=request.user, approved=False, paid =False)
