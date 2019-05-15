@@ -8,6 +8,7 @@
           width: 100%;
           display: block;
           transition: top 1s ease-in-out;
+          /* transition: top 0.3s; */
         }
         
         #navbar a {
@@ -29,50 +30,47 @@
 
     <!-- ***** Header Area Start ***** -->
     <header class="header_area" id="header">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col-12 h-100">
-                  <!-- <nav class="navbar-fixed-to-top navbar navbar-expand-md navbar-light navbar-laravel">   -->
-                    
-
-                        <div id="navbar">
-                    <nav class="h-100 navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="/"><img src="{% static 'img/core-img/logo.png' %}?{% now "U" %}" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-                        <!-- Nav -->
-                        <div class="collapse navbar-collapse" id="dorneNav">
-                            <ul class="navbar-nav mr-auto" id="dorneMenu">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="/explore" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="/allpackages" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Packages</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/contact">Contact Us</a>
-                                </li>
-                            </ul>
-                            <!-- Search btn -->
-                            
-                            <!-- Signin btn -->
-                            <div class="dorne-signin-btn">
-                                <a href="/accounts/login/?next=/explore/" class="btn dorne-btn dorne-btn1">Sign In</a>
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <nav class="h-100 navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/"><img src="{% static 'img/core-img/logo.png' %}?{% now "U" %}" alt=""></a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                            <!-- Nav -->
+                            <div class="collapse navbar-collapse" id="dorneNav">
+                                <ul class="navbar-nav mr-auto" id="dorneMenu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="/explore" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore</i></a>
+                                        
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="/allpackages" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Packages</a>
+                                        
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/contact">Contact Us</a>
+                                    </li>
+                                </ul>
+                                <!-- Search btn -->
+                                
+                                <!-- Signin btn -->
+                                <div class="dorne-signin-btn">
+                                    <a href="/accounts/login/?next=/explore/" class="btn dorne-btn dorne-btn1">Sign In</a>
+                                </div>
+    
+                                <!-- Add listings btn -->
+                                <div class="dorne-add-listings-btn">
+                                    <a href="/register" class="btn dorne-btn dorne-btn1">Sign Up</a>
+                                </div>
                             </div>
-
-                            <!-- Add listings btn -->
-                            <div class="dorne-add-listings-btn">
-                                <a href="/register" class="btn dorne-btn dorne-btn1">Register</a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
     <!-- ***** Header Area End ***** -->
 
 <script>

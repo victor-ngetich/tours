@@ -9,63 +9,59 @@
 
 	.dorne-welcome-area {
     	width: 100%;
-		height: 850px;
+		height: 1100px;
 	}
    
-    .header_area {
+    /* .header_area {
     	width: 0%;
-}
-	</style>
-
-
-    <!-- ***** Welcome Area Start ***** -->
-    <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url({% static "a/img/bg-img/hero-1.jpg" %}?{% now "U" %});">
-        
-        <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center">
-
-					<div class="container">
-
+} */
+		
+		</style>
+		
+			<!-- ***** Welcome Area Start ***** -->
+			<section class="dorne-welcome-area bg-img bg-overlay bimg">
+				
+				<div class="container h-100">
+					<div class="row h-100 align-items-center justify-content-center">
+		
+						<div class="container">
+		
 							<div class="featured-post-wrapper" style="margin:100px 0px;">
 														
 														<div class="featured-post-text-wrapper">
 							
 									<div class="row" style="margin-top:100px;">
-										<div class="col-md-4 col-md-offset-4"></div>
-										<div class="col-md-4 col-md-offset-4">
-											<div class="login-panel panel panel-default">
+										<div class="col-md-3 col-md-offset-4"></div>
+										
+							
+										<div class="col-md-6 col-md-offset-4" style="background-color:rgba(74, 51, 58, 0.750)">
+											<div class="login-panel panel panel-default" style="color:white;">
 												<div class="panel-heading">
-													<center><h3 class="panel-title" style="color:white;">Please fill in your details here </h3></center>
+													<br>
+													<center><h2 class="panel-title" style="color:white;">Please fill in your details here</h2></center>
 												</div>
 												<div class="panel-body">
-													<form method="post" action="/register/">{% csrf_token %}
-														<p class="bs-component">
-															<table class="radii">
-																<tbody style="color:white;">
-																{% csrf_token %}
-																{{form.as_table}}
-							
-																</tbody>
-															</table>
+													<form method="post" action="/accounts/login/">{% csrf_token %}
+														<p class="bs-component" style="color:white;">
+															{% csrf_token %}
+															{{form.as_p}}
 														</p>	
-														<p class="bs-component">
 															<center>
-																<input class="btn btn-success btn-sm btn-block" type="Submit" value="Submit"/>
+																<input type="hidden" name="next" value="{{ request.GET.next }}">
+																<input class="btn btn-success btn-sm btn-block" type="submit" value="Login"/>
 															</center>
-														</p>
-														<input type="hidden" name="next" value="{{ next }}"/>
-							
-													</form>
-													<div class="text-center">
-									  <a class="btn dorne-btn dorne-btn1 d-block small mt-3" href="/reset/">Forgot your password?</a><br>
+															<br><div class="text-center">
+									  <a class="btn dorne-btn dorne-btn1 d-block small mt-3 text-center" href="/reset/">Forgot your password?</a><br>
 									  
-									  <a class="btn dorne-btn dorne-btn1 d-block small" href="/accounts/login/?next=/explore/">Login here</a>
+									  <a class="btn dorne-btn dorne-btn1 d-block small text-center" href="/accounts/login/?next=/explore/">Login here</a>
+									  <br>
 									</div>
+													</form>
 												</div>
-											</div>
+											</div>		
 										</div>
 							
-							<div class="col-md-4 col-md-offset-4"></div>
+										<div class="col-md-4 col-md-offset-4"></div>
 							
 									</div>
 							
@@ -78,32 +74,31 @@
 							
 							
 							
-									</div>
-
-            </div>
-        </div>
-        <!-- Hero Social Btn -->
-        <div class="hero-social-btn">
-            <div class="social-title d-flex align-items-center">
-                <h6>Follow us on Social Media</h6>
-                <span></span>
-            </div>
-            <div class="social-btns">
-                <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Welcome Area End ***** -->
-
-
-	</div>
-{% endblock %}
-{% block javascript %}
-<script>
-{% if not user.is_authenticated %}
-$("ul.nav.navbar-nav.navbar-right").css("display","none");
-{% endif %}
-</script>
-
-{% endblock %}
+							
+								</div>
+		
+					</div>
+				</div>
+				<!-- Hero Social Btn -->
+				<div class="hero-social-btn">
+					<div class="social-title d-flex align-items-center">
+						<h6>Follow us on Social Media</h6>
+						<span></span>
+					</div>
+					<div class="social-btns">
+						<a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+						<a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+					</div>
+				</div>
+			</section>
+			<!-- ***** Welcome Area End ***** -->
+		
+		{% endblock %}
+		{% block javascript %}
+		<script>
+		{% if not user.is_authenticated %}
+		$("ul.nav.navbar-nav.navbar-right").css("display","none");
+		{% endif %}
+		</script>
+		
+		{% endblock %}

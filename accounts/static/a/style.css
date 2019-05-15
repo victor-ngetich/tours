@@ -372,6 +372,7 @@ li {
 .dorne-btn1 {
     background-color: transparent;
     border: 2px solid rgb(204, 102, 0);
+    text-align: left;
 }
 
 .dorne-btn:hover,

@@ -1,26 +1,37 @@
 {% extends 'dashboard/bookingsbase.html' %}
-{% block content %}
-
-{% block title %}All Bookings{% endblock %}
+{% load staticfiles %}
 
 {% block head %}
-    {{ super() }}
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/core-img/favicon.ico' %}?{% now "U" %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}?{% now "U" %}">
+    <link href="{% static 'vendor/fonts/circular-std/style.css' %}?{% now "U" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
+    <!-- Libraries -->
+    <script src="{% static 'libs/js/jquery-3.3.1.js' %}?{% now "U" %}"></script>
+    <title>{% block title %}All Bookings{% endblock %}</title>
     <style>
-            .paypal-button {
-                width:200px; /* you can use % */
-                height: auto;
-            }
-            .payppal-button:focus, input:focus{
-            outline: none;
-            }
-            /* *:focus {
-            outline: none;
-            } */
-        
-            @media (min-width: 768px) {
-            #bs-example-navbar-collapse-1 {
-               padding: 0 15px;
-            }
+        .paypal-button {
+            width:200px; /* you can use % */
+            height: auto;
+        }
+        .payppal-button:focus, input:focus{
+        outline: none;
+        }
+        /* *:focus {
+        outline: none;
+        } */
+    
+        @media (min-width: 768px) {
+        #bs-example-navbar-collapse-1 {
+            padding: 0 15px;
+        }
         }
         
         a.ex1 {
@@ -40,17 +51,15 @@
         .input-res
         {
         
-             
              width: 40%;
              max-width: 500px;
              box-sizing: border-box;
-             
         
         }
-        
     </style>
 {% endblock %}
 
+{% block content %}
 
             <div class="influence-finder">
                 <div class="container-fluid dashboard-content">
@@ -320,13 +329,12 @@
                     <!-- end footer -->
                     <!-- ============================================================== -->
                 </div>
-                <!-- ============================================================== -->
-                <!-- end wrapper  -->
-                <!-- ============================================================== -->
 
 {% endblock %}
 
 {% block javascript %}
+<!-- Optional JavaScript -->
+<!-- jquery 3.3.1 -->
 <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
 <!-- bootstap bundle js -->
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
@@ -335,7 +343,15 @@
 <!-- main js -->
 <script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
 
-<!-- Custom JS2 -->
+<script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
+<!-- bootstap bundle js -->
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
+<!-- slimscroll js -->
+<script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
+<!-- main js -->
+<script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
+
+<!-- Custom JS -->
 <script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
 <script>
 /* ----- JavaScript ----- */
@@ -348,5 +364,4 @@ $("#selectCity").on("change", function () {
 $("#custom-modal").modal("hide");
 });
 </script>
-
 {% endblock %}

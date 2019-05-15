@@ -64,6 +64,7 @@ def filter2 (request):
 def indexsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
+		print(search_text)
 		articles = destination.objects.all().filter(Q(d_name__icontains=search_text) | Q(d_location__icontains=search_text)| Q(d_phone__icontains=search_text))[:15]
 		return render(request,'dashboard/isearch.html',{'articles':articles})
 	else:
@@ -73,6 +74,7 @@ def indexsearch (request):
 def packagesearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
+		print(search_text)
 		articles = package.objects.all().filter(Q(p_name__icontains=search_text) | Q(p_category__icontains=search_text) | Q(p_agency__icontains=search_text))[:15]
 		return render(request,'dashboard/psearch.html',{'articles':articles})
 	else:
@@ -397,7 +399,6 @@ def allpackages(request):
 	s = timezone.now() + timedelta(days=999999)
 	a = package.objects.all().filter(available=True, to_day__range=[t,s])
 	e = Hotel.objects.all()
-	print(e)
 	# instance = get_object_or_404(destination, id=pk)
 
 	if request.method == 'POST':

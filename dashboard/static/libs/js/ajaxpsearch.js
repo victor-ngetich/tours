@@ -1,12 +1,12 @@
 $(function() {
 	// body...
-	$('#psearch').keyup(function() {
+	$('#isearch').keyup(function() {
 		// body...
 		$.ajax({
 			type: "POST",
 			url: "/packagesearch/",
 			data: {
-				search_text : $('#psearch').val(),
+				search_text : $('#isearch').val(),
 				'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
 			},
 			success: searchSuccess,
