@@ -14,15 +14,6 @@
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}?{% now "U" %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}?{% now "U" %}">
 
-    <!-- <link rel="stylesheet" href="{% static 'libs/css/datePicker.css' %}?{% now "U" %}">
-    <link rel="stylesheet" href="{% static 'libs/css/date2.css' %}?{% now "U" %}"> -->
-    <!-- Date picker start-->
-    <!-- <link href="{% static 'datepicker/css/form.css' %}?{% now "U" %}" rel="stylesheet" type="text/css" />
-    <link type="text/css" rel="stylesheet" href="{% static 'datepicker/css/566a91c2977cdfcd478b4567.css' %}?{% now "U" %}"/>
-    <link href="{% static 'datepicker/css/nova.css' %}?{% now "U" %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'datepicker/css/calendarview.css' %}?{% now "U" %}" rel="stylesheet" type="text/css" /> -->
-    <!-- Date picker end-->
-    <!-- <script src="{% static 'jquery-2.0.0.min.js' %}?{% now "U" %}"></script> -->
     <script src="{% static 'libs/js/jquery-3.3.1.js' %}?{% now "U" %}"></script>
     <script src="{% static 'libs/js/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
 
@@ -30,81 +21,6 @@
     <script src="{% static 'ajax2.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax3.js' %}?{% now "U" %}"></script>
     <script src="{% static 'ajax4.js' %}?{% now "U" %}"></script>
-    <!-- Date picker start-->
-    <!-- <script src="{% static 'datepicker/js/jotform.forms.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/prototype.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/json2.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/calendarview.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/jotform.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/location.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/protoplus.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/protoplus-ui-form.js' %}?{% now "U" %}" type="text/javascript"></script>
-
-    <script src="{% static 'datepicker/js/jquery.datePicker.min-2.1.2.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'datepicker/js/jquery.datePicker-2.1.2.js' %}?{% now "U" %}" type="text/javascript"></script>
-    <script src="{% static 'libs/js/date.js' %}?{% now "U" %}"></script> -->
-    <!-- Date picker end-->
-
-    <!-- <script type="text/javascript">
-        JotForm.init(function(){
-    
-     JotForm.calendarMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-     JotForm.calendarDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-     JotForm.calendarOther = {"today":"Today"};
-     var languageOptions = document.querySelectorAll('#langList li'); 
-     for(var langIndex = 0; langIndex < languageOptions.length; langIndex++) { 
-       languageOptions[langIndex].on('click', function(e) { setTimeout(function(){ JotForm.setCalendar("3", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""}); }, 0); });
-     } 
-     JotForm.setCalendar("3", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""});
-     JotForm.formatDate({date:(new Date()), dateField:$("id_"+3)});
-          JotForm.description('input_3', 'Choose when you plan to start your tour');
-    
-     JotForm.calendarMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-     JotForm.calendarDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-     JotForm.calendarOther = {"today":"Today"};
-     var languageOptions = document.querySelectorAll('#langList li'); 
-     for(var langIndex = 0; langIndex < languageOptions.length; langIndex++) { 
-       languageOptions[langIndex].on('click', function(e) { setTimeout(function(){ JotForm.setCalendar("4", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""}); }, 0); });
-     } 
-     JotForm.setCalendar("4", false, {"days":{"monday":true,"tuesday":true,"wednesday":true,"thursday":true,"friday":true,"saturday":true,"sunday":true},"future":true,"past":false,"custom":false,"ranges":false,"start":"","end":""});
-     JotForm.formatDate({date:(new Date()), dateField:$("id_"+4)});
-          JotForm.description('input_4', 'Choose when you plan to end your tour');
-          JotForm.alterTexts(undefined);
-        JotForm.clearFieldOnHide="disable";
-        JotForm.submitError="jumpToFirstError";
-        /*INIT-END*/
-        });
-    
-       JotForm.prepareCalculationsOnTheFly([null,null,null,{"description":"Choose when you plan to start your tour","name":"date","qid":"3","text":"Start Date","type":"control_datetime"},{"description":"Choose when you plan to end your tour","name":"startDate","qid":"4","text":"End Date","type":"control_datetime"}]);
-       setTimeout(function() {
-    JotForm.paymentExtrasOnTheFly([null,null,null,{"description":"Choose when you plan to start your tour","name":"date","qid":"3","text":"Start Date","type":"control_datetime"},{"description":"Choose when you plan to end your tour","name":"startDate","qid":"4","text":"End Date","type":"control_datetime"}]);}, 20); 
-    </script> -->
-
-    <!-- <script>
-    $( function() {
-          $( "#id_start_date" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
-    } );
-    </script> -->
-
-    <!-- <script>
-    $(function() {
-        $('.date-pick').datePicker({clickInput:true})
-	    // $('.date-pick').datePicker().val(new Date().asString()).trigger('change');
-    });
-    </script> -->
-
-    <!-- <script>
-    $(function() {
-        $('#datepicker2').datePicker();
-        $('#datepicker2').dpDisplay();
-    });
-    </script> -->
-
-    <!-- <script>
-    $( function() {
-        $( "#datepicker" ).datepicker();
-    } );
-    </script> -->
 
     <title>Destination</title>
 
@@ -190,6 +106,15 @@ img {
    margin-left: -800px;
 } */
 
+input[type="date"]::-webkit-inner-spin-button, 
+input[type="date"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type="date"] { 
+    -moz-appearance: test-field; 
+}
+
     </style>
 </head>
 
@@ -217,145 +142,6 @@ img {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
-                            <!-- <li class="nav-divider">
-                                Menu
-                            </li> -->
-                            <!-- <li class="nav-item ">
-                                <a class="nav-link active" href="/explore" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-globe"></i>Explore <span class="badge badge-success">6</span></a> -->
-                                <!-- <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item"> -->
-                                            <!-- <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a> -->
-                                            <!-- <div id="submenu-1-2" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="index.html">E Commerce Dashboard</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product.html">Product List</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product-single.html">Product Single</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product-checkout.html">Product Checkout</a>
-                                                    </li>
-                                                </ul>
-                                            </div> -->
-                                        <!-- </li> -->
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-finance.html">Finance</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-sales.html">Sales</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a> -->
-                                            <!-- <div id="submenu-1-1" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="dashboard-influencer.html">Influencer</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="influencer-finder.html">Influencer Finder</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="influencer-profile.html">Influencer Profile</a>
-                                                    </li>
-                                                </ul>
-                                            </div> -->
-                                        <!-- </li>
-                                    </ul>
-                                </div> -->
-                            <!-- </li> -->
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/general.html">General</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/carousel.html">Carousel</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/listgroup.html">List Group</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/typography.html">Typography</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/accordions.html">Accordions</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabs.html">Tabs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
-                                <div id="submenu-3" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-c3.html">C3 Charts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-chartist.html">Chartist Charts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-charts.html">Chart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-morris.html">Morris</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-sparkline.html">Sparkline</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-gauge.html">Guage</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Forms</a>
-                                <div id="submenu-4" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/form-elements.html">Form Elements</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/form-validation.html">Parsely Validations</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/multiselect.html">Multiselect</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/datepicker.html">Date Picker</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/bootstrap-select.html">Bootstrap Select</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Tables</a>
-                                <div id="submenu-5" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/general-table.html">General Tables</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/data-tables.html">Data Tables</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li> -->
                             <li class="nav-divider">
                                 Package Options
                             </li>
@@ -378,302 +164,10 @@ img {
                                                     {% endfor %}
                                                 </select>
                                             </div>
-
-
-                                            <!-- <div class="input-group date" id="datetimepicker"></div> -->
-                                            <!-- <input id="datepicker" onchange="checkDate()" required class="datepicker-input" type="date" data-date-format="yyyy-mm-dd" > -->
-
-                                            <!-- <form name="chooseDateForm" id="chooseDateForm" action="datePickerDefaultToday.html#">
-                                                    <fieldset>
-                                                        <legend>Test date picker form</legend>
-                                                        <ol>
-                                                            <li>
-                                                                <label for="date1">Date 1:</label>
-                                                                <input name="date1" id="date1" class="date-pick" />
-                                                            </li>
-                                                            <li>
-                                                                <label for="date2">Date 2:</label>
-                                                                <input name="date2" id="date2" class="date-pick" />
-                                                            </li>
-                                                            <li>
-                                                                <label for="test-select">Test select:</label>
-                                                                <select name="test-select" id="test-select" style="width: 170px">
-                                                                    <option value="1">Test SELECT </option>
-                                                                    <option value="2">Doesn't shine through</option>
-                                                                    <option value="3">Even in IE</option>
-                                                                    <option value="4">Yay!</option>
-                                                                </select>
-                                                            </li>
-                                                        </ol>
-                                                    </fieldset>
-                                                </form> -->
-                                    
-
-                                            <!-- <input id="datepicker" type="text"> -->
-                                            <!-- </div> -->
                                         </tbody>
                                     </table>
-
-
-                                            
-                                        <!-- <div class="form-group row text-right">
-                                                <div class="col col-sm-10 col-lg-10 offset-sm-1 offset-lg-0">
-                                                    <center>
-                                                    <input class="btn btn-outline-success" type="submit" value="Submit"/>
-                                                    </center>
-                                                </div>
-                                            </div> -->
-                        
-                                                
-                                            
                                     </form>
-
-                                            <!-- Date picker -->
-
-                                            <!-- <form class="jotform-form" action="https://submit.myjotform.com/submit/90782829936575/" method="post" name="form_90782829936575" id="90782829936575" accept-charset="utf-8">
-                                                <div class="form-all">
-                                                  <ul class="form-section page-section">
-                                                    <li class="form-line form-line-column form-col-1 jf-required" data-type="control_datetime" id="id_3">
-                                                      <label class="form-label form-label-top" id="label_3" for="lite_mode_3">
-                                                        Start Date
-                                                        <span class="form-required">
-                                                          *
-                                                        </span>
-                                                      </label>
-                                                      <div id="cid_3" class="form-input-wide jf-required">
-                                                        <div data-wrapper-react="true">
-                                                          <div style="display:none">
-                                                            <span class="form-sub-label-container" style="vertical-align:top">
-                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="year_3" name="q3_date[year]" size="4" data-maxlength="4" value="2019" required="" />
-                                                              <span class="date-separate">
-                                                                 -
-                                                              </span>
-                                                              <label class="form-sub-label" for="year_3" id="sublabel_year" style="min-height:13px"> Year </label>
-                                                            </span>
-                                                            <span class="form-sub-label-container" style="vertical-align:top">
-                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="month_3" name="q3_date[month]" size="2" data-maxlength="2" value="03" required="" />
-                                                              <span class="date-separate">
-                                                                 -
-                                                              </span>
-                                                              <label class="form-sub-label" for="month_3" id="sublabel_month" style="min-height:13px"> Month </label>
-                                                            </span>
-                                                            <span class="form-sub-label-container" style="vertical-align:top">
-                                                              <input type="tel" class="currentDate form-textbox validate[required, disallowPast, limitDate]" id="day_3" name="q3_date[day]" size="2" data-maxlength="2" value="20" required="" />
-                                                              <label class="form-sub-label" for="day_3" id="sublabel_day" style="min-height:13px"> Day </label>
-                                                            </span>
-                                                          </div>
-                                                          <span class="form-sub-label-container" style="vertical-align:top">
-                                                            <input type="text" class="form-textbox validate[required, disallowPast, limitDate, validateLiteDate]" id="lite_mode_3" size="12" data-maxlength="12" data-age="" value="2019-03-20" required="" data-format="yyyymmdd" data-seperator="-" placeholder="yyyy-mm-dd" />
-                                                            <img class="showAutoCalendar" alt="Pick a Date" id="input_3_pick" src="https://cdn.jotfor.ms/images/calendar.png" style="vertical-align:middle;margin-left:5px" data-component="datetime" />
-                                                            <label class="form-sub-label" for="lite_mode_3" id="sublabel_litemode" style="min-height:13px">  </label>
-                                                          </span>
-                                                          <span class="form-sub-label-container" style="vertical-align:top">
-                                                            <label class="form-sub-label" for="input_3_pick" style="min-height:13px">  </label>
-                                                          </span>
-                                                        </div>
-                                                      </div>
-                                                    </li>
-                                                    <li class="form-line form-line-column form-col-1 form-line-column-clear jf-required" data-type="control_datetime" id="id_4">
-                                                      <label class="form-label form-label-top" id="label_4" for="lite_mode_4">
-                                                        End Date
-                                                        <span class="form-required">
-                                                          *
-                                                        </span>
-                                                      </label>
-                                                      <div id="cid_4" class="form-input-wide jf-required">
-                                                        <div data-wrapper-react="true">
-                                                          <div style="display:none">
-                                                            <span class="form-sub-label-container" style="vertical-align:top">
-                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="year_4" name="q4_startDate[year]" size="4" data-maxlength="4" value="2019" required="" />
-                                                              <span class="date-separate">
-                                                                 -
-                                                              </span>
-                                                              <label class="form-sub-label" for="year_4" id="sublabel_year" style="min-height:13px"> Year </label>
-                                                            </span>
-                                                            <span class="form-sub-label-container" style="vertical-align:top">
-                                                              <input type="tel" class="form-textbox validate[required, disallowPast, limitDate]" id="month_4" name="q4_startDate[month]" size="2" data-maxlength="2" value="03" required="" />
-                                                              <span class="date-separate">
-                                                                 -
-                                                              </span>
-                                                              <label class="form-sub-label" for="month_4" id="sublabel_month" style="min-height:13px"> Month </label>
-                                                            </span>
-                                                            <span class="form-sub-label-container" style="vertical-align:top">
-                                                              <input type="tel" class="currentDate form-textbox validate[required, disallowPast, limitDate]" id="day_4" name="q4_startDate[day]" size="2" data-maxlength="2" value="20" required="" />
-                                                              <label class="form-sub-label" for="day_4" id="sublabel_day" style="min-height:13px"> Day </label>
-                                                            </span>
-                                                          </div>
-                                                          <span class="form-sub-label-container" style="vertical-align:top">
-                                                            <input type="text" class="form-textbox validate[required, disallowPast, limitDate, validateLiteDate]" id="lite_mode_4" size="12" data-maxlength="12" data-age="" value="2019-03-20" required="" data-format="yyyymmdd" data-seperator="-" placeholder="yyyy-mm-dd" />
-                                                            <img class="showAutoCalendar" alt="Pick a Date" id="input_4_pick" src="https://cdn.jotfor.ms/images/calendar.png" style="vertical-align:middle;margin-left:5px" data-component="datetime" />
-                                                            <label class="form-sub-label" for="lite_mode_4" id="sublabel_litemode" style="min-height:13px">  </label>
-                                                          </span>
-                                                          <span class="form-sub-label-container" style="vertical-align:top">
-                                                            <label class="form-sub-label" for="input_4_pick" style="min-height:13px">  </label>
-                                                          </span>
-                                                        </div>
-                                                      </div>
-                                                    </li>
-                                                    <li style="clear:both">
-                                                    </li>
-                                                  </ul>
-                                                </div>
-                                                <script>
-                                                    JotForm.showJotFormPowered = "new_footer";
-                                                    </script>
-                                                    <input type="hidden" id="simple_spc" name="simple_spc" value="90782829936575" />
-                                                    <script type="text/javascript">
-                                                    document.getElementById("si" + "mple" + "_spc").value = "90782829936575-90782829936575";
-                                                    </script>
-                                                    <div class="formFooter-heightMask">
-                                                    </div>
-                                                    <div class="formFooter f6">
-                                                      <a href="https://www.jotform.com/pricing?utm_source=formfooter&utm_medium=banner&utm_term=90782829936575&utm_content=jotform_logo&utm_campaign=powered_by_jotform_le" target="_blank" class="formFooter-logoLink"><img class="formFooter-logo" src="https://cdn.jotfor.ms/assets/img/logo/logo-new@1x.png" alt="" style="height: 44px;"></a>
-                                                      <div class="formFooter-rightSide">
-                                                        <span class="formFooter-text">
-                                                          Now create your own JotForm - It's free!
-                                                        </span>
-                                                        <a class="formFooter-button" href="https://www.jotform.com/?utm_source=formfooter&utm_medium=banner&utm_term=90782829936575&utm_content=jotform_button&utm_campaign=powered_by_jotform_le" target="_blank">Create your own JotForm</a>
-                                                      </div>
-                                                    </div>
-                                              </form> -->
-
-                                            <!-- Date picker -->
-
-
                                 </div>
-
-                            <!--li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Pages </a>
-                                <div id="submenu-6" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Blank Page</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page-header.html">Blank Page Header</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/login.html">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/404-page.html">404 page</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/sign-up.html">Sign up Page</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/forgot-password.html">Forgot Password</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/pricing.html">Pricing Tables</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/timeline.html">Timeline</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/calendar.html">Calendar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/sortable-nestable-lists.html">Sortable/Nestable List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/widgets.html">Widgets</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/media-object.html">Media Objects</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/cropper-image.html">Cropper</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/color-picker.html">Color Picker</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Apps <span class="badge badge-secondary">New</span></a>
-                                <div id="submenu-7" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/inbox.html">Inbox</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/email-details.html">Email Detail</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/email-compose.html">Email Compose</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/message-chat.html">Message Chat</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Icons</a>
-                                <div id="submenu-8" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-fontawesome.html">FontAwesome Icons</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-material.html">Material Icons</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-simple-lineicon.html">Simpleline Icon</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-themify.html">Themify Icon</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-flag.html">Flag Icons</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-weather.html">Weather Icon</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-map-marker-alt"></i>Maps</a>
-                                <div id="submenu-9" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/map-google.html">Google Maps</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/map-vector.html">Vector Maps</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-f fa-folder"></i>Menu Level</a>
-                                <div id="submenu-10" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Level 1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11">Level 2</a>
-                                            <div id="submenu-11" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Level 1</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Level 2</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Level 3</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -961,47 +455,20 @@ img {
 <script src="{% static 'libs/js/jstotalprice.js' %}?{% now "U" %}"></script>
 <script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
 <script type="text/javascript">JotForm.ownerView=true;</script>
-<!-- <script>
-$(function () {
-    $('#datepicker').datepicker({ minDate: 0 });
-});
-</script> -->
 
+<script>
+var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("start_date")[0].setAttribute('min', today);
 
-    <!-- <script>
-            jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-            jQuery('.quantity').each(function() {
-                var spinner = jQuery(this),
-                    input = spinner.find('input[type="number"]'),
-                    btnUp = spinner.find('.quantity-up'),
-                    btnDown = spinner.find('.quantity-down'),
-                    min = input.attr('min'),
-                    max = input.attr('max');
-    
-                btnUp.click(function() {
-                    var oldValue = parseFloat(input.val());
-                    if (oldValue >= max) {
-                        var newVal = oldValue;
-                    } else {
-                        var newVal = oldValue + 1;
-                    }
-                    spinner.find("input").val(newVal);
-                    spinner.find("input").trigger("change");
-                });
-    
-                btnDown.click(function() {
-                    var oldValue = parseFloat(input.val());
-                    if (oldValue <= min) {
-                        var newVal = oldValue;
-                    } else {
-                        var newVal = oldValue - 1;
-                    }
-                    spinner.find("input").val(newVal);
-                    spinner.find("input").trigger("change");
-                });
-    
-            });
-            </script> -->
+var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("end_date")[0].setAttribute('min', today);
+</script>
+
+<script>
+    document.getElementById("id_start_date").onkeydown = function() {return false};
+    document.getElementById("id_end_date").onkeydown = function() {return false};
+</script>
+
 </body>
  
 </html>
