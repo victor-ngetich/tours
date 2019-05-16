@@ -52,7 +52,6 @@ def filter (request):
 		r = destination.objects.all()
 		for i in art:
 			r = destination.objects.all().get(d_name__field=i)
-			print(r)
 		return render(request,'dashboard/filter2.html',{'articles':r,'art':art})
 
 def filter2 (request):
@@ -64,7 +63,6 @@ def filter2 (request):
 def indexsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		print(search_text)
 		articles = destination.objects.all().filter(Q(d_name__icontains=search_text) | Q(d_location__icontains=search_text)| Q(d_phone__icontains=search_text))[:15]
 		return render(request,'dashboard/isearch.html',{'articles':articles})
 	else:
@@ -74,7 +72,6 @@ def indexsearch (request):
 def packagesearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		print(search_text)
 		articles = package.objects.all().filter(Q(p_name__icontains=search_text) | Q(p_category__icontains=search_text) | Q(p_agency__icontains=search_text))[:15]
 		return render(request,'dashboard/psearch.html',{'articles':articles})
 	else:
@@ -84,9 +81,7 @@ def packagesearch (request):
 def paymentsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		print(search_text)
 		articles = payment.objects.all().filter(Q(user_id = request.user), Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
-		print(articles)
 
 		now = datetime.datetime.now()
 		payments = PaymentsTable(articles)
@@ -105,9 +100,7 @@ def paymentsearch (request):
 def paymentsearch1 (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		print(search_text)
 		articles = payment.objects.all().filter(Q(agency = request.user), Q(user_full__icontains=search_text)| Q(clientemail__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
-		print(articles)
 
 		now = datetime.datetime.now()
 		payments = AgencyPaymentsTable(articles)
@@ -126,9 +119,7 @@ def paymentsearch1 (request):
 def bookingsearch (request):
 	if request.method=="POST":
 		search_text = request.POST['search_text']
-		print(search_text)
 		articles = booking.objects.all().filter(Q(agency=request.user, approved=True, paid=False), Q(user_full__icontains=search_text) | Q(clientemail__icontains=search_text) | Q(date_added__icontains=search_text))[:15]
-		print(articles)
 
 		now = datetime.datetime.now()
 		b = ApprovedBookingsTable(articles)
@@ -264,10 +255,8 @@ def payments_filter(request):
 	if request.method=="POST":
 		a = request.POST['start1']
 		b = request.POST['end1']
-		print(a)
 		# f = u''b''
 		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
-		print(c)
 		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
 		# print(d)
 		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
@@ -275,11 +264,9 @@ def payments_filter(request):
 		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
 		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
 		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
-		print(g)
 
 		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
 		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
-		print(i)
 		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
 		# print(v)
 		# e = unicode(v, "utf-8")
@@ -331,10 +318,8 @@ def bookings_filter(request):
 	if request.method=="POST":
 		a = request.POST['start1']
 		b = request.POST['end1']
-		print(a)
 		# f = u''b''
 		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
-		print(c)
 		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
 		# print(d)
 		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
@@ -342,11 +327,9 @@ def bookings_filter(request):
 		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
 		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
 		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
-		print(g)
 
 		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
 		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
-		print(i)
 		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
 		# print(v)
 		# e = unicode(v, "utf-8")
@@ -444,7 +427,6 @@ def editpackage (request, pk=None):
 		if form.is_valid():
 			instance = form.save(commit=False)
 			a = form.cleaned_data.get('p_slots')
-			print(a)
 			if a < 1:
 				instance.available = False
 				# instance.p_slots = a
@@ -512,9 +494,7 @@ def delete_bookings3(request, pk):
 
 def delete_account(request):
 	a = request.user.get_username()
-	print(a)
 	b = User.objects.values_list('id',flat=True).get(username=a)
-	print(b)
 	User.objects.get(id=b).delete()
 	return HttpResponseRedirect('/accounts/login/')
 

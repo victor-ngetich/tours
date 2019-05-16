@@ -1,7 +1,7 @@
-<!doctype html>
-<html lang="en">
- 
-<head>
+{% extends 'dashboard/pages/add-packagebase.html' %}
+{% load staticfiles %}
+
+{% block head %}
     {% load django_tables2 %}
     {% load staticfiles %}
     <!-- Required meta tags -->
@@ -27,7 +27,6 @@
     <!-- Libraries -->
     <script src="{% static 'libs/js/jquery-3.3.1.js' %}?{% now "U" %}"></script>
     <title>Approved Bookings</title>
-</head>
 
 <style>
     .paypal-button {
@@ -42,197 +41,10 @@
     } */
     </style>
 
-<body>
-    <!-- ============================================================== -->
-    <!-- main wrapper -->
-    <!-- ============================================================== -->
-    <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- navbar -->
-        <!-- ============================================================== -->
-        <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="/explore/">Explore</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item">
-                            
-                        </li>
-                        <!-- <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
-                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
-                                <li>
-                                    <div class="notification-title"> Notification</div>
-                                    <div class="notification-list">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action active">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-2.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-3.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
-                                                        <div class="notification-date">2 days ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'images/avatar-5.jpg' %}?{% now "U" %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
-                                </li>
-                            </ul>
-                        </li> -->
-                        <!-- <li class="nav-item dropdown connection">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
-                            <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
-                                <li class="connection-list">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="{% static 'images/github.png' %}?{% now "U" %}" alt="" > <span>Github</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="{% static 'images/dribbble.png' %}?{% now "U" %}" alt="" > <span>Dribbble</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="{% static 'images/dropbox.png' %}?{% now "U" %}" alt="" > <span>Dropbox</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="{% static 'images/bitbucket.png' %}?{% now "U" %}" alt=""> <span>Bitbucket</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="{% static 'images/mail_chimp.png' %}?{% now "U" %}" alt="" ><span>Mail chimp</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="{% static 'images/slack.png' %}?{% now "U" %}" alt="" > <span>Slack</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="conntection-footer"><a href="#">More</a></div>
-                                </li>
-                            </ul>
-                        </li> -->
-                        <li class="nav-item">
-                                <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/ourpackages"><i class="fas fa-map-marker-alt mr-2"></i>Our Packages</a>
-                                </div>
-                            </li>
-    
-                            <li class="nav-item">
-                                <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" style="color:darkblue" href="/dashboard/profile1/edit/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
-                                </div>
-                            </li>
-    
-                            <li class="nav-item">
-                                <div id="custom-search" class="top-search-bar">
-                                    <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end navbar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                                <li class="nav-divider">
-                                        Packages
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="/ourpackages/" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fas fa-map-marker-alt"></i>Our Packages <span class="badge badge-success">6</span></a>
-                                        
-                                    </li>
-                                    <li class="nav-item">
-                                            <a class="nav-link" href="/unavailable-packages/" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-exclamation-circle"></i>Unavailable Packages</a>
-                                            
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/dashboard/addpackage" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-plus-circle"></i>Add Package</a>
-                                            
-                                    </li>
-                                    <li class="nav-divider">
-                                        Bookings
-                                    </li>
-                                    <li class="nav-item">
-                                            <a class="nav-link" href="/booked" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-hourglass-start"></i>Unapproved Bookings</a>
-                                            
-                                    </li>
-                                    <li class="nav-item">
-                                            <a class="nav-link active" href="/approved-bookings" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fas fa-clipboard-check"></i>Approved Bookings</a>
-                                            
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/dashboard/payments1" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa-fw fab fa-paypal"></i>Customer Payments</a>
-                                        
-                                    </li>
+{% endblock %}
 
-                            
-                                                        
-            
-                            <li class="nav-divider">
-                                Account
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/profile1/edit" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
-                                
-                            </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
+{% block content %}
+
             <div class="influence-finder">
                 <div class="container-fluid dashboard-content">
                     <!-- ============================================================== -->
@@ -359,45 +171,18 @@
                             <!-- ============================================================== -->
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- footer -->
-                    <!-- ============================================================== -->
-                    <div class="footer">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    Copyright © 2019. All rights reserved.</a>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="text-md-right footer-links d-none d-sm-block">
-                                        <a href="javascript: void(0);">About</a>
-                                        <a href="javascript: void(0);">Support</a>
-                                        <a href="javascript: void(0);">Contact Us</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end footer -->
-                    <!-- ============================================================== -->
-                </div>
-                <!-- ============================================================== -->
-                <!-- end wrapper  -->
-                <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- end main wrapper  -->
-            <!-- ============================================================== -->
-            <!-- Optional JavaScript -->
-            <!-- jquery 3.3.1 -->
-            <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
-            <!-- bootstap bundle js -->
-            <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
-            <!-- slimscroll js -->
-            <script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
-            <!-- main js -->
-            <script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
+{% endblock %}
+
+{% block javascript %}
+<!-- Optional JavaScript -->
+<!-- jquery 3.3.1 -->
+<script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}?{% now "U" %}"></script>
+<!-- bootstap bundle js -->
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}?{% now "U" %}"></script>
+<!-- slimscroll js -->
+<script src="{% static 'vendor/slimscroll/jquery.slimscroll.js' %}?{% now "U" %}"></script>
+<!-- main js -->
+<script src="{% static 'libs/js/main-js.js' %}?{% now "U" %}"></script>
 
 <!-- Custom JS -->
 <script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
@@ -413,7 +198,4 @@ $("#selectCity").on("change", function () {
 });
 </script>
 <script src="{% static 'libs/js/ajaxbookingssearch.js' %}?{% now "U" %}"></script>
-
-</body>
- 
-</html>
+{% endblock %}
