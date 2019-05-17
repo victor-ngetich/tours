@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 import datetime
+from datetime import datetime
 from datetime import date
 from datetime import timedelta
 from django.utils import timezone
@@ -436,7 +437,7 @@ def editpackage (request, pk=None):
 				pass
 			instance.save()
 
-			messages.info(request, 'Your product was updated successfully.')
+			messages.info(request, 'Your product was updated successfully')
 			return HttpResponseRedirect('/ourpackages/')
 			
 		else:
@@ -563,60 +564,70 @@ def bookpackage(request, pk):
 		kids = request.POST['name2']
 		start = request.POST['name3']
 		end = request.POST['name4']
-		# g = package.objects.values_list('to_day',flat=True).get(pk=pk)
-		# h = to_day__range=[t,s]
-		# now = date.today()
-		# print(d)
-		# nows = d - now
-		# print(now)
-		# s = datetime.datetime.strptime(start, "%Y-%m-%d").date()
-		# # t = datetime.datetime.strptime(end, "%m-%d-%Y").date()
-		# f = s - now
-		# print(f)
 		hotel = request.POST['name7']
 		h = Hotel.objects.get(pk=hotel)
 		ph = Hotel.objects.values_list('pricep_adult', flat=True).get(pk=hotel)
-		# print(ph)
-		#q = destination.objects.all().get(id=pk)
-		# q = get_object_or_404(destination, pk=pk)
 		price = int(adults)*int(ph)
-		# print(price)
 		p = package.objects.get(pk=pk)
-		d = package.objects.values_list('d_name',flat=True).get(pk=pk)
-		a = package.objects.values_list('p_slots',flat=True).get(pk=pk)
-		c = int(adults)+int(kids)
-		d = int(a)-int(c)
-		if d < 0:
-			messages.info(request,'The total number of people in your booking exceeds the number of slots available.')
-			return HttpResponseRedirect('/dashboard/pending-bookings/')
-			# return redirect ('test1', pk=d)
-		else:
-		#v = destination.objects.all().get(id=pk)
-		# r = Hotel.objects.get(pk=hotel)
 
-			b = booking.objects.create(user=request.user, user_full=e, clientemail=f, hotel=h, agency=p.agency, agencyname=p.p_agency, agencyemail=p.agencyemail, agencycontact=p.agency_phone, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end)
-			
-			p.p_slots = int(a)-int(c)
-			p.save()
-			if d < 1:
-				# These two lines work too
-				# p.available = False
-				# p.save()
-				e = package.objects.filter(pk=pk).update(available=False)
-			else:
-				pass
+		g = package.objects.values_list('from_day',flat=True).get(pk=pk)
+		i = str(g)
+		l = package.objects.values_list('to_day',flat=True).get(pk=pk)
+		m = str(l)
+
+		date_format = "%Y-%m-%d"
+		j = datetime.strptime(start, date_format)
+		q = datetime.strptime(end, date_format)
+		k = datetime.strptime(i, date_format)
+		n = datetime.strptime(m, date_format)
+
+		delta = j - k
+		if delta.days < 0:
+			messages.info(request,'You can only make a booking from the start date of a package')
 			return HttpResponseRedirect('/dashboard/pending-bookings/')
+		else:
+			delta2 = n - j
+			if delta2.days < 0:
+				messages.info(request,'Your start date cannot be after the end date of a package')
+				return HttpResponseRedirect('/dashboard/pending-bookings/')
+			else:
+				delta3 = q - k
+				if delta3.days < 0:
+					messages.info(request,'Your end date cannot be before the start date of a package')
+					return HttpResponseRedirect('/dashboard/pending-bookings/')
+				else:
+					delta4 = n - q
+					if delta4.days < 0:
+						messages.info(request,'You can only make a booking until the end date of a package')
+						return HttpResponseRedirect('/dashboard/pending-bookings/')
+					else:
+						delta5 = q - j
+						if delta5.days < 0:
+							messages.info(request,'Your start date and end date are in reverse order')
+							return HttpResponseRedirect('/dashboard/pending-bookings/')
+						else:
+							a = package.objects.values_list('p_slots',flat=True).get(pk=pk)
+							c = int(adults)+int(kids)
+							d = int(a)-int(c)
+							if d < 0:
+								messages.info(request,'The total number of people in your booking exceeds the number of slots available')
+								return HttpResponseRedirect('/dashboard/pending-bookings/')
+							else:
+								b = booking.objects.create(user=request.user, user_full=e, clientemail=f, hotel=h, agency=p.agency, agencyname=p.p_agency, agencyemail=p.agencyemail, agencycontact=p.agency_phone, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end)
+
+								p.p_slots = int(a)-int(c)
+								p.save()
+								if d < 1:
+									# These two lines work too
+									# p.available = False
+									# p.save()
+									e = package.objects.filter(pk=pk).update(available=False)
+								else:
+									pass
+								return HttpResponseRedirect('/dashboard/pending-bookings/')
 	# except:
 		messages.info(request,'There must have been a problem, please try again')
 		return HttpResponseRedirect('/dashboard/pending-bookings/')
-			# if form.is_valid():
-			# 	adults = form.cleaned_data['adults']
-			# 	kids = form.cleaned_data['kids']
-			# 	start = form.cleaned_data['start_date']
-			# 	end = form.cleaned_data['end_date']
-
-			# name = request.POST['name']
-			
 	else:
 		form = BookingOptions(request.POST or None)
 		return render(request, 'dashboard/pending-bookings.html', {'p':p, 'form':form, 'b':b},locals())
@@ -655,7 +666,7 @@ def post(request):
 
 			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b, agencyemail=c, agency_phone=phone,pricep_adult=price1, pricep_kid=price2, from_day=from_date, to_day=to_date,p_slots=slots, available=a, p_description=description)
 			return HttpResponseRedirect('/ourpackages/')
-			messages.info(request, 'Your product was posted successfully.')
+			messages.info(request, 'Your product was posted successfully')
 		else:
 			return render(request, 'dashboard/pages/add-package.html',{'form':form})
 	else:			

@@ -454,13 +454,14 @@ input[type="date"] {
 <script src="{% static 'libs/js/jsautoinput.js' %}?{% now "U" %}"></script>
 <script src="{% static 'libs/js/jstotalprice.js' %}?{% now "U" %}"></script>
 <script src="{% static 'libs/js/othermiscjs.js' %}?{% now "U" %}"></script>
-<script type="text/javascript">JotForm.ownerView=true;</script>
 
 <script>
-var today = new Date().toISOString().split('T')[0];
+var x = document.getElementById("id_start_date").value;
+var today = new Date(x).toISOString().split('T')[0];
 document.getElementsByName("start_date")[0].setAttribute('min', today);
 
-var today = new Date().toISOString().split('T')[0];
+var y = document.getElementById("id_end_date").value;
+var today = new Date(y).toISOString().split('T')[0];
 document.getElementsByName("end_date")[0].setAttribute('min', today);
 </script>
 
