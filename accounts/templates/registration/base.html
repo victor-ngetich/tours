@@ -1,46 +1,90 @@
-{% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width = device-width,initial-scale=1.0" >
-	<title>Password Reset Page</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Password Reset</title>
+
+    <!-- Favicon -->
+    {% load staticfiles %}
+    <link rel="icon" href="{% static 'a/img/core-img/favicon.ico' %}?{% now "U" %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'a/style.css' %}?{% now "U" %}">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'a/css/responsive/responsive.css' %}?{% now "U" %}">
+    <style type="text/css">
+    
+    #id_email{
+      width:100%!important;
+      padding: 5px;
+      
+    }
+      p {
+    color: white;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: bold;
+    }
+
+    .bimg{
+    background-image: url({% static "a/img/bg-img/hero-11.jpg" %}?{% now "U" %});
+    /* -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px); */
+    }
+
+    bimg.background {
+    -webkit-filter: blur(35px); /* Safari */
+    filter: blur(35px);
+    }
+    </style>
+
 </head>
-<body class="c">
-<style type="text/css">
-body{
-	background-image: url({% static "a/img/bg-img/hero-1.jpg" %}?{% now "U" %});
-	background-repeat: no-repeat;
-    background-size: cover;
-}
-</style>
-<nav class="navbar navbar-default" id = "colnav" >
-<div class="container-fluid" >
-<div class="navbar-header">
-	<h3><a href="/">The Kenyan Thrill</a></h3>
-</div>
-	</div>
-	
-</nav>
+
+<body>
+    <div id="app">
+        {% include "accounts/includes/navbar.html" %}
+        <main class="">
 <div>
-<div class="row">
-<div class="col-md-4"></div>
-<div class="col-md-4"><div class="" style="border:0px solid grey; border-radius: 5px; background-color: #fff;">
-<div class="panel-heading" style="background-color: grey;">
-						<center><h3 class="panel-title">Change your password</h3></center>
-					</div>
-					<div style="margin: 10px;">
-{% block content %}
+    
+       {% block content %}
+
+        {% endblock %}
+</div>
+
+        </main>
+ 
+    </div>
+
+<!-- jQuery-2.2.4 js -->
+<script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+<!-- Bootstrap-4 js -->
+<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+<!-- All Plugins js -->
+<script src="{% static 'js/others/plugins.js' %}"></script>
+<!-- Active JS -->
+<script src="{% static 'js/active.js' %}"></script>
+<script>
+$(document).ready(function() {
+    $('.form-control').popover({'trigger':'hover'});
+});
+</script>
+<!-- Block JS start -->
+{% block javascript %}
 
 {% endblock %}
-<br>
-{% block javascript %}</div></div></div>
-<div class="col-md-4"></div>
-</div>
-</div>
-<script src="{% static 'js/jquery.min.css' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% endblock %}
+<!-- Block JS end -->
 </body>
 </html>

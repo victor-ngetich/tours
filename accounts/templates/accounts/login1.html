@@ -44,7 +44,7 @@
 														<input class="btn btn-success btn-sm btn-block" type="submit" value="Login"/>
 													</center>
 													<br><div class="text-center">
-							  <a class="btn dorne-btn dorne-btn1 d-block small mt-3 text-center" href="/reset/">Forgot your password?</a><br>
+							  <a class="btn dorne-btn dorne-btn1 d-block small mt-3 text-center" href="{% url 'password_reset' %}">Forgot your password?</a><br>
 							  
 							  <a class="btn dorne-btn dorne-btn1 d-block small text-center" href="/register/">Register here</a>
 							  <br>
@@ -93,5 +93,4 @@
 $("ul.nav.navbar-nav.navbar-right").css("display","none");
 {% endif %}
 </script>
-
 {% endblock %}

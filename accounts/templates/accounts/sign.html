@@ -41,17 +41,17 @@
 													<center><h2 class="panel-title" style="color:white;">Please fill in your details here</h2></center>
 												</div>
 												<div class="panel-body">
-													<form method="post" action="/accounts/login/">{% csrf_token %}
+													<form method="post" action="/register/">{% csrf_token %}
 														<p class="bs-component" style="color:white;">
 															{% csrf_token %}
 															{{form.as_p}}
 														</p>	
 															<center>
 																<input type="hidden" name="next" value="{{ request.GET.next }}">
-																<input class="btn btn-success btn-sm btn-block" type="submit" value="Login"/>
+																<input class="btn btn-success btn-sm btn-block" type="submit" value="Register"/>
 															</center>
 															<br><div class="text-center">
-									  <a class="btn dorne-btn dorne-btn1 d-block small mt-3 text-center" href="/reset/">Forgot your password?</a><br>
+									  <a class="btn dorne-btn dorne-btn1 d-block small mt-3 text-center" href="/password_reset/">Forgot your password?</a><br>
 									  
 									  <a class="btn dorne-btn dorne-btn1 d-block small text-center" href="/accounts/login/?next=/explore/">Login here</a>
 									  <br>

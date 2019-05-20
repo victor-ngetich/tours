@@ -37,7 +37,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 # Create your views here.
 
 def explore(request):
-	now = datetime.datetime.now()
+	now = datetime.now()
 	d = destination.objects.all()
 	# inq= len(Inquiries.objects.all().filter(user_id = request.user))
 	# inv = len(services.objects.all().filter(user_id = request.user))
@@ -84,7 +84,7 @@ def paymentsearch (request):
 		search_text = request.POST['search_text']
 		articles = payment.objects.all().filter(Q(user_id = request.user), Q(agencyname__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
 
-		now = datetime.datetime.now()
+		now = datetime.now()
 		payments = PaymentsTable(articles)
 		RequestConfig(request, paginate={"per_page": 5}).configure(payments)
 
@@ -103,7 +103,7 @@ def paymentsearch1 (request):
 		search_text = request.POST['search_text']
 		articles = payment.objects.all().filter(Q(agency = request.user), Q(user_full__icontains=search_text)| Q(clientemail__icontains=search_text) | Q(transaction_id__icontains=search_text) | Q(hotel__icontains=search_text) | Q(date_paid__icontains=search_text))[:15]
 
-		now = datetime.datetime.now()
+		now = datetime.now()
 		payments = AgencyPaymentsTable(articles)
 		RequestConfig(request, paginate={"per_page": 5}).configure(payments)
 
@@ -122,7 +122,7 @@ def bookingsearch (request):
 		search_text = request.POST['search_text']
 		articles = booking.objects.all().filter(Q(agency=request.user, approved=True, paid=False), Q(user_full__icontains=search_text) | Q(clientemail__icontains=search_text) | Q(date_added__icontains=search_text))[:15]
 
-		now = datetime.datetime.now()
+		now = datetime.now()
 		b = ApprovedBookingsTable(articles)
 		RequestConfig(request, paginate={"per_page": 5}).configure(b)
 
@@ -229,7 +229,7 @@ def bookings2(request):
 	return render(request, 'dashboard/a-booked.html', context, locals())
 
 def approved_bookings(request):
-	now = datetime.datetime.now()
+	now = datetime.now()
 	# a = booking.objects.all().filter(agency=request.user, approved=True,)
 	b = ApprovedBookingsTable(booking.objects.all().filter(agency=request.user, approved=True).order_by('p_name2'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(b)
@@ -242,7 +242,7 @@ def approved_bookings(request):
 	return render(request, 'dashboard/a-booked-approved.html', context, locals())
 
 def payments(request):
-	now = datetime.datetime.now()
+	now = datetime.now()
 	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 5}).configure(payments)
 
@@ -257,18 +257,18 @@ def payments_filter(request):
 		a = request.POST['start1']
 		b = request.POST['end1']
 		# f = u''b''
-		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
-		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
+		c = str(datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
+		d = str(datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
 		# print(d)
-		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
-		# t = datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
-		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
-		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
+		# s = str(datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
+		# t = datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
+		# v = datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
+		f = datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
 		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
 
-		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+		h = datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
 		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
-		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
+		# dt = datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
 		# print(v)
 		# e = unicode(v, "utf-8")
 		# print(e)
@@ -278,7 +278,7 @@ def payments_filter(request):
 		# print(b)
 	else:
 		pass
-	now = datetime.datetime.now()
+	now = datetime.now()
 	payments = PaymentsTable(payment.objects.all().filter(user_id = request.user, date_paid__range=[g, i]).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
 
@@ -293,18 +293,18 @@ def payments1_filter(request):
 		a = request.POST['start1']
 		b = request.POST['end1']
 
-		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
-		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
+		c = str(datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
+		d = str(datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
 
-		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
+		f = datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
 		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
 
-		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+		h = datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
 		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
 
 	else:
 		pass
-	now = datetime.datetime.now()
+	now = datetime.now()
 	payments = AgencyPaymentsTable(payment.objects.all().filter(agency = request.user, date_paid__range=[g, i]).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
 
@@ -320,18 +320,18 @@ def bookings_filter(request):
 		a = request.POST['start1']
 		b = request.POST['end1']
 		# f = u''b''
-		c = str(datetime.datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
-		d = str(datetime.datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
+		c = str(datetime(*[int(v) for v in a.replace('T', '-').replace(':', '-').split('-')]))
+		d = str(datetime(*[int(v) for v in b.replace('T', '-').replace(':', '-').split('-')]))
 		# print(d)
-		# s = str(datetime.datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
-		# t = datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
-		# v = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
-		f = datetime.datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
+		# s = str(datetime.strptime(c, "%Y-%m-%d %H:%M:%S").date())
+		# t = datetime.strptime(d, "%Y-%m-%d %H:%M:%S").date()
+		# v = datetime.strptime(c, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S.%f')
+		f = datetime.strptime(c, '%Y-%m-%d %H:%M:%S')
 		g = f.strftime('%Y-%m-%d %H:%M:%S.%f')
 
-		h = datetime.datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
+		h = datetime.strptime(d, '%Y-%m-%d %H:%M:%S')
 		i = h.strftime('%Y-%m-%d %H:%M:%S.%f')
-		# dt = datetime.datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
+		# dt = datetime.strptime(v, '%Y-%m-%d %H:%M:%S.%f')
 		# print(v)
 		# e = unicode(v, "utf-8")
 		# print(e)
@@ -341,7 +341,7 @@ def bookings_filter(request):
 		# print(b)
 	else:
 		pass
-	now = datetime.datetime.now()
+	now = datetime.now()
 	b = ApprovedBookingsTable(booking.objects.all().filter(agency=request.user, approved=True, paid=False, date_added__range=[g, i]).order_by('-date_added'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(b)
 
@@ -352,7 +352,7 @@ def bookings_filter(request):
 	return render(request, 'dashboard/a-booked-approved.html', {'now':now, 'b':b})
 
 def payments1(request):
-	now = datetime.datetime.now()
+	now = datetime.now()
 	payments = AgencyPaymentsTable(payment.objects.all().filter(agency = request.user).order_by('-date_paid'))
 	RequestConfig(request, paginate={"per_page": 10}).configure(payments)
 

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls import url, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from home.views import home, contact, successView
@@ -30,12 +30,13 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('home.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/login/',login_view,name='login'),
     url(r'^logout/',logout_page,name='logout'),
     url(r'^register/',register_view,name='register'),
     url(r'^refer/',refer_view,name='refer'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',include('accounts.urls')),
-    url(r'^reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^password_reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
     url(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
