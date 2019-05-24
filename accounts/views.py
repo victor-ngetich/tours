@@ -29,30 +29,39 @@ from .forms import UserLoginForm,MyRegistrationForm,PasswordResetForm
 # Create your views here.
 @csrf_protect
 @ensure_csrf_cookie
-def login_view(request):
-	if request.method =='POST':
-		form = UserLoginForm(request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get("username")
-			password = form.cleaned_data.get("password")
-			user = authenticate(username=username,password=password)
-			next = request.POST.get('next', '/')
+# def login_view(request):
+# 	if request.method =='POST':
+# 		form = UserLoginForm(request.POST)
+# 		if form.is_valid():
+# 			username = form.cleaned_data.get("username")
+# 			password = form.cleaned_data.get("password")
+# 			user = authenticate(username=username,password=password)
+# 			next = request.POST.get('next', '/')
 			
-			login(request, user)
-			if user.groups.filter(name='Tourist').exists():
-				return HttpResponseRedirect('/explore/')
-				# return HttpResponseRedirect(next)
-			if user.groups.filter(name='Tour Agency').exists():
-				return HttpResponseRedirect('/ourpackages/')
-		else:
-			return render(request,'accounts/login1.html',{"form":form})
+# 			login(request, user)
+# 			if user.groups.filter(name='Tourist').exists():
+# 				return HttpResponseRedirect('/explore/')
+# 				# return HttpResponseRedirect(next)
+# 			if user.groups.filter(name='Tour Agency').exists():
+# 				return HttpResponseRedirect('/ourpackages/')
+# 		else:
+# 			return render(request,'accounts/login1.html',{"form":form})
 
-	else:
-		form = UserLoginForm()
-		args = {'form':form}
-		args.update(csrf(request))
-		args['form'] = UserLoginForm()
-		return render(request,'accounts/login1.html',args)
+# 	else:
+# 		form = UserLoginForm()
+# 		args = {'form':form}
+# 		args.update(csrf(request))
+# 		args['form'] = UserLoginForm()
+# 		return render(request,'accounts/login1.html',args)
+def login_success(request):
+    """
+    Redirects users based on whether their group
+    """
+    if request.user.groups.filter(name='Tourist').exists():
+        return HttpResponseRedirect('/explore/')
+    else:
+	    if request.user.groups.filter(name='Tour Agency').exists():
+		    return HttpResponseRedirect('/ourpackages/')
 
 @csrf_protect
 @ensure_csrf_cookie
@@ -86,7 +95,7 @@ def register_view(request):
 		args = {'form':form}
 		args.update(csrf(request))
 		args['form'] = MyRegistrationForm()
-		return render(request,'accounts/sign.html',args)
+		return render(request,'registration/signup.html',args)
 
 def success(request):
 	return render_to_response('accounts/success.html')
@@ -116,12 +125,12 @@ def logout_page(request):
 # def forgot_view(request):
 # 	return render(request,'registration/forgot-password.html')
 @csrf_protect
-def reset_view(request):
-	form = PasswordResetForm(request.POST or None)
-	if form.is_valid():
-		return render(request,"accounts/referal.html")
-	else:
-		return render(request,'registration/password_reset_form.html',{"form":form})
+# def password_reset(request):
+# 	form = PasswordResetForm(request.POST or None)
+# 	if form.is_valid():
+# 		return render(request,"accounts/referal.html")
+# 	else:
+# 		return render(request,'registration/password_reset_form.html',{"form":form})
 def refer_view(request):
 	return render(request, 'accounts/referal.html')
 	

@@ -62,7 +62,7 @@ ROOT_URLCONF = 'tours.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,7 +145,7 @@ MEDIA_URL = '/tours/dashboard/static/uploads/'
 MEDIA_ROOT = os.path.join(REPOSITORY_ROOT, 'tours/dashboard/static/uploads/')
 
 
-LOGIN_REDIRECT_URL = '/explore/'
+LOGIN_REDIRECT_URL = 'login_success'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Static files (CSS, JavaScript, Images)

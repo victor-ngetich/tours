@@ -102,15 +102,21 @@ a.ex3 {
                                     
                                   </ul>
                                   <ul class="navbar-nav">
-                                        <li class="nav-item">
-                                                <a class="nav-link ex1" href="/dashboard/to-do-trips"><i class="fas fa-tasks mr-2" style="color:white"></i>TO DO TRIPS</a>
-                                            </li>
+                                    <li class="nav-item">
+                                            <a class="nav-link ex1" href="/dashboard/to-do-trips"><i class="fas fa-tasks mr-2" style="color:white"></i>TO DO TRIPS</a>
+                                        </li>
+                                    {% if user.is_authenticated %}
                                     <li class="nav-item">
                                             <a class="nav-link ex1" style="color:white" href="/dashboard/profile/edit"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
                                     </li>
                                     <li class="nav-item">
                                             <a class="nav-link ex2" href="/logout/?next=/explore/"><i class="fas fa-power-off mr-2" style="color:white"></i>Logout</a>
                                     </li>
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link ex1" style="color:white" href="{% url 'login' %}"><i class="fas fas fa-user mr-2"></i>Login here</a>
+                                    </li>
+                                    {% endif %}
                                     </ul>
                                 </div>
                               </nav>
