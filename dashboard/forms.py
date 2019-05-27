@@ -93,3 +93,8 @@ class EditProfileForm(UserChangeForm):
 			'last_name': forms.TextInput(attrs={'class':'form-control'}),
 			'email': forms.TextInput(attrs={'class':'form-control'}),
         }
+
+# class ProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ('bio', 'location', 'phone', 'birth_date')

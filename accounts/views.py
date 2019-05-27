@@ -55,7 +55,7 @@ from .forms import UserLoginForm,MyRegistrationForm,PasswordResetForm
 # 		return render(request,'accounts/login1.html',args)
 def login_success(request):
     """
-    Redirects users based on whether their group
+    Redirects users based on their group
     """
     if request.user.groups.filter(name='Tourist').exists():
         return HttpResponseRedirect('/explore/')
@@ -75,10 +75,11 @@ def register_view(request):
 			group = form.cleaned_data.get('group')
 			user.groups.add(group)
 			current_site = get_current_site(request)
-			message = render_to_string('accounts/activate-email.html',{
+			message = render_to_string('registration/activate-email.html',{
 			'user': user,
             'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+			# 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
             'token': account_activation_token.make_token(user),
             })
 			mail_subject = 'Activate your Kenyan Thrill account'
@@ -88,7 +89,7 @@ def register_view(request):
 			return redirect('/success/')
 			return HttpResponse('Please confirm your email address to complete the registration')
 		else:
-			return render(request,'accounts/sign.html',{"form":form})
+			return render(request,'registration/signup.html',{"form":form})
 
 	else:
 		form = MyRegistrationForm()
@@ -98,9 +99,7 @@ def register_view(request):
 		return render(request,'registration/signup.html',args)
 
 def success(request):
-	return render_to_response('accounts/success.html')
-
-
+	return render_to_response('registration/success.html')
 
 def activate(request, uidb64, token):
     try:
@@ -112,25 +111,23 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         # return redirect('home')
-        return render(request,'accounts/valid.html')
+        return render(request,'registration/valid.html')
     else:
-    	return render(request,'accounts/invalid.html')
-@csrf_protect
-def logout_page(request):
+    	return render(request,'registration/invalid.html')
+# @csrf_protect
+# def logout_page(request):
 	# user = User.objects.get(username=request.user.username)
 	# [s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
-	logout(request)
-	return HttpResponseRedirect('/accounts/login/')
+	# logout(request)
+	# return HttpResponseRedirect('/accounts/login/')
 # @csrf_protect
 # def forgot_view(request):
 # 	return render(request,'registration/forgot-password.html')
-@csrf_protect
 # def password_reset(request):
 # 	form = PasswordResetForm(request.POST or None)
 # 	if form.is_valid():
 # 		return render(request,"accounts/referal.html")
 # 	else:
 # 		return render(request,'registration/password_reset_form.html',{"form":form})
-def refer_view(request):
-	return render(request, 'accounts/referal.html')
-	
+# def refer_view(request):
+# 	return render(request, 'accounts/referal.html')

@@ -1,0 +1,62 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+{% block head %}
+<title>Invalid</title>
+{% endblock %}
+
+<style> 
+
+#navbar {
+
+	transition: top 6000000s;
+	style="color:white;"
+
+}
+</style>
+
+    <!-- ***** Welcome Area Start ***** -->
+    <section class="dorne-welcome-area bg-img bg-overlay bimg">
+        
+        <div class="container">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <p style="color:red;">Sorry, the activation link you tried to accessed has expired or been used already. Note that the link cannot be used more than once</p>
+
+              </div>
+        <!-- Hero Social Btn -->
+        <div class="hero-social-btn">
+            <div class="social-title d-flex align-items-center">
+                <h6>Follow us on Social Media</h6>
+                <span></span>
+            </div>
+            <div class="social-btns">
+                <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Welcome Area End ***** -->
+
+{% endblock %}
+
+{% block javascript %}
+<script>setTimeout(function(){window.location.href="/accounts/login/"},5000);</script>
+<script>
+{% if not user.is_authenticated %}
+$("ul.nav.navbar-nav.navbar-right").css("display","none");
+{% endif %}
+</script>
+
+{% endblock %}
+
+
+
+
+
+

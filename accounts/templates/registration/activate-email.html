@@ -1,6 +1,7 @@
 {% autoescape off %}
 Hi {{ user.username }},
-If this is you, please click on the link below to confirm your registration for The Kenyan Thrill account in order to activate your account.
+
+If this is you, please click the link below to confirm your registration for The Kenyan Thrill in order to activate your account.
 
 http://{{ domain }}{% url 'activate'  uidb64=uid token=token %}
 

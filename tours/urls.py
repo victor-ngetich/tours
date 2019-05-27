@@ -20,7 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from home.views import home, contact, successView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
-from accounts.views import (login_success, register_view,logout_page, refer_view,success)
+from accounts.views import (login_success, register_view, success)
 from dashboard.views import (explore, filter, filter2, paymentsearch, bookings_filter, bookingsearch, paymentsearch1, payments1_filter, pending_bookings, payments_filter, approve_booking, to_do_trips, unavailable_packages, approved_bookings, delete_bookings3, bookings2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
 from payment.views import (payprocess, paydone, paycancel)
 from django.conf.urls.static import static
@@ -31,14 +31,13 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('home.urls')),
     url(r'login_success/$', login_success, name='login_success'),
-    url(r'^logout/',logout_page,name='logout'),
     url(r'^register/',register_view,name='register'),
-    url(r'^refer/',refer_view,name='refer'),
+    # url(r'^refer/',refer_view,name='refer'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',include('accounts.urls')),
     # url(r'^password_reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    url(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    url(r'^reset/done/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    # url(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    # url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    # url(r'^reset/done/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     url(r'^success/',success,name='success'),
     url(r'^explore/',explore,name='explore'),
     url(r'^d_filter/', filter, name='filter'),
@@ -84,9 +83,6 @@ urlpatterns = [
     path('contact/', contact, name='sendemail'),
     path('emailsuccess/', successView, name='emailsuccess'),
 
-
-
-   
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
 
