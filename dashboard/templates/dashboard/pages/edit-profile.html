@@ -61,7 +61,7 @@
                                 <div class="card-body">
                                     <form method="POST" id="basicform">
                                         {% csrf_token %}
-                                        {{ form.as_p }}
+                                        {{ user_form.as_p }}
                                         <!-- <center> -->
                                             <input class="btn btn-success" type="submit" value="Update"/>
                                         <!-- </center> -->

@@ -50,7 +50,7 @@
                                 <a class="nav-link ex1" style="color:white" href="/dashboard/profile1/edit/"><i class="fas fas fa-user mr-2"></i>{{user.first_name}} {{user.last_name}}</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link ex2" href="/logout/?next=/explore/"><i class="fas fa-power-off mr-2" style="color:white"></i>Logout</a>
+                                <a class="nav-link ex2" href="{% url 'logout' %}"><i class="fas fa-power-off mr-2" style="color:white"></i>Logout</a>
                         </li>
                         </ul>
                     </div>
