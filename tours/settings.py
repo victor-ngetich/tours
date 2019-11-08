@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'home',
     'dashboard',
     'widget_tweaks',
-    'multiselectfield',
+    # 'multiselectfield',
     'paypal.standard.ipn',
     'payment',
 ]
@@ -83,15 +83,17 @@ WSGI_APPLICATION = 'tours.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tours',
-        'USER': 'root',
-        'PASSWORD': 'crimson',
+        'USER': 'postgres',
+        'PASSWORD': 'matte',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        'OPTIONS': {
-        'autocommit': True,
-    },
+        # 'PORT': '3306',
+        'PORT': '5432',
+    #     'OPTIONS': {
+    #     'autocommit': True,
+    # },
     }
 }
 

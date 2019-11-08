@@ -1,6 +1,6 @@
 from django.db import models
 from dashboard.choices import *
-from multiselectfield import MultiSelectField
+# from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -75,7 +75,7 @@ class package(models.Model):
     p_category = models.CharField("Category", max_length=255, choices=MAYBECHOICE,blank=True)
     d_name = models.ForeignKey(destination, on_delete=models.CASCADE, verbose_name="Destination",)
     p_agency = models.CharField("Travel Agency", max_length=255,blank=True)
-    agency = models.ForeignKey(User, on_delete=models.CASCADE, default=12, verbose_name="Agency",)
+    agency = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Agency",)
     agencyemail = models.CharField("Agency Email", max_length=255,blank=True)
     agency_phone = models.CharField("Phone", max_length=10, blank=True)
     pricep_adult = models.FloatField("Price per Adult", blank=True,default=0)

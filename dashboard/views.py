@@ -336,8 +336,6 @@ def bookings_filter(request):
 		# print(v)
 		# e = unicode(v, "utf-8")
 		# print(e)
-
-
 		# print(a)
 		# print(b)
 	else:
@@ -652,6 +650,7 @@ def approve_booking(request, pk):
 @csrf_protect
 @ensure_csrf_cookie
 def post(request):
+	d = request.user
 	b = request.user.get_full_name()
 	c = request.user.email
 	if request.method=="POST":
@@ -675,7 +674,7 @@ def post(request):
 			else:
 				pass
 
-			package.objects.create(p_name=name,p_category=category,d_name=destination,p_agency=b, agencyemail=c, agency_phone=phone,pricep_adult=price1, pricep_kid=price2, from_day=from_date, to_day=to_date,p_slots=slots, available=a, p_description=description)
+			package.objects.create(p_name=name,p_category=category,d_name=destination, p_agency=b, agency=d, agencyemail=c, agency_phone=phone,pricep_adult=price1, pricep_kid=price2, from_day=from_date, to_day=to_date,p_slots=slots, available=a, p_description=description)
 			return HttpResponseRedirect('/ourpackages/')
 			messages.info(request, 'Your product was posted successfully')
 		else:
