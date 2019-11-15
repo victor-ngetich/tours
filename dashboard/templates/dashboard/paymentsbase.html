@@ -49,7 +49,7 @@
                                 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/payments" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa-fw fab fa-paypal"></i>Payment History</a>
+                                <a class="nav-link {% if request.resolver_match.url_name == 'payments' %}active{% endif %}" href="/dashboard/payments" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa-fw fab fa-paypal"></i>Payment History</a>
                                 
                             </li>
 
@@ -60,7 +60,7 @@
                                 Account
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/profile/edit" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
+                                <a class="nav-link {% if request.resolver_match.url_name == 'editprofile' %}active{% endif %}" href="/dashboard/profile/edit" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fas fa-user-circle"></i> Edit Profile </a>
                                 
                             </li>
                             
