@@ -1,9 +1,9 @@
 {% extends 'dashboard/pages/add-packagebase.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block head %}
     {% load django_tables2 %}
-    {% load staticfiles %}
+    {% load static %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -105,27 +105,24 @@
                                                               <div class="card mb-3">
                                                                     <div class="card-header" style="color:green">
                                                                       <i class="fa fa-table"></i> Approved Bookings</div>
-                                                                      <div class="card-body">
+                                                                      <div class="card-body" id="space1">
                                                                         <form id="flight" action="/dashboard/bookings-filter/" method="POST">
                                                                           {% csrf_token %}
                                                                           <input type="text" name="search" id="bsearch" placeholder="Search...">
-                                                                            <label>Start:</label>
+                                                                        <span style="margin-left: 25px;">
+                                                                          <label>Start:</label>
+                                                                        </span>
                                                                                 <input type="datetime-local" name="start1"/>
                                                                             <label>End:</label>
                                                                                 <input type="datetime-local" name="end1"/>
-                                                                                <input class="btn btn-success btn-sm" type="submit" value="Filter by Date Booked"/>
+                                                                                <span style="margin-left: 10px;">
+                                                                                <input class="btn btn-success btn-sm" type="submit" name="fil" value="Filter by Date Booked"/>
+                                                                                </span>
         
-        
-                                                                                  <!-- Export table data -->
-                                                                          {% load querystring from django_tables2 %}
-                                                                          <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                                          <a style="color:green;" href="{% querystring '_export'='csv' %}">Export Table as CSV</a>
-                                                                          <br>
-                                                                          <!-- <span class="m-l-10"></span><span class="m-l-20"> -->
-                                                                          <a style="color:green;" href="{% querystring '_export'='xls' %}">Export Table as XLS</a>
-                                                                          </div>
-                                                                          <!-- Export table data -->
-                                                                        </form>
+                                                                           
+                                                                        <!-- </form>
+                                                                        <form method="POST" action="/deleteabooking/">{% csrf_token %} -->
+                                                                          <input class="btn btn-danger btn-sm float-xl-right float-none" type="submit" name="del" value="Delete"/>
                                                                     </div>
                                                                       <div class="row" id="searchresults6">
                                                                       
@@ -141,15 +138,35 @@
                                                                          <input type="submit" class="btn btn-success navbar-btn" style="float: right;" value="Delete">
                                                                                 </form> -->
                                                                           <!-- </td></tr> -->
-                                                                           <tr><td>
+                                                                          
+                                                                            <tr><td>
                                                                               {% render_table b %}
                                                                             </td></tr>
+                                                                          </form>
+                                                                           
                                                                           </tbody>
                                                                           
                                                                         </table>
                                                                       </div>
                                                                     </div>
-                                                                    <div class="card-footer small text-muted">Updated at {{ now }}</div>
+                                                                    <div class="card-footer ">
+                                                                        <a class="small text-muted">Updated at {{ now }}</a>
+                                                                      <div class="float-xl-right float-none mt-xl-0 mt-4" id="space2">
+                                                                               <!-- Export table data -->
+                                                                          {% load querystring from django_tables2 %}
+                                                                          <a>Export Table as:</a>
+                                                                          
+                                                                              <a style="color:green;" href="{% export_url "csv" %}"><u>CSV</u></a>
+                                                                              <a>;</a>
+                                                                          
+                                                                          <!-- <br> -->
+                                                                          <!-- <span class="m-l-10"></span><span class="m-l-20"> -->
+                                                                              <span style="margin-left: 5px;">
+                                                                          <a style="color:green;" href="{% querystring '_export'='xls' %}"><u>XLS</u></a>
+                                                                          </span>
+                                                                          <!-- Export table data -->
+                                                                      </div>
+                                                                    </div>
                                                                   </div>
                                                                 </div>
                         <!-- Table -->

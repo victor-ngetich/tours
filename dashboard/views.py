@@ -44,7 +44,7 @@ def explore(request):
 	# inv = len(services.objects.all().filter(user_id = request.user))
 	# inquiries = InquiriesTable(Inquiries.objects.all().filter(user_id = request.user).order_by('-created_at'))
 	# RequestConfig(request, paginate={"per_page": 5}).configure(inquiries)
-	return render(request, 'dashboard/index.html',{'destination':d},locals())
+	return render(request, 'dashboard/index.html',{'destination':d})
 
 def filter (request):
 	if request.method=="POST":
@@ -191,7 +191,7 @@ def test1(request,pk):
 	# return render(request, 'dashboard/destination.html', {'f':f,'g':g, 'h':h,'instance':instance,'formset': formset})	
 # ---Formset End---
 
-	return render(request, 'dashboard/destination.html',{'f':f,'g':g, 'h':h,'instance':instance, 'form': form},locals())
+	return render(request, 'dashboard/destination.html',{'f':f,'g':g, 'h':h,'instance':instance, 'form': form})
 
 def bookings1(request):
 	a = booking.objects.all().filter(user=request.user).order_by('paid', '-approved', '-id')
@@ -201,7 +201,7 @@ def bookings1(request):
 	# print(b)
 	# c = booking.objects.filter(pk=pk).update(approved=True)
 	context = {"a": a}
-	return render(request, 'dashboard/bookings1.html', context, locals())
+	return render(request, 'dashboard/bookings1.html', context)
 
 def pending_bookings(request):
 	a = booking.objects.all().filter(user=request.user, approved=False, paid =False)
@@ -211,7 +211,7 @@ def pending_bookings(request):
 	# print(b)
 	# c = booking.objects.filter(pk=pk).update(approved=True)
 	context = {"a": a}
-	return render(request, 'dashboard/pending-bookings.html', context, locals())
+	return render(request, 'dashboard/pending-bookings.html', context)
 
 @login_required
 def to_do_trips(request):
@@ -222,12 +222,12 @@ def to_do_trips(request):
 	# print(b)
 	# c = booking.objects.filter(pk=pk).update(approved=True)
 	context = {"a": a}
-	return render(request, 'dashboard/to-do-trips.html', context, locals())
+	return render(request, 'dashboard/to-do-trips.html', context)
 
 def bookings2(request):
 	a = booking.objects.all().filter(agency=request.user, approved=False, paid=False)
 	context = {"a": a}
-	return render(request, 'dashboard/a-booked.html', context, locals())
+	return render(request, 'dashboard/a-booked.html', context)
 
 def approved_bookings(request):
 	now = datetime.now()
@@ -240,7 +240,40 @@ def approved_bookings(request):
 		exporter = TableExport(export_format, b)
 		return exporter.response('Approved_Bookings.{}'.format(export_format))
 	context = {"now":now, "b": b}
-	return render(request, 'dashboard/a-booked-approved.html', context, locals())
+	return render(request, 'dashboard/a-booked-approved.html', context)
+
+def deleteabooking(request):
+	if request.method=="POST":
+		
+		
+		a = request.POST.getlist('check')
+		if bool(a)==True:
+			for n in a:
+				y = booking.objects.get(pk=n)
+				print(n)
+				# attach = booking_attach.objects.filter(urlhash=y.urlhash)
+				# for i in attach:
+				# 	os.remove(i.attachment.path)
+				# 	i.delete()
+				y.delete()
+			messages.info(request, 'Booking deleted!')
+			return HttpResponseRedirect('/approved-bookings/')
+		else:
+			messages.info(request, 'No item selected!')
+			return HttpResponseRedirect('/approved-bookings/')
+	else:
+		return HttpResponseRedirect('/approved-bookings/')
+
+def fildel(request):
+	if 'fil' in request.POST:
+		# print(request.POST['del'])
+		return bookings_filter(request)
+	elif 'del' in request.POST:
+		# print(request.POST['fil'])
+		return deleteabooking(request)
+	elif 'expfil' in request.POST:
+		# print(request.POST['del'])
+		return bookings_filter(request)
 
 def payments(request):
 	now = datetime.now()
@@ -366,14 +399,14 @@ def ourpackages(request):
 	t = timezone.now()
 	s = timezone.now() + timedelta(days=999999)
 	a = package.objects.all().filter(Q(agency=request.user), (Q(available=True) | Q(to_day__range=[s,t])))
-	return render(request, 'dashboard/a-packages.html', {'a':a},locals())
+	return render(request, 'dashboard/a-packages.html', {'a':a})
 
 def unavailable_packages(request):
 	b = request.user.get_full_name()
 	t = timezone.now()
 	s = timezone.now() - timedelta(days=99999)
 	a = package.objects.all().filter(Q(agency=request.user), (Q(available=False) | Q(to_day__range=[s,t])))
-	return render(request, 'dashboard/a-unavailable-packages.html', {'a':a},locals())
+	return render(request, 'dashboard/a-unavailable-packages.html', {'a':a})
 
 @login_required
 def allpackages(request):
@@ -394,12 +427,12 @@ def allpackages(request):
 	else:
 		form = BookingOptions()
 
-	return render(request, 'dashboard/allpackages.html', {'a':a, 'e':e, 'form':form},locals())
+	return render(request, 'dashboard/allpackages.html', {'a':a, 'e':e, 'form':form})
 
 def allpackages1(request):
 	b = request.user.get_full_name()
 	a = package.objects.all()
-	return render(request, 'dashboard/a-allpackages.html', {'a':a},locals())
+	return render(request, 'dashboard/a-allpackages.html', {'a':a})
 
 
 # class PackageUpdate(UpdateView):
@@ -639,7 +672,7 @@ def bookpackage(request, pk):
 		return HttpResponseRedirect('/dashboard/pending-bookings/')
 	else:
 		form = BookingOptions(request.POST or None)
-		return render(request, 'dashboard/pending-bookings.html', {'p':p, 'form':form, 'b':b},locals())
+		return render(request, 'dashboard/pending-bookings.html', {'p':p, 'form':form, 'b':b})
 
 def approve_booking(request, pk):
 	a = booking.objects.get(pk=pk).approved

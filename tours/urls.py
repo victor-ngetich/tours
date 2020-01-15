@@ -21,7 +21,7 @@ from home.views import home, contact, successView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from accounts.views import (login_success, register_view, success)
-from dashboard.views import (explore, filter, filter2, paymentsearch, bookings_filter, bookingsearch, paymentsearch1, payments1_filter, pending_bookings, payments_filter, approve_booking, to_do_trips, unavailable_packages, approved_bookings, delete_bookings3, bookings2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
+from dashboard.views import (explore, filter, filter2, paymentsearch, bookings_filter, fildel, bookingsearch, deleteabooking, paymentsearch1, payments1_filter, pending_bookings, payments_filter, approve_booking, to_do_trips, unavailable_packages, approved_bookings, delete_bookings3, bookings2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
 from payment.views import (payprocess, paydone, paycancel)
 from django.conf.urls.static import static
 from django.conf import settings
@@ -66,7 +66,7 @@ urlpatterns = [
     url(r'^dashboard/payments/',payments,name='payments'),
     url(r'^dashboard/payments-filter/',payments_filter,name='payments_filter'),
     url(r'^dashboard/payments-filter1/',payments1_filter,name='payments1_filter'),
-    url(r'^dashboard/bookings-filter/',bookings_filter,name='bookings_filter'),
+    url(r'^dashboard/bookings-filter/',fildel,name='fildel'),
     url(r'^dashboard/addpackage/',post,name='post'),
     url(r'^ourpackages/',ourpackages,name='ourpackages'),
     url(r'^unavailable-packages/',unavailable_packages,name='unavailable_packages'),
@@ -76,6 +76,7 @@ urlpatterns = [
     url(r'^dashboard/profile1/edit/',editprofile1,name='editprofile1'),
     url(r'^editpackage/(?P<pk>\w+)/$',editpackage,name='editpackage'),
     url(r'^deletebooking/(?P<pk>\d+)/$', delete_bookings2, name='delete_booking'),
+    # url(r'^deleteabooking/', deleteabooking, name='deleteabooking'),
     url(r'^deletebooking2/(?P<pk>\d+)/$', delete_bookings3, name='delete_booking1'),
     url(r'^approve-booking/(?P<pk>\d+)/$', approve_booking, name='approve_booking'),
     url(r'^deleteaccount/', delete_account, name='delete_account'),

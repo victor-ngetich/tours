@@ -25,7 +25,7 @@ class AgencyPaymentsTable(tables.Table):
 
 
 class ApprovedBookingsTable(tables.Table):
-	# amend = CheckBoxColumnWithName(verbose_name="Select", accessor="pk")
+	sel = tables.TemplateColumn('<input type="checkbox" name="check" value="{{ record.pk }}" />', orderable=False, verbose_name="Select")
 	class Meta:
 		model = booking
 		fields = ("user_full", "p_name2", "clientemail", "hotel", "adults", "kids", 'start_date', 'end_date', 'days', "date_added", "approved", "paid")
