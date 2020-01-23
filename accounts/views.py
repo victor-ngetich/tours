@@ -98,7 +98,7 @@ def register_view(request):
 		return render(request,'registration/signup.html',args)
 
 def success(request):
-	return render_to_response('registration/success.html')
+	return render(request,'registration/success.html')
 
 def activate(request, uidb64, token):
     try:
