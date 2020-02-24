@@ -32,8 +32,8 @@ class UserLoginForm(forms.Form):
 		if not user.check_password(password):
 			raise forms.ValidationError("Incorrect password!")
 
-		if user.groups.filter(name='Tourist').exists()==False and user.groups.filter(name='Tour Agency').exists()==False:
-			raise forms.ValidationError("Sorry, you are not permitted to access this page.")
+		# if user.groups.filter(name='Tourist').exists()==False and user.groups.filter(name='Tour Agency').exists()==False:
+		# 	raise forms.ValidationError("Sorry, you are not permitted to access this page.")
 
 		return super(UserLoginForm,self).clean(*args,**kwargs)
 

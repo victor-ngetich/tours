@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'home',
     'dashboard',
     'widget_tweaks',
-    # 'multiselectfield',
     'paypal.standard.ipn',
     'payment',
+    'celery',
 ]
 
 MIDDLEWARE = [
@@ -146,7 +146,7 @@ STATIC_ROOT = os.path.join(REPOSITORY_ROOT, 'static/')
 MEDIA_URL = '/tours/dashboard/static/uploads/'
 MEDIA_ROOT = os.path.join(REPOSITORY_ROOT, 'tours/dashboard/static/uploads/')
 
-
+# LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'login_success'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
@@ -166,3 +166,13 @@ PAYPAL_TEST = True
 # BRAINTREE_MERCHANT_ID = 'wzv3chvt3rgcnc7s',
 # BRAINTREE_PUBLIC_KEY = 'v83krfwsbyxjxbwp',
 # BRAINTREE_PRIVATE_KEY = '9643735fddd5db520c6b0791718895a1'
+
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json', 'application/text']
+CELERY_TIMEZONE = 'Africa/Nairobi'
+USE_THOUSAND_SEPARATOR = True

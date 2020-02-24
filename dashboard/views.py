@@ -34,11 +34,28 @@ from dashboard.forms import (
 )
 from paypal.standard.forms import PayPalPaymentsForm
 from django.shortcuts import get_list_or_404, get_object_or_404
+from dashboard.tasks import add
+from celery.result import AsyncResult
 
 # Create your views here.
 
 def explore(request):
 	now = datetime.now()
+	# d = add.delay(12,20)
+	# d.id
+	# f= d.id
+	# print(f)
+	# work = AsyncResult(f)
+	# if work.ready():                     # check task state: true/false
+	# 	try:
+	# 		result = work.get()
+	# 		return result
+	# 	except:
+	# 		pass
+	# else:
+	# 	result = "Not ready"
+	# 	return  result
+	# print(result)
 	d = destination.objects.all()
 	# inq= len(Inquiries.objects.all().filter(user_id = request.user))
 	# inv = len(services.objects.all().filter(user_id = request.user))

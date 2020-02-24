@@ -20,7 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from home.views import home, contact, successView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
-from accounts.views import (login_success, register_view, success)
+from accounts.views import (login_view, login_success, register_view, success)
 from dashboard.views import (explore, filter, filter2, paymentsearch, bookings_filter, fildel, bookingsearch, deleteabooking, paymentsearch1, payments1_filter, pending_bookings, payments_filter, approve_booking, to_do_trips, unavailable_packages, approved_bookings, delete_bookings3, bookings2, filter3, change_password, change_password1, delete_bookings2, delete_account, indexsearch, packagesearch, PackageDelete, ourpackagesearch, test1, editprofile, bookings1, payments, bookpackage, ourpackages, allpackages, allpackages1, payments1, editprofile1, post, editpackage)
 from payment.views import (payprocess, paydone, paycancel)
 from django.conf.urls.static import static
@@ -28,6 +28,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/login/', login_view, name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('home.urls')),
     url(r'login_success/$', login_success, name='login_success'),

@@ -59,7 +59,7 @@ input:focus {
 											<center><h2 class="panel-title" style="color:white;">Please sign in here </h2></center>
 										</div>
 										<div class="panel-body">
-											<form method="post" action="/accounts/login/">{% csrf_token %}
+											<form method="post" action="{% url 'login' %}">{% csrf_token %}
 												<p class="bs-component" style="color:white;">
 													{% csrf_token %}
 													{{form.as_p}}

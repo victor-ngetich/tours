@@ -25,33 +25,48 @@ login,
 logout,
 	)
 from .forms import UserLoginForm,MyRegistrationForm,PasswordResetForm
+from accounts.tasks import add, email_task
+from celery.result import AsyncResult
 # Create your views here.
 @csrf_protect
-@ensure_csrf_cookie
-# def login_view(request):
-# 	if request.method =='POST':
-# 		form = UserLoginForm(request.POST)
-# 		if form.is_valid():
-# 			username = form.cleaned_data.get("username")
-# 			password = form.cleaned_data.get("password")
-# 			user = authenticate(username=username,password=password)
-# 			next = request.POST.get('next', '/')
-			
-# 			login(request, user)
-# 			if user.groups.filter(name='Tourist').exists():
-# 				return HttpResponseRedirect('/explore/')
-# 				# return HttpResponseRedirect(next)
-# 			if user.groups.filter(name='Tour Agency').exists():
-# 				return HttpResponseRedirect('/ourpackages/')
-# 		else:
-# 			return render(request,'accounts/login1.html',{"form":form})
+def login_view(request):
+	if request.method =='POST':
+		form = UserLoginForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get("username")
+			password = form.cleaned_data.get("password")
+			user = authenticate(username=username,password=password)
+			if user.groups.filter(name='Tourist').exists():
+				if user.last_login:
+					add.delay(12,20)
+					login(request, user)
+					return HttpResponseRedirect('/explore/')
+				# else:
+				# 	login(request, user)
+				# 	messages.success(request, 'Hello, '+ request.user.username +' Welcome! Looks like you are logging in for the first time.Let us help you point you in the right direction by starting off with updating your user profile.')
+				# 	return HttpResponseRedirect('/site/w/edit_info/')
+			if user.groups.filter(name='Tour Agency').exists():
+				if user.last_login:
+					login(request, user)
 
-# 	else:
-# 		form = UserLoginForm()
-# 		args = {'form':form}
-# 		args.update(csrf(request))
-# 		args['form'] = UserLoginForm()
-# 		return render(request,'accounts/login1.html',args)
+					return HttpResponseRedirect('/ourpackages/')
+				# else:
+				# 	login(request, user)
+				# 	messages.success(request, 'Hello, '+ request.user.username +' Welcome! Looks like you are logging in for the first time.Let us help you point you in the right direction by starting off with updating your user profile.')
+				# 	return HttpResponseRedirect('/site/edit_info/')
+			if user.is_staff==True:
+				login(request, user)
+				return HttpResponseRedirect('/admin/')
+		else:
+			return render(request,'registration//login.html',{"form":form})
+
+	else:
+		form = UserLoginForm()
+		args = {'form':form}
+		args.update(csrf(request))
+		args['form'] = UserLoginForm()
+		return render(request,'registration/login.html',args)
+
 def login_success(request):
     """
     Redirects users based on their group
@@ -63,7 +78,6 @@ def login_success(request):
 		    return HttpResponseRedirect('/ourpackages/')
 
 @csrf_protect
-@ensure_csrf_cookie
 def register_view(request):
 	if request.method =='POST':
 		form = MyRegistrationForm(request.POST)  
@@ -73,18 +87,25 @@ def register_view(request):
 			user.save()
 			group = form.cleaned_data.get('group')
 			user.groups.add(group)
-			current_site = get_current_site(request)
-			message = render_to_string('registration/activate-email.html',{
-			'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-			# 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
-            'token': account_activation_token.make_token(user),
-            })
-			mail_subject = 'Activate your Kenyan Thrill account'
-			to_email = form.cleaned_data.get('email')
-			email = EmailMessage(mail_subject,message, to=[to_email])
-			email.send()
+			current_site = get_current_site(request).domain
+			email = form.cleaned_data.get('email')
+			user1= user.pk
+			data= {'email':email, 'current_site':current_site, 'user1':user1}
+			email_task.delay(data)
+			# d.id
+			# f= d.id
+			# print(f)
+			# work = AsyncResult(f)
+			# if work.ready():                     # check task state: true/false
+			# 	try:
+			# 		result = work.get(timeout=1) 
+			# 		return result
+			# 	except:
+			# 		pass
+			# else:
+			# 	result = "Not ready"
+			# 	return  result
+			# print(result)
 			return redirect('/success/')
 			return HttpResponse('Please confirm your email address to complete the registration')
 		else:
