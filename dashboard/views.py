@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.csrf import csrf_protect
@@ -189,7 +188,7 @@ def test1(request,pk):
 			product = form.save(commit=False)
 			product.save()
 
-		return HttpResponseRedirect('/')
+		return redirect('/')
 	else:
 		form = BookingOptions(instance=instance)
 
@@ -274,12 +273,12 @@ def deleteabooking(request):
 				# 	i.delete()
 				y.delete()
 			messages.info(request, 'Booking deleted!')
-			return HttpResponseRedirect('/approved-bookings/')
+			return redirect('/approved-bookings/')
 		else:
 			messages.info(request, 'No item selected!')
-			return HttpResponseRedirect('/approved-bookings/')
+			return redirect('/approved-bookings/')
 	else:
-		return HttpResponseRedirect('/approved-bookings/')
+		return redirect('/approved-bookings/')
 
 def fildel(request):
 	if 'fil' in request.POST:
@@ -440,7 +439,7 @@ def allpackages(request):
 			product = form.save(commit=False)
 			product.save()
 
-		return HttpResponseRedirect('/')
+		return redirect('/')
 	else:
 		form = BookingOptions()
 
@@ -487,7 +486,7 @@ def editpackage (request, pk=None):
 			instance.save()
 
 			messages.info(request, 'Your product was updated successfully')
-			return HttpResponseRedirect('/ourpackages/')
+			return redirect('/ourpackages/')
 			
 		else:
 			return render(request, 'dashboard/editt-package.html',{'form':form})
@@ -523,7 +522,7 @@ def delete_bookings2(request, pk):
 	# print(b)
 
 	booking.objects.filter(pk=pk).delete()
-	return HttpResponseRedirect('/dashboard/bookings/')
+	return redirect('/dashboard/bookings/')
 
 def delete_bookings3(request, pk):
 	d = booking.objects.values_list('adults',flat=True).get(pk=pk)
@@ -540,13 +539,13 @@ def delete_bookings3(request, pk):
 	# print(b)
 
 	booking.objects.filter(pk=pk).delete()
-	return HttpResponseRedirect('/booked/')
+	return redirect('/booked/')
 
 def delete_account(request):
 	a = request.user.get_username()
 	b = User.objects.values_list('id',flat=True).get(username=a)
 	User.objects.get(id=b).delete()
-	return HttpResponseRedirect('/accounts/login/')
+	return redirect('/accounts/login/')
 
 class PackageDelete(DeleteView):
     model = package
@@ -643,34 +642,34 @@ def bookpackage(request, pk):
 		delta = j - k
 		if delta.days < 0:
 			messages.info(request,'You can only make a booking from the start date of a package')
-			return HttpResponseRedirect('/dashboard/pending-bookings/')
+			return redirect('/dashboard/pending-bookings/')
 		else:
 			delta2 = n - j
 			if delta2.days < 0:
 				messages.info(request,'Your start date cannot be after the end date of a package')
-				return HttpResponseRedirect('/dashboard/pending-bookings/')
+				return redirect('/dashboard/pending-bookings/')
 			else:
 				delta3 = q - k
 				if delta3.days < 0:
 					messages.info(request,'Your end date cannot be before the start date of a package')
-					return HttpResponseRedirect('/dashboard/pending-bookings/')
+					return redirect('/dashboard/pending-bookings/')
 				else:
 					delta4 = n - q
 					if delta4.days < 0:
 						messages.info(request,'You can only make a booking until the end date of a package')
-						return HttpResponseRedirect('/dashboard/pending-bookings/')
+						return redirect('/dashboard/pending-bookings/')
 					else:
 						delta5 = q - j
 						if delta5.days < 0:
 							messages.info(request,'Your start date and end date are in reverse order')
-							return HttpResponseRedirect('/dashboard/pending-bookings/')
+							return redirect('/dashboard/pending-bookings/')
 						else:
 							a = package.objects.values_list('p_slots',flat=True).get(pk=pk)
 							c = int(adults)+int(kids)
 							d = int(a)-int(c)
 							if d < 0:
 								messages.info(request,'The total number of people in your booking exceeds the number of slots available')
-								return HttpResponseRedirect('/dashboard/pending-bookings/')
+								return redirect('/dashboard/pending-bookings/')
 							else:
 								b = booking.objects.create(user=request.user, user_full=e, clientemail=f, hotel=h, agency=p.agency, agencyname=p.p_agency, agencyemail=p.agencyemail, agencycontact=p.agency_phone, p_name2=p, d_name=p.d_name, adults=adults,kids=kids, pricep_adult=p.pricep_adult, pricep_kid=p.pricep_kid, start_date=start, end_date=end)
 
@@ -683,10 +682,10 @@ def bookpackage(request, pk):
 									e = package.objects.filter(pk=pk).update(available=False)
 								else:
 									pass
-								return HttpResponseRedirect('/dashboard/pending-bookings/')
+								return redirect('/dashboard/pending-bookings/')
 	# except:
 		messages.info(request,'There must have been a problem, please try again')
-		return HttpResponseRedirect('/dashboard/pending-bookings/')
+		return redirect('/dashboard/pending-bookings/')
 	else:
 		form = BookingOptions(request.POST or None)
 		return render(request, 'dashboard/pending-bookings.html', {'p':p, 'form':form, 'b':b})
@@ -694,7 +693,7 @@ def bookpackage(request, pk):
 def approve_booking(request, pk):
 	a = booking.objects.get(pk=pk).approved
 	b = booking.objects.filter(pk=pk).update(approved=True)
-	return HttpResponseRedirect('/booked/')
+	return redirect('/booked/')
 
 
 @csrf_protect
@@ -725,7 +724,7 @@ def post(request):
 				pass
 
 			package.objects.create(p_name=name,p_category=category,d_name=destination, p_agency=b, agency=d, agencyemail=c, agency_phone=phone,pricep_adult=price1, pricep_kid=price2, from_day=from_date, to_day=to_date,p_slots=slots, available=a, p_description=description)
-			return HttpResponseRedirect('/ourpackages/')
+			return redirect('/ourpackages/')
 			messages.info(request, 'Your product was posted successfully')
 		else:
 			return render(request, 'dashboard/pages/add-package.html',{'form':form})

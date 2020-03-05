@@ -65,7 +65,9 @@ input:focus {
 													{{form.as_p}}
 												</p>	
 													<center>
+														{% if request.GET.next %}
 														<input type="hidden" name="next" value="{{ request.GET.next }}">
+														{% endif %}
 														<input class="btn btn-success btn-sm btn-block" type="submit" value="Login"/>
 													</center>
 													<br><div class="text-center">

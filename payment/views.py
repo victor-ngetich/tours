@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.contrib.auth.models import User
 from dashboard.models import destination, package, booking, Hotel, payment
@@ -52,7 +50,7 @@ def paydone(request):
 
     # try:
     if payment.objects.filter(transaction_id=f).exists():
-        return HttpResponseRedirect('/dashboard/bookings/')
+        return redirect('/dashboard/bookings/')
     else:
         i = booking.objects.get(id=d)
         j = payment.objects.create(booking=i, user=request.user, user_full=i.user_full, agencyemail=i.agencyemail, clientemail=i.clientemail, hotel=i.hotel, agency=i.agency, agencyname=i.agencyname, agencycontact=i.agencycontact, date_added=i.date_added, adults=i.adults,kids=i.kids, pricep_adult=i.pricep_adult, pricep_kid=i.pricep_kid, amountpaid=a, start_date=i.start_date, end_date=i.end_date, days=i.days, transaction_status=e,transaction_id=f)

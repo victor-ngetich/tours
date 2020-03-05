@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_text
@@ -40,25 +39,27 @@ def login_view(request):
 				if user.last_login:
 					add.delay(12,20)
 					login(request, user)
-					return HttpResponseRedirect('/explore/')
+					if 'next' in request.POST:
+						return redirect(request.POST.get('next'))
+					else:
+						return redirect('/explore/')
 				# else:
 				# 	login(request, user)
 				# 	messages.success(request, 'Hello, '+ request.user.username +' Welcome! Looks like you are logging in for the first time.Let us help you point you in the right direction by starting off with updating your user profile.')
-				# 	return HttpResponseRedirect('/site/w/edit_info/')
+				# 	return redirect('/site/w/edit_info/')
 			if user.groups.filter(name='Tour Agency').exists():
 				if user.last_login:
 					login(request, user)
-
-					return HttpResponseRedirect('/ourpackages/')
+					return redirect('/ourpackages/')
 				# else:
 				# 	login(request, user)
 				# 	messages.success(request, 'Hello, '+ request.user.username +' Welcome! Looks like you are logging in for the first time.Let us help you point you in the right direction by starting off with updating your user profile.')
-				# 	return HttpResponseRedirect('/site/edit_info/')
+				# 	return redirect('/site/edit_info/')
 			if user.is_staff==True:
 				login(request, user)
-				return HttpResponseRedirect('/admin/')
+				return redirect('/admin/')
 		else:
-			return render(request,'registration//login.html',{"form":form})
+			return render(request,'registration/login.html',{"form":form})
 
 	else:
 		form = UserLoginForm()
@@ -72,13 +73,13 @@ def login_success(request):
     Redirects users based on their group
     """
     if request.user.groups.filter(name='Tourist').exists():
-        return HttpResponseRedirect('/explore/')
+        return redirect('/explore/')
     else:
 	    if request.user.groups.filter(name='Tour Agency').exists():
-		    return HttpResponseRedirect('/ourpackages/')
+		    return redirect('/ourpackages/')
 
 @csrf_protect
-def register_view(request):
+def register(request):
 	if request.method =='POST':
 		form = MyRegistrationForm(request.POST)  
 		if form.is_valid():
@@ -92,22 +93,8 @@ def register_view(request):
 			user1= user.pk
 			data= {'email':email, 'current_site':current_site, 'user1':user1}
 			email_task.delay(data)
-			# d.id
-			# f= d.id
-			# print(f)
-			# work = AsyncResult(f)
-			# if work.ready():                     # check task state: true/false
-			# 	try:
-			# 		result = work.get(timeout=1) 
-			# 		return result
-			# 	except:
-			# 		pass
-			# else:
-			# 	result = "Not ready"
-			# 	return  result
-			# print(result)
 			return redirect('/success/')
-			return HttpResponse('Please confirm your email address to complete the registration')
+			return redirect('Please confirm your email address to complete the registration')
 		else:
 			return render(request,'registration/signup.html',{"form":form})
 
@@ -139,7 +126,7 @@ def activate(request, uidb64, token):
 	# user = User.objects.get(username=request.user.username)
 	# [s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
 	# logout(request)
-	# return HttpResponseRedirect('/accounts/login/')
+	# return redirect('/accounts/login/')
 # @csrf_protect
 # def forgot_view(request):
 # 	return render(request,'registration/forgot-password.html')
