@@ -26,7 +26,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/login/', aviews.login_view, name='login'),
+    # path('accounts/login/', aviews.login_view, name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('home.urls')),
     path('login_success/', aviews.login_success, name='login_success'),

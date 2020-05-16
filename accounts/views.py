@@ -29,19 +29,20 @@ from celery.result import AsyncResult
 # Create your views here.
 @csrf_protect
 def login_view(request):
+	form = UserLoginForm(request.POST)
 	if request.method =='POST':
-		form = UserLoginForm(request.POST)
 		if form.is_valid():
 			username = form.cleaned_data.get("username")
 			password = form.cleaned_data.get("password")
 			user = authenticate(username=username,password=password)
 			if user.groups.filter(name='Tourist').exists():
 				if user.last_login:
-					add.delay(12,20)
+					# add.delay(12,20)
 					login(request, user)
 					if 'next' in request.POST:
 						return redirect(request.POST.get('next'))
 					else:
+						print("touristlogin")
 						return redirect('/explore/')
 				# else:
 				# 	login(request, user)
@@ -59,24 +60,24 @@ def login_view(request):
 				login(request, user)
 				return redirect('/admin/')
 		else:
+			print("forminvalid")
 			return render(request,'registration/login.html',{"form":form})
 
 	else:
-		form = UserLoginForm()
 		args = {'form':form}
-		args.update(csrf(request))
-		args['form'] = UserLoginForm()
-		return render(request,'registration/login.html',args)
+		# args.update(csrf(request))
+	print("getrequest")
+	return render(request,'registration/login.html',{"form":form})
 
 def login_success(request):
-    """
-    Redirects users based on their group
-    """
-    if request.user.groups.filter(name='Tourist').exists():
-        return redirect('/explore/')
-    else:
-	    if request.user.groups.filter(name='Tour Agency').exists():
-		    return redirect('/ourpackages/')
+# Redirects users based on their group
+	if request.user.groups.filter(name='Tourist').exists():
+		return redirect('/explore/')
+	elif request.user.groups.filter(name='Tour Agency').exists():
+		return redirect('/ourpackages/')
+	elif request.user.is_staff:
+		return redirect('/admin/')
+
 
 @csrf_protect
 def register(request):
