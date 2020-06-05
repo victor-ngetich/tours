@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from .models import destination, package, booking, Hotel, payment
 
@@ -57,8 +58,18 @@ class EventModelAdmin4(admin.ModelAdmin):
     class Meta:
         model = payment
 
-class EventModelAdmin5(admin.ModelAdmin):
-    list_display = ["username", "is_active"]
+class EventModelAdmin5(UserAdmin):
+    list_display = ['username','email', 'first_name', 'last_name', 'is_staff', 'is_active', 'last_login']
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    list_per_page = 10
+    search_fields = ["username", "email", "first_name", "last_name"]
+    ordering = ('username',)
+    filter_horizontal = ('groups', 'user_permissions',)
+    actions = ['make_active', ]
+
+    def make_active(self, request, queryset):
+        queryset.update(is_active=True)
+    make_active.short_description = "Make User Active"
 
     class Meta:
         model = User
@@ -70,4 +81,5 @@ admin.site.register(package,EventModelAdmin1)
 admin.site.register(booking,EventModelAdmin2)
 admin.site.register(Hotel,EventModelAdmin3)
 admin.site.register(payment,EventModelAdmin4)
-# admin.site.register(User,EventModelAdmin5)
+admin.site.unregister(User)
+admin.site.register(User,EventModelAdmin5)
