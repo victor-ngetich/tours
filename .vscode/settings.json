@@ -1,6 +1,7 @@
 {
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "restructuredtext.confPath": "",
-    "python.pythonPath": "C:\\Users\\Vic\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+    "python.pythonPath": "C:\\Users\\Vic\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
+    "python.linting.flake8Enabled": true
 }
