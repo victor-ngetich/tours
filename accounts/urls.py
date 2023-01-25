@@ -1,7 +1,8 @@
-from django.conf.urls import url,include
+#from django.conf.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.activate, name='activate'),    
+    path(r'^$', views.activate, name='activate'),    
 ]

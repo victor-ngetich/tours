@@ -1,11 +1,11 @@
 from celery import Celery
-from celery import task
+from celery import shared_task
 from celery import shared_task
 from celery.utils.log import get_task_logger
 from django.contrib.auth.models import User
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
@@ -15,9 +15,9 @@ import time
 # logger=get_task_logger(__name__)
 
 
-@task
-def reverse(string):
-    return string[::-1]
+##@task
+##def reverse(string):
+##    return string[::-1]
 
 @shared_task(name="sum_two_numbers")
 def add(x, y):

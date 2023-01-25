@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.conf.urls import url, include
+from django.conf.urls import include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from accounts import views as aviews
 from home import views as hviews
@@ -25,10 +25,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
     # path('accounts/login/', aviews.login_view, name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('home.urls')),
     path('login_success/', aviews.login_success, name='login_success'),
     path('register/',aviews.register,name='register'),
     re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',include('accounts.urls'), name='activate'),
@@ -48,7 +48,6 @@ urlpatterns = [
     path('ourpackagesearch/', dviews.ourpackagesearch, name='ourpackagesearch'),
     path('p_filter/', dviews.filter2, name='filter2'),
     path('t_filter/', dviews.filter3, name='filter3'),
-    re_path('bookpackage/(?P<pk>\w+)/',dviews.bookpackage,name='bookpackage'),
     re_path('destination/(?P<pk>\w+)/',dviews.test1,name='test1'),
     path('dashboard/profile/edit/',dviews.editprofile,name='editprofile'),
     path('dashboard/profile/password/',dviews.change_password,name='change_password'),
