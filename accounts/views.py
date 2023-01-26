@@ -48,7 +48,7 @@ def login_view(request):
 				# 	login(request, user)
 				# 	messages.success(request, 'Hello, '+ request.user.username +' Welcome! Looks like you are logging in for the first time.Let us help you point you in the right direction by starting off with updating your user profile.')
 				# 	return redirect('/site/w/edit_info/')
-			if user.groups.filter(name='Tour Agency').exists():
+			if user.groups.filter(name='Travel Agency').exists():
 				if user.last_login:
 					login(request, user)
 					return redirect('/ourpackages/')
@@ -73,7 +73,7 @@ def login_success(request):
 # Redirects users based on their group
 	if request.user.groups.filter(name='Tourist').exists():
 		return redirect('/explore/')
-	elif request.user.groups.filter(name='Tour Agency').exists():
+	elif request.user.groups.filter(name='Travel Agency').exists():
 		return redirect('/ourpackages/')
 	elif request.user.is_staff:
 		return redirect('/admin/')
