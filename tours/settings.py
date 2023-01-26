@@ -85,7 +85,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.mysql',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fluximpact',
+        'NAME': 'tours',
         'USER': 'postgres',
         'PASSWORD': 'qwerty',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
